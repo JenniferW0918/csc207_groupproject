@@ -29,8 +29,16 @@ to public or private.
 ## API link!: https://docs.developer.yelp.com/docs/fusion-intro 
 
 ## Using Hoppscotch to try out the Yelp Fusion API "Search" endpoint
-
+1.
 <img width="1280" alt="Screenshot of Yelp API Testing in Hoppscotch io" src="https://github.com/JenniferW0918/csc207_groupproject/assets/145359467/f0324a81-2fe6-4c5f-a7e9-e6630a3cb639">
+
+2.
+A screenshot of calling the YELP API in https://hoppscotch.io/ :
+![img_3.png](img_3.png)
+
+## Calling the Yelp API in Java
+A screenshot of calling the yelp api in Java:
+![img.png](img.png)
 
 ## Technical Problems:
 
