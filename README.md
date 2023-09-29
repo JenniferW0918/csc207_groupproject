@@ -26,3 +26,6 @@ food spots to these lists. A personal user has the option of setting their profi
 profiles having their personalized lists accessible by other users. Public users can choose, however, to set their lists
 to public or private. 
 
+## API link!:
+## Technical Problems:
+
