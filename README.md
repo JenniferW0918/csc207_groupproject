@@ -30,6 +30,7 @@ to public or private.
 
 ## Calling the Yelp Fusion API in Hoppscotch:
 <img width="1280" alt="Screenshot of Yelp API Testing in Hoppscotch io" src="https://github.com/JenniferW0918/csc207_groupproject/assets/145359467/f0324a81-2fe6-4c5f-a7e9-e6630a3cb639">
+
 ![img_3.png](img_3.png)
 
 ## Calling the Yelp Fusion API in Java:
