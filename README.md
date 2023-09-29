@@ -34,11 +34,11 @@ to public or private.
 
 2.
 A screenshot of calling the YELP API in https://hoppscotch.io/ :
-![img_3.png](img_3.png)
+<img alt="img_3.png" src="img_3.png"/>
 
 ## Calling the Yelp API in Java
 A screenshot of calling the yelp api in Java:
-![img.png](img.png)
+<img alt="img.png" src="img.png"/>
 
 ## Technical Problems:
 
