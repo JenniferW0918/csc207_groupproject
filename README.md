@@ -28,5 +28,9 @@ to public or private.
 
 ## API link!: https://docs.developer.yelp.com/docs/fusion-intro 
 
+## Using Hoppscotch to try out the Yelp Fusion API Search endpoint
+
+<img width="1280" alt="Screenshot of Yelp API Testing in Hoppscotch io" src="https://github.com/JenniferW0918/csc207_groupproject/assets/145359467/f0324a81-2fe6-4c5f-a7e9-e6630a3cb639">
+
 ## Technical Problems:
 
