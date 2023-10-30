@@ -1,36 +1,23 @@
 package entity;
 
-import java.time.LocalDateTime;
+import java.util.Map;
+
 
 public class Business {
+    private final Integer BUSINESS_ID;
     private final String name;
     private final String password;
-    private final LocalDateTime creationTime;
+    private final String address;
+    private final Map<> hours;
+    private final BusinessAccount businessAccount;
 
-    /**
-     * Requires: password is valid.
-     * @param name
-     * @param password
-     */
-    CommonUser(String name, String password, LocalDateTime creationTime) {
+    public Business(Integer BUSINESS_ID, String name, String passoword, String address, Map<> hours,
+                    BusinessAccount businessAccount) {
+        this.BUSINESS_ID = BUSINESS_ID;
         this.name = name;
         this.password = password;
-        this.creationTime = creationTime;
+        this.address = address;
+        this.hours = hours;
+        this.businessAccount = businessAccount;
     }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public LocalDateTime getCreationTime() {
-        return creationTime;
-    }
-}
 }
