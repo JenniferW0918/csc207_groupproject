@@ -1,4 +1,4 @@
-# csc207_groupproject
+# csc207_groupproject NOM NOM NOW!: Group 31
 ***
 ## Domain: _Online Directory_
 For our project, we will be creating an **Online Directory** similar to Yelp. Included within the domain will be the
