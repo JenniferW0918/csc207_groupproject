@@ -20,4 +20,28 @@ public class Business {
         this.hours = hours;
         this.businessAccount = businessAccount;
     }
+
+    public Integer getBUSINESS_ID() {
+        return BUSINESS_ID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public Map getHours() {
+        return hours;
+    }
+
+    public BusinessAccount getBusinessAccount() {
+        return businessAccount;
+    }
 }
