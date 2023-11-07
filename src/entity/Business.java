@@ -4,16 +4,16 @@ import java.util.Map;
 
 
 public class Business {
-    private final Integer BUSINESS_ID;
+    private final Integer BUSINESS_USERNAME;
     private final String name;
     private final String password;
     private final String address;
-    private final Map<> hours;
-    private final BusinessAccount businessAccount;
+    private final Map<String, String> hours;
+    private final Accounts businessAccount;
 
-    public Business(Integer BUSINESS_ID, String name, String passoword, String address, Map<> hours,
-                    BusinessAccount businessAccount) {
-        this.BUSINESS_ID = BUSINESS_ID;
+    public Business(Integer BUSINESS_USERNAME, String name, String password, String address, Map<String, String> hours,
+                    Accounts businessAccount) {
+        this.BUSINESS_USERNAME = BUSINESS_USERNAME;
         this.name = name;
         this.password = password;
         this.address = address;
@@ -22,7 +22,7 @@ public class Business {
     }
 
     public Integer getBUSINESS_ID() {
-        return BUSINESS_ID;
+        return BUSINESS_USERNAME;
     }
 
     public String getName() {
@@ -41,7 +41,7 @@ public class Business {
         return hours;
     }
 
-    public BusinessAccount getBusinessAccount() {
+    public Accounts getBusinessAccount() {
         return businessAccount;
     }
 }
