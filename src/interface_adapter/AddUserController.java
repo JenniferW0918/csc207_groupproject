@@ -1,7 +1,7 @@
 package interface_adapter;
 
-import use_case.signup.AddBusinessInputBoundary;
-import use_case.signup.AddBusinessInputData;
+import use_case.signup.AddUserInputBoundary;
+import use_case.signup.AddUserInputData;
 
 public class AddUserController {
 
