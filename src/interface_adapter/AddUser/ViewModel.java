@@ -1,4 +1,4 @@
-package interface_adapter;
+package interface_adapter.AddUser;
 
 import java.beans.PropertyChangeListener;
 

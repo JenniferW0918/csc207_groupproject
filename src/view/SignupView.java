@@ -3,11 +3,10 @@ package view;
 import data_access.FileUserDataAccessObject;
 import interface_adapter.clear_users.ClearState;
 import interface_adapter.clear_users.ClearViewModel;
-import interface_adapter.signup.SignupController;
-import interface_adapter.signup.SignupState;
-import interface_adapter.signup.SignupViewModel;
+import interface_adapter.AddUser.SignupController;
+import interface_adapter.AddUser.SignupState;
+import interface_adapter.AddUser.SignupViewModel;
 import interface_adapter.clear_users.ClearController;
-import data_access.FileUserDataAccessObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -57,16 +56,16 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         LabelTextPanel usernameInfo = new LabelTextPanel(
-                new JLabel(SignupViewModel.USERNAME_LABEL), usernameInputField);
+                new JLabel(AddUserViewModel.USERNAME_LABEL), usernameInputField);
         LabelTextPanel passwordInfo = new LabelTextPanel(
-                new JLabel(SignupViewModel.PASSWORD_LABEL), passwordInputField);
+                new JLabel(AddUserViewModel.PASSWORD_LABEL), passwordInputField);
         LabelTextPanel repeatPasswordInfo = new LabelTextPanel(
-                new JLabel(SignupViewModel.REPEAT_PASSWORD_LABEL), repeatPasswordInputField);
+                new JLabel(AddUserViewModel.REPEAT_PASSWORD_LABEL), repeatPasswordInputField);
 
         JPanel buttons = new JPanel();
-        signUp = new JButton(SignupViewModel.SIGNUP_BUTTON_LABEL);
+        signUp = new JButton(AddUserViewModel.SIGNUP_BUTTON_LABEL);
         buttons.add(signUp);
-        cancel = new JButton(SignupViewModel.CANCEL_BUTTON_LABEL);
+        cancel = new JButton(AddUserViewModel.CANCEL_BUTTON_LABEL);
         buttons.add(cancel);
 
         // TODO Note: the following line instantiates the "clear" button; it uses
