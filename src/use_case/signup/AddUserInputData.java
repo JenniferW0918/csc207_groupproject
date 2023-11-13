@@ -16,11 +16,9 @@ public class AddUserInputData {
         this.location = location;
     }
 
-    String getUsername() {
-        return username; }
+    String getUsername() { return username; }
 
     String getPassword() {
-
         return password;
     }
 }
