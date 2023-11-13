@@ -14,10 +14,4 @@ public class AddUserOutputData {
 
         return username;
     }
-
-    public void setCreationTime(String creationTime) {
-
-        this.creationTime = creationTime;
-    }
-
 }
