@@ -1,4 +1,6 @@
 package interface_adapter.add_user;
+import use_case.add_user.AddUserInputBoundary;
+import use_case.add_user.AddUserInputData;
 
 public class AddUserController {
 

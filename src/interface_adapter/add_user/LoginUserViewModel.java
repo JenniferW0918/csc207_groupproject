@@ -5,22 +5,22 @@ import interface_adapter.ViewModel;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class AddUserViewModel extends ViewModel {
+public class LoginUserViewModel extends ViewModel {
 
-    public static final String USERNAME_LABEL = "Create Username";
-    public static final String PASSWORD_LABEL = "Create Password";
-    public static final String EMAIL_LABEL = "Enter Email";
-    public static final String SIGNUP_BUTTON_LABEL = "Create Account";
-    public static final String CANCEL_BUTTON_LABEL = "Cancel";
-    public static final String TITLE_LABEL = "Sign Up";
+    public final String TITLE_LABEL = "Log In";
+    public final String USERNAME_LABEL = "Enter Username";
+    public final String PASSWORD_LABEL = "Enter Password";
 
-    private AddUserState state = new AddUserState();
+    public final String LOGIN_BUTTON_LABEL = "Log In";
+    public final String CANCEL_BUTTON_LABEL = "Cancel";
 
-    public AddUserViewModel() {
-        super("sign up");
+    private LoginUserState state = new LoginUserState();
+
+    public LoginUserViewModel() {
+        super("log in");
     }
 
-    public void setState(AddUserState state) {
+    public void setState(LoginUserState state) {
         this.state = state;
     }
 
@@ -36,7 +36,8 @@ public class AddUserViewModel extends ViewModel {
         support.addPropertyChangeListener(listener);
     }
 
-    public AddUserState getState() {
+    public LoginUserState getState() {
         return state;
     }
 }
+

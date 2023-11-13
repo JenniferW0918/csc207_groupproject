@@ -1,32 +1,35 @@
 package interface_adapter.add_user;
 
-import interface_adapter.login.LoginState;
-import interface_adapter.login.LoginViewModel;
+import interface_adapter.add_user.LoginUserState;
+import interface_adapter.add_user.LoginUserViewModel;
+import use_case.add_user.AddUserOutputBoundary;
+import use_case.add_user.AddUserOutputData;
+import interface_adapter.ViewManagerModel;
 
 public class AddUserPresenter implements AddUserOutputBoundary {
 
     private final AddUserViewModel addUserViewModel;
-    private final LoginViewModel loginViewModel;
+    private final LoginUserViewModel loginUserViewModel;
     private ViewManagerModel viewManagerModel;
 
     public AddUserPresenter(ViewManagerModel viewManagerModel,
                             AddUserViewModel addUserViewModel,
-                            LoginViewModel loginViewModel) {
+                            LoginUserViewModel loginUserViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.addUserViewModel = addUserViewModel;
-        this.loginViewModel = loginViewModel;
+        this.loginUserViewModel = loginUserViewModel;
     }
 
     @Override
     public void prepareSuccessView(AddUserOutputData response) {
         // On success, switch to the login view.
 
-        LoginState loginState = loginViewModel.getState();
-        loginState.setUsername(response.getUsername());
-        this.loginViewModel.setState(loginState);
-        loginViewModel.firePropertyChanged();
+        LoginUserState loginUserState = loginUserViewModel.getState();
+        loginUserState.setUsername(response.getUsername());
+        this.loginUserViewModel.setState(loginUserState);
+        loginUserViewModel.firePropertyChanged();
 
-        viewManagerModel.setActiveView(loginViewModel.getViewName());
+        viewManagerModel.setActiveView(loginUserViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 
