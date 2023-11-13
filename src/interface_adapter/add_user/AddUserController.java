@@ -1,7 +1,4 @@
-package interface_adapter;
-
-import use_case.signup.AddUserInputBoundary;
-import use_case.signup.AddUserInputData;
+package interface_adapter.add_user;
 
 public class AddUserController {
 
@@ -15,3 +12,4 @@ public class AddUserController {
         addUserUseCaseInteractor.execute(addUserInputData);
     }
 }
+

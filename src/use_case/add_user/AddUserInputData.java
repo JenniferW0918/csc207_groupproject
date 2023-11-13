@@ -1,4 +1,4 @@
-package use_case.signup;
+package use_case.add_user;
 
 public class AddUserInputData {
 
@@ -16,9 +16,11 @@ public class AddUserInputData {
         this.location = location;
     }
 
-    String getUsername() { return username; }
+    String getUsername() {
+        return username; }
 
     String getPassword() {
+
         return password;
     }
 }
