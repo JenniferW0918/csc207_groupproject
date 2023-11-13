@@ -1,4 +1,4 @@
-package interface_adapter.AddBusiness;
+package interface_adapter.add_business;
 
 import interface_adapter.ViewModel;
 

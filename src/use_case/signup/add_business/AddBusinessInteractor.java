@@ -1,7 +1,8 @@
-package use_case.signup;
+package use_case.signup.add_business;
 
 import entity.User;
 import entity.UserFactory;
+
 
 import java.time.LocalDateTime;
 
