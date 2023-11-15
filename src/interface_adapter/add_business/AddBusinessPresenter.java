@@ -1,35 +1,46 @@
-public class LoginBusinessPresenter implements LoginBusinessOutputBoundary {
+package interface_adapter.signup;
 
-    private final LoginBusinessViewModel loginViewModel;
-    private final LoggedInViewModel loggedInViewModel;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.add_business.AddBusinessViewModel;
+import use_case.add_business.AddBusinessOutputBoundary;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class AddBusinessPresenter implements AddBusinessOutputBoundary {
+
+    private final AddBusinessViewModel addBusinessViewModel;
+    private final AddBusinessViewModel loginViewModel;
     private ViewManagerModel viewManagerModel;
 
-    public LoginBusinessPresenter(ViewManagerModel viewManagerModel,
-                                  LoggedInViewModel loggedInViewModel,
-                                  LoginBusinessViewModel loginBusinessViewModel) {
+    public AddBusinessPresenter(ViewManagerModel viewManagerModel,
+                                AddBusinessViewModel addBusinessViewModel,
+                           LoginViewModel loginViewModel) {
         this.viewManagerModel = viewManagerModel;
-        this.loggedInViewModel = loggedInViewModel;
-        this.loginBusinessViewModel = loginBusinessViewModel;
+        this.addBusinessViewModel = addBusinessViewModel;
+        this.loginViewModel = loginViewModel;
     }
 
     @Override
-    public void prepareSuccessView(LoginBusinessOutputData response) {
-        // On success, switch to the logged in view.
+    public void prepareSuccessView(AddBusinessOutputData response) {
+        // On success, switch to the login view.
+        LocalDateTime responseTime = LocalDateTime.parse(response.getCreationTime());
+        response.setCreationTime(responseTime.format(DateTimeFormatter.ofPattern("hh:mm:ss")));
 
-        LoggedInState loggedInState = loggedInViewModel.getState();
-        loggedInState.setUsername(response.getUsername());
-        this.loggedInViewModel.setState(loggedInState);
-        this.loggedInViewModel.firePropertyChanged();
+        LoginState loginState = loginViewModel.getState();
+        loginState.setUsername(response.getUsername());
+        this.loginViewModel.setState(loginState);
+        loginViewModel.firePropertyChanged();
 
-        this.viewManagerModel.setActiveView(loggedInViewModel.getViewName());
-        this.viewManagerModel.firePropertyChanged();
+        viewManagerModel.setActiveView(loginViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
     }
 
     @Override
     public void prepareFailView(String error) {
-        LoginState loginState = loginBusinessViewModel.getState();
-        loginState.setUsernameError(error);
-        loginBusinessViewModel.firePropertyChanged();
+        AddBusinessState addBusinessState = addBusinessViewModel.getState();
+        addBusinessState.setUsernameError(error);
+        addBusinessViewModel.firePropertyChanged();
     }
 }
 

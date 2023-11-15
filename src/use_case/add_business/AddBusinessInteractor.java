@@ -2,7 +2,9 @@ package use_case.signup.add_business;
 
 import entity.User;
 import entity.UserFactory;
-import use_case.signup.add_business.AddBusinessInputBoundary;
+import use_case.add_business.AddBusinessInputBoundary;
+import use_case.add_business.AddBusinessDataAccessInterface;
+import use_case.add_business.AddBusinessOutputBoundary;
 
 
 import java.time.LocalDateTime;

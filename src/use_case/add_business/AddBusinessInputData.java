@@ -1,4 +1,4 @@
-package use_case.signup.add_business;
+package use_case.add_business;
 import java.util.Map;
 
 public class AddBusinessInputData {
