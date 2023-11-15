@@ -1,5 +1,4 @@
 package entity;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /** When api is called the data returned should be turned into a search result object

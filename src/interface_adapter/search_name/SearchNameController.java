@@ -1,28 +1,20 @@
 package interface_adapter.search_name;
 import use_case.search_name.SearchNameInputBoundary;
+import use_case.search_name.SearchNameInputData;
+import use_case.search_name.SearchNameOutputData;
+
 
 public class SearchNameController {
     private final SearchNameInputBoundary searchNameUseCaseInteractor;
 
-    public SearchNameController(SearchNameInputBoundary userSignupUseCaseInteractor, SearchNameInputBoundary searchNameUseCaseInteractor) {
+    public SearchNameController(SearchNameInputBoundary searchNameUseCaseInteractor)
+    {
         this.searchNameUseCaseInteractor = searchNameUseCaseInteractor;
     }
 
-    public void execute() {
-        searchNameUseCaseInteractor.execute();}
+    public void execute(String location, String term){
+        SearchNameInputData searchNameInputData = new SearchNameInputData(
+                location, term);
+        searchNameUseCaseInteractor.execute(searchNameInputData);
+    }
 }
-
-
-//// Controller
-//public class SearchNameController {
-//    private final SearchNameInputBoundary inputBoundary;
-//
-//    public SearchNameController(SearchNameInputBoundary inputBoundary) {
-//        this.inputBoundary = inputBoundary;
-//    }
-//
-//    public void handleSearchRequest(String location, String term) {
-//        SearchNameInputData inputData = new SearchNameInputData(location, term);
-//        inputBoundary.searchName(inputData);
-//    }
-//}

@@ -1,5 +1,7 @@
 package use_case.search_name;
 
+import entity.SearchNameResult;
+
 public interface SearchNameDataAccessInterface {
-   void getSearchName(SearchNameInputData searchNameInputData) throws Exception;
+   SearchNameResult getSearchName(SearchNameInputData searchNameInputData);
 }
