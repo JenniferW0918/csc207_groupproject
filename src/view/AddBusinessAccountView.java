@@ -1,13 +1,8 @@
 package view;
 
-import data_access.FileUserDataAccessObject;
-import interface_adapter.clear_users.ClearState;
-import interface_adapter.clear_users.ClearViewModel;
-import interface_adapter.signup.SignupController;
-import interface_adapter.signup.SignupState;
-import interface_adapter.signup.SignupViewModel;
-import interface_adapter.clear_users.ClearController;
-import data_access.FileUserDataAccessObject;
+import interface_adapter.add_business.AddBusinessAccountController;
+import interface_adapter.add_business.AddBusinessAccountState;
+import interface_adapter.add_business.AddBusinessAccountViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,94 +13,58 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class SignupView extends JPanel implements ActionListener, PropertyChangeListener {
+public class AddBusinessAccountView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "sign up";
 
-    private final SignupViewModel signupViewModel;
+    private final AddBusinessAccountViewModel addBusinessAccountViewModel;
     private final JTextField usernameInputField = new JTextField(15);
     private final JPasswordField passwordInputField = new JPasswordField(15);
     private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
-    private final SignupController signupController;
-
-    private final ClearController clearController;
-
-    private final ClearViewModel clearViewModel;
-
-    private final JButton signUp;
-    private final JButton cancel;
-
-    // TODO Note: this is the new JButton for clearing the users file
-    private final JButton clear;
-
-    //private void clearUsers() {
-    //    ClearController clearController = new ClearController(); // Instantiate the ClearController
-    //    clearController.clearAllUsers(); // Call the clearAllUsers method
-    //}
+    private final AddBusinessAccountController addBusinessAccountController;
 
 
-    public SignupView(SignupController controller, SignupViewModel signupViewModel, ClearController clearController,
-                      ClearViewModel clearViewModel) {
+    private final JButton addBusinessAccount;
 
-        this.signupController = controller;
-        this.signupViewModel = signupViewModel;
-        this.clearController = clearController;
-        this.clearViewModel = clearViewModel;
+
+    public AddBusinessAccountView(AddBusinessAccountController controller, AddBusinessAccountViewModel signupViewModel){
+
+        this.addBusinessAccountController = controller;
+        this.addBusinessAccountViewModel = signupViewModel;
         signupViewModel.addPropertyChangeListener(this);
-        clearViewModel.addPropertyChangeListener(this);
 
-        JLabel title = new JLabel(SignupViewModel.TITLE_LABEL);
+        JLabel title = new JLabel(AddBusinessAccountViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         LabelTextPanel usernameInfo = new LabelTextPanel(
-                new JLabel(SignupViewModel.USERNAME_LABEL), usernameInputField);
+                new JLabel(AddBusinessAccountViewModel.USERNAME_LABEL), usernameInputField);
         LabelTextPanel passwordInfo = new LabelTextPanel(
-                new JLabel(SignupViewModel.PASSWORD_LABEL), passwordInputField);
-        LabelTextPanel repeatPasswordInfo = new LabelTextPanel(
-                new JLabel(SignupViewModel.REPEAT_PASSWORD_LABEL), repeatPasswordInputField);
+                new JLabel(AddBusinessAccountViewModel.PASSWORD_LABEL), passwordInputField);
 
         JPanel buttons = new JPanel();
-        signUp = new JButton(SignupViewModel.SIGNUP_BUTTON_LABEL);
-        buttons.add(signUp);
-        cancel = new JButton(SignupViewModel.CANCEL_BUTTON_LABEL);
+        addBusinessAccount = new JButton(AddBusinessAccountViewModel.SIGNUP_BUTTON_LABEL);
+        buttons.add(addBusinessAccount);
+        cancel = new JButton(AddBusinessAccountViewModel.CANCEL_BUTTON_LABEL);
         buttons.add(cancel);
 
-        // TODO Note: the following line instantiates the "clear" button; it uses
-        //      a CLEAR_BUTTON_LABEL constant which is defined in the SignupViewModel class.
-        //      You need to add this "clear" button to the "buttons" panel.
-        clear = new JButton(SignupViewModel.CLEAR_BUTTON_LABEL);
-        buttons.add(clear);
-
-        signUp.addActionListener(
+        addBusinessAccount.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(signUp)) {
-                            SignupState currentState = signupViewModel.getState();
+                        if (evt.getSource().equals(addBusinessAccount)) {
+                            AddBusinessAccountState currentState = addBusinessAccountViewModel.getState();
 
-                            signupController.execute(
+                            addBusinessAccountController.execute(
                                     currentState.getUsername(),
+                                    currentState.getName(),
                                     currentState.getPassword(),
-                                    currentState.getRepeatPassword()
+                                    currentState.getAddress(),
+                                    currentState.getCategories()
                             );
                         }
                     }
                 }
         );
 
-
-        // TODO Add the body to the actionPerformed method of the action listener below
-        //      for the "clear" button. You'll need to write the controller before
-        //      you can complete this.
-        clear.addActionListener(
-                new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e){
-                        if (e.getSource().equals(clear)) {
-                            clearController.execute();
-                        }
-                    }
-                }
-        );
 
         cancel.addActionListener(this);
 
@@ -117,10 +76,10 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 new KeyListener() {
                     @Override
                     public void keyTyped(KeyEvent e) {
-                        SignupState currentState = signupViewModel.getState();
+                        AddBusinessAccountState currentState = addBusinessAccountViewModel.getState();
                         String text = usernameInputField.getText() + e.getKeyChar();
                         currentState.setUsername(text);
-                        signupViewModel.setState(currentState);
+                        addBusinessAccountViewModel.setState(currentState);
                     }
 
                     @Override
@@ -136,9 +95,9 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 new KeyListener() {
                     @Override
                     public void keyTyped(KeyEvent e) {
-                        SignupState currentState = signupViewModel.getState();
+                        AddBusinessAccountState currentState = addBusinessAccountViewModel.getState();
                         currentState.setPassword(passwordInputField.getText() + e.getKeyChar());
-                        signupViewModel.setState(currentState);
+                        addBusinessAccountViewModel.setState(currentState);
                     }
 
                     @Override
@@ -157,9 +116,9 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                 new KeyListener() {
                     @Override
                     public void keyTyped(KeyEvent e) {
-                        SignupState currentState = signupViewModel.getState();
+                        AddBusinessAccountState currentState = addBusinessAccountViewModel.getState();
                         currentState.setRepeatPassword(repeatPasswordInputField.getText() + e.getKeyChar());
-                        signupViewModel.setState(currentState); // Hmm, is this necessary?
+                        addBusinessAccountViewModel.setState(currentState); // Hmm, is this necessary?
                     }
 
                     @Override
@@ -179,7 +138,6 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
         this.add(title);
         this.add(usernameInfo);
         this.add(passwordInfo);
-        this.add(repeatPasswordInfo);
         this.add(buttons);
     }
 
@@ -192,8 +150,8 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getSource().equals(signupViewModel)) {
-            SignupState state = (SignupState) evt.getNewValue();
+        if (evt.getSource().equals(addBusinessAccountViewModel)) {
+            AddBusinessAccountState state = (AddBusinessAccountState) evt.getNewValue();
             if (state.getUsernameError() != null) {
                 JOptionPane.showMessageDialog(this, state.getUsernameError());
             }
