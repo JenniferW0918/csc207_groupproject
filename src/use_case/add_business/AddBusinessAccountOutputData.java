@@ -1,12 +1,12 @@
-package use_case.signup.add_business;
+package use_case.add_business;
 
-public class AddBusinessOutputData {
+public class AddBusinessAccountOutputData {
 
     private final String username;
 
     private boolean useCaseFailed;
 
-    public AddBusinessOutputData(String username, boolean useCaseFailed) {
+    public AddBusinessAccountOutputData(String username, boolean useCaseFailed) {
         this.username = username;
         this.useCaseFailed = useCaseFailed;
     }

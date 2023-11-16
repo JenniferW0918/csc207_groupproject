@@ -1,28 +1,29 @@
 package interface_adapter.add_business;
 
 import interface_adapter.ViewModel;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class AddBusinessViewModel extends ViewModel {
+public class AddBusinessAccountViewModel extends ViewModel {
 
-    public static final String CLEAR_BUTTON_LABEL = "Clear";
     public static final String TITLE_LABEL = "Sign Up View";
-    public static final String USERNAME_LABEL = "Choose username";
-    public static final String PASSWORD_LABEL = "Choose password";
-    public static final String REPEAT_PASSWORD_LABEL = "Enter password again";
+    public static final String USERNAME_LABEL = "Choose your business username";
+
+    public static final String NAME_LABEL = "Enter your business' name";
+    public static final String PASSWORD_LABEL = "Choose a password";
+
+    public static final String ADDRESS_LABEL = "Enter your business' address";
 
     public static final String SIGNUP_BUTTON_LABEL = "Sign up";
     public static final String CANCEL_BUTTON_LABEL = "Cancel";
 
-    private AddBusinessState state = new AddBusinessState();
+    private AddBusinessAccountState state = new AddBusinessAccountState();
 
-    public AddBusinessViewModel() {
+    public AddBusinessAccountViewModel() {
         super("sign up");
     }
 
-    public void setState(AddBusinessState state) {
+    public void setState(AddBusinessAccountState state) {
         this.state = state;
     }
 
@@ -38,7 +39,7 @@ public class AddBusinessViewModel extends ViewModel {
         support.addPropertyChangeListener(listener);
     }
 
-    public AddBusinessState getState() {
+    public AddBusinessAccountState getState() {
         return state;
     }
 }

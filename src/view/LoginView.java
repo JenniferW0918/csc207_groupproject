@@ -3,7 +3,7 @@ package view;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
-import interface_adapter.signup.SignupState;
+import interface_adapter.add_business.AddBusinessAccountState;
 
 import javax.swing.*;
 import java.awt.*;
