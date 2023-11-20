@@ -10,7 +10,7 @@ public class SearchNameInteractor implements SearchNameInputBoundary {
     final SearchNameOutputBoundary outputBoundary;
 
 
-    public SearchNameInteractor(SearchNameDataAccessInterface dataAccessInterface, SearchNameOutputBoundary outputBoundary, BusinessFactory businessFactory) {
+    public SearchNameInteractor(SearchNameDataAccessInterface dataAccessInterface, SearchNameOutputBoundary outputBoundary) {
         this.dataAccessInterface = dataAccessInterface;
         this.outputBoundary = outputBoundary;
     }

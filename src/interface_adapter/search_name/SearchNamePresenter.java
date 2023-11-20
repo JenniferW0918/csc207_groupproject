@@ -9,26 +9,33 @@ import java.time.format.DateTimeFormatter;
 
 public class SearchNamePresenter implements SearchNameOutputBoundary {
     private final SearchNameViewModel searchNameViewModel;
-    private ViewManagerModel viewManagerModel;
+    private final ViewManagerModel viewManagerModel;
 
     public SearchNamePresenter(SearchNameViewModel searchNameViewModel, ViewManagerModel viewManagerModel) {
         this.searchNameViewModel = searchNameViewModel;
         this.viewManagerModel = viewManagerModel;
     }
 
-    //// Continue here
-    @Override
-    public void presentSearchName(SearchNameOutputData outputData) {
-
-    }
 
     @Override
     public void prepareSuccessView(SearchNameOutputData searchNameOutputData) {
+        SearchNameState searchNameState = searchNameViewModel.getState(); //returns state object
+        searchNameState.setTerm(searchNameOutputData.getSearchNameResult().getTerm());
+
+        this.searchNameViewModel.setState(searchNameState);
+
+        searchNameViewModel.firePropertyChanged();
+        viewManagerModel.setActiveView(searchNameViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
 
     }
 
     @Override
     public void prepareFailView(String error) {
+        SearchNameState searchNameState = searchNameViewModel.getState();
+        searchNameState.setLocationError(error);
+        searchNameState.setTermError(error);
 
+        searchNameViewModel.firePropertyChanged();
     }
 }
