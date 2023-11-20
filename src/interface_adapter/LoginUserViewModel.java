@@ -1,5 +1,6 @@
-package interface_adapter.add_user;
+package interface_adapter;
 
+import interface_adapter.LoginUserState;
 import interface_adapter.ViewModel;
 
 import java.beans.PropertyChangeListener;

@@ -1,7 +1,7 @@
 package interface_adapter.add_user;
 
-import interface_adapter.add_user.LoginUserState;
-import interface_adapter.add_user.LoginUserViewModel;
+import interface_adapter.LoginUserState;
+import interface_adapter.LoginUserViewModel;
 import use_case.add_user.AddUserOutputBoundary;
 import use_case.add_user.AddUserOutputData;
 import interface_adapter.ViewManagerModel;
