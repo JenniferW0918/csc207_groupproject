@@ -1,12 +1,12 @@
-package interface_adapter.add_user;
+package interface_adapter.login;
 
-public class LoginUserState {
+public class LoginState {
     private String username = "";
     private String usernameError = null;
     private String password = "";
     private String passwordError = null;
 
-    public LoginUserState(LoginUserState copy) {
+    public LoginState(LoginState copy) {
         username = copy.username;
         usernameError = copy.usernameError;
         password = copy.password;
@@ -14,7 +14,7 @@ public class LoginUserState {
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
-    public LoginUserState() {}
+    public LoginState() {}
 
     public String getUsername() {
 

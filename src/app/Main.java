@@ -1,18 +1,15 @@
 package app;
 
-import data_access.FileUserDataAccessObject;
-import entity.CommonUserFactory;
-import interface_adapter.clear_users.ClearViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
-import interface_adapter.signup.SignupViewModel;
+import interface_adapter.add_user.AddUserViewModel;
 import interface_adapter.ViewManagerModel;
-import use_case.clear_users.ClearUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import view.LoggedInView;
 import view.LoginView;
-import view.SignupView;
+import view.AddUserView;
 import view.ViewManager;
+import entity.Accounts;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,7 +40,7 @@ public class Main {
         // be observed by the Views.
         LoginViewModel loginViewModel = new LoginViewModel();
         LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
-        SignupViewModel signupViewModel = new SignupViewModel();
+        AddUserViewModel addUserViewModel = new AddUserViewModel();
 
         FileUserDataAccessObject userDataAccessObject;
         try {

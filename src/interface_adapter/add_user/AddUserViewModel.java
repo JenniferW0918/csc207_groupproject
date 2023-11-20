@@ -8,8 +8,8 @@ import java.beans.PropertyChangeSupport;
 public class AddUserViewModel extends ViewModel {
 
     public static final String USERNAME_LABEL = "Create Username";
+    public static final String NAME_LABEL = "Choose Name";
     public static final String PASSWORD_LABEL = "Create Password";
-    public static final String EMAIL_LABEL = "Enter Email";
     public static final String SIGNUP_BUTTON_LABEL = "Create Account";
     public static final String CANCEL_BUTTON_LABEL = "Cancel";
     public static final String TITLE_LABEL = "Sign Up";

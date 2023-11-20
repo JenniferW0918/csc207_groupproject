@@ -1,21 +1,21 @@
 package use_case.add_user;
 
 import entity.User;
-import entity.UserFactory;
+import entity.UserFactoryInterface;
 
 import java.time.LocalDateTime;
 
 public class AddUserInteractor implements AddUserInputBoundary {
     final AddUserDataAccessInterface addUserDataAccessObject;
     final AddUserOutputBoundary addUserPresenter;
-    final UserFactory userFactory;
+    final UserFactoryInterface userFactoryInterface;
 
     public AddUserInteractor(AddUserDataAccessInterface addUserDataAccessInterface,
                              AddUserOutputBoundary addUserOutputBoundary,
-                             UserFactory userFactory) {
+                             UserFactoryInterface userFactoryInterface) {
         this.addUserDataAccessObject = addUserDataAccessInterface;
         this.addUserPresenter = addUserOutputBoundary;
-        this.userFactory = userFactory;
+        this.userFactoryInterface = userFactoryInterface;
     }
 
     @Override
@@ -24,7 +24,7 @@ public class AddUserInteractor implements AddUserInputBoundary {
             addUserPresenter.prepareFailView("User already exists.");
         } else {
             LocalDateTime now = LocalDateTime.now();
-            User user = userFactory.create(addUserInputData.getUsername(), addUserInputData.getPassword(), now);
+            User user = userFactoryInterface.create(addUserInputData.getName(), addUserInputData.getUsername(), addUserInputData.getPassword());
             addUserDataAccessObject.save(user);
 
             AddUserOutputData addUserOutputData = new AddUserOutputData(user.getName(), false);

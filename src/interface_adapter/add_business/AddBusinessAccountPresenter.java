@@ -3,26 +3,23 @@ package interface_adapter.signup;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.add_business.AddBusinessAccountViewModel;
 import interface_adapter.add_business.AddBusinessAccountState;
-import interface_adapter.add_user.LoginUserViewModel;
-import interface_adapter.add_user.LoginUserState;
+import interface_adapter.login.LoginViewModel;
+import interface_adapter.login.LoginState;
 import use_case.add_business.AddBusinessAccountOutputBoundary;
 import use_case.add_business.AddBusinessAccountOutputData;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class AddBusinessAccountPresenter implements AddBusinessAccountOutputBoundary {
 
     private final AddBusinessAccountViewModel addBusinessAccountViewModel;
-    private final LoginUserViewModel loginUserViewModel;
+    private final LoginViewModel loginViewModel;
     private ViewManagerModel viewManagerModel;
 
     public AddBusinessAccountPresenter(ViewManagerModel viewManagerModel,
                                        AddBusinessAccountViewModel addBusinessViewModel,
-                                       LoginUserViewModel loginUserViewModel, LoginUserViewModel loginUserViewModel1) {
+                                       LoginViewModel loginViewModel, LoginViewModel loginViewModel1) {
         this.viewManagerModel = viewManagerModel;
         this.addBusinessAccountViewModel = addBusinessViewModel;
-        this.loginUserViewModel = loginUserViewModel1;
+        this.loginViewModel = loginViewModel1;
     }
 
     @Override
@@ -31,12 +28,12 @@ public class AddBusinessAccountPresenter implements AddBusinessAccountOutputBoun
         //LocalDateTime responseTime = LocalDateTime.parse(response.getCreationTime());
         //response.setCreationTime(responseTime.format(DateTimeFormatter.ofPattern("hh:mm:ss")));
 
-        LoginUserState loginUserState = loginUserViewModel.getState();
-        loginUserState.setUsername(response.getUsername());
-        this.loginUserViewModel.setState(loginUserState);
-        loginUserViewModel.firePropertyChanged();
+        LoginState loginState = loginViewModel.getState();
+        loginState.setUsername(response.getUsername());
+        this.loginViewModel.setState(loginState);
+        loginViewModel.firePropertyChanged();
 
-        viewManagerModel.setActiveView(loginUserViewModel.getViewName());
+        viewManagerModel.setActiveView(loginViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 
