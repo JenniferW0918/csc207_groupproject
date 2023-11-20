@@ -8,16 +8,14 @@ public class BusinessAccount {
     private final String name;
     private final String password;
     private final String address;
-    private final Accounts businessAccount;
     private final Category categories;
 
-    public BusinessAccount(String username, String name, String password, String address, Accounts businessAccount,
+    public BusinessAccount(String username, String name, String password, String address,
                            Category categories) {
         this.username = username;
         this.name = name;
         this.password = password;
         this.address = address;
-        this.businessAccount = businessAccount;
         this.categories = categories;
     }
 
@@ -35,10 +33,6 @@ public class BusinessAccount {
 
     public String getAddress() {
         return address;
-    }
-
-    public Accounts getBusinessAccount() {
-        return businessAccount;
     }
 
     public Category getCategories(){

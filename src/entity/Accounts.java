@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Accounts {
     private final ArrayList<User> users;
-    private final ArrayList<Business> businesses;
+    private static ArrayList<BusinessAccount> businesses = new ArrayList<>();
 
 
     private Accounts() {
@@ -16,23 +16,23 @@ public class Accounts {
         users.add(user);
     }
 
-    public void addBusiness(Business business) {
-        businesses.add(business);
+    public static void addBusinessAccount(BusinessAccount businessAccount) {
+        businesses.add(businessAccount);
     }
 
     public boolean removeUser(User user) {
         return users.remove(user);
     }
 
-    public boolean removeBusiness(Business business) {
-        return businesses.remove(business);
+    public boolean removeBusiness(BusinessAccount businessAccount) {
+        return businesses.remove(businessAccount);
     }
 
     public ArrayList<User> getUsers() {
         return new ArrayList<>(users);  // Returning a copy
     }
 
-    public ArrayList<Business> getBusinesses() {
+    public static ArrayList<BusinessAccount> getBusinessAccounts() {
         return new ArrayList<>(businesses);  // Returning a copy
     }
 }

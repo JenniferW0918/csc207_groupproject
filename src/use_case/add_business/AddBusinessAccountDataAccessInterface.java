@@ -1,10 +1,10 @@
 package use_case.add_business;
 
-import entity.User;
+import entity.BusinessAccount;
 
 public interface AddBusinessAccountDataAccessInterface {
     boolean existsByName(String identifier);
 
-    void save(User user);
+    void save(BusinessAccount businessAccount);
 }
 
