@@ -16,3 +16,5 @@ public class SearchNameOutputData {
         return searchNameResult;
     }
 }
+
+
