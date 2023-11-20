@@ -3,8 +3,8 @@ package interface_adapter.signup;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.add_business.AddBusinessAccountViewModel;
 import interface_adapter.add_business.AddBusinessAccountState;
-import interface_adapter.LoginViewModel;
-import interface_adapter.LoginState;
+import interface_adapter.login.LoginViewModel;
+import interface_adapter.login.LoginState;
 import use_case.add_business.AddBusinessAccountOutputBoundary;
 import use_case.add_business.AddBusinessAccountOutputData;
 
