@@ -16,7 +16,10 @@ public class AddUserInputData {
         return username; }
 
     String getPassword() {
-
         return password;
+    }
+
+    String getName() {
+        return name;
     }
 }

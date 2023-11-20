@@ -24,7 +24,7 @@ public class AddUserInteractor implements AddUserInputBoundary {
             addUserPresenter.prepareFailView("User already exists.");
         } else {
             LocalDateTime now = LocalDateTime.now();
-            User user = userFactoryInterface.create(addUserInputData.getUsername(), addUserInputData.getPassword(), now);
+            User user = userFactoryInterface.create(addUserInputData.getName(), addUserInputData.getUsername(), addUserInputData.getPassword());
             addUserDataAccessObject.save(user);
 
             AddUserOutputData addUserOutputData = new AddUserOutputData(user.getName(), false);

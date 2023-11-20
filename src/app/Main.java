@@ -6,10 +6,10 @@ import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.add_user.AddUserViewModel;
 import interface_adapter.ViewManagerModel;
 import use_case.clear_users.ClearUserDataAccessInterface;
-import use_case.login.LoginUserDataAccessInterface;
+import use_case.LoginUserDataAccessInterface;
 import view.LoggedInView;
 import view.LoginView;
-import view.SignupView;
+import view.AddUserView;
 import view.ViewManager;
 
 import javax.swing.*;
