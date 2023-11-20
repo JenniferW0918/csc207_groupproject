@@ -9,8 +9,8 @@ public class AddUserController {
         this.addUserUseCaseInteractor = addUserUseCaseInteractor;
     }
 
-    public void execute(String name, String username, String email, String password1, String location) {
-        AddUserInputData addUserInputData = new AddUserInputData(name, username, email, password1, location);
+    public void execute(String name, String username, String password) {
+        AddUserInputData addUserInputData = new AddUserInputData(name, username, password);
         addUserUseCaseInteractor.execute(addUserInputData);
     }
 }
