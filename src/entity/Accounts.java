@@ -3,9 +3,9 @@ package entity;
 import java.util.ArrayList;
 
 public class Accounts {
+
     private static ArrayList<User> users = new ArrayList<>();
     private static ArrayList<Business> businesses = new ArrayList<>();
-
 
     public Accounts() {
         this.users = new ArrayList<>();
@@ -16,23 +16,24 @@ public class Accounts {
         users.add(user);
     }
 
-    public static void addBusiness(Business business) {
-        businesses.add(business);
+    public static void addBusinessAccount(BusinessAccount businessAccount) {
+        businesses.add(businessAccount);
     }
 
     public static boolean removeUser(User user) {
         return users.remove(user);
     }
 
-    public static boolean removeBusiness(Business business) {
-        return businesses.remove(business);
+    public boolean removeBusiness(BusinessAccount businessAccount) {
+        return businesses.remove(businessAccount);
     }
 
     public static ArrayList<User> getUsers() {
         return new ArrayList<>(users);  // Returning a copy
     }
 
-    public static ArrayList<Business> getBusinesses() {
+
+    public static ArrayList<BusinessAccount> getBusinessAccounts() {
         return new ArrayList<>(businesses);  // Returning a copy
     }
 
