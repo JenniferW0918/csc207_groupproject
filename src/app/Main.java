@@ -42,14 +42,7 @@ public class Main {
         LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
         AddUserViewModel addUserViewModel = new AddUserViewModel();
 
-        FileUserDataAccessObject userDataAccessObject;
-        try {
-            userDataAccessObject = new FileUserDataAccessObject("./users.csv", new CommonUserFactory());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        ClearViewModel clearViewModel = new ClearViewModel("clear");
+        Accounts accounts = new Accounts();
 
         SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel,
                 userDataAccessObject, userDataAccessObject, clearViewModel);
