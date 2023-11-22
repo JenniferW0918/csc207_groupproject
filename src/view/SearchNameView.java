@@ -29,7 +29,7 @@ public class SearchNameView extends JPanel implements ActionListener, PropertyCh
 
     final JButton searchName;
 
-    final JButton exit;
+//    final JButton exit;
 
 
     public SearchNameView(SearchNameController searchNameController, SearchNameViewModel searchNameViewModel, ViewManagerModel viewManagerModel) {
@@ -52,15 +52,15 @@ public class SearchNameView extends JPanel implements ActionListener, PropertyCh
         JPanel buttons = new JPanel();
         searchName = new JButton(SearchNameViewModel.SEARCH_NAME_BUTTON_LABEL);
         buttons.add(searchName);
-        exit = new JButton(SearchNameViewModel.MAIN_MENU);
-        buttons.add(exit);
-        exit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                viewManagerModel.setActiveView("main menu"); // switches to MainMenuView
-                viewManagerModel.firePropertyChanged();
-            }
-        });
+//        exit = new JButton(SearchNameViewModel.MAIN_MENU);
+////        buttons.add(exit);
+//        exit.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                viewManagerModel.setActiveView("main menu"); // switches to MainMenuView
+//                viewManagerModel.firePropertyChanged();
+//            }
+//        });
 
 
         searchName.addActionListener(

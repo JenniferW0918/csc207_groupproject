@@ -40,7 +40,6 @@ public class Main {
         // This information will be changed by a presenter object that is reporting the
         // results from the use case. The ViewModels are observable, and will
         // be observed by the Views.
-//        MainMenuViewModel mainMenuViewModel = new MainMenuViewModel();
         SearchNameViewModel searchNameViewModel = new SearchNameViewModel();
         SearchedNameViewModel searchedNameViewModel = new SearchedNameViewModel();
 
@@ -57,9 +56,6 @@ public class Main {
 
         SearchNameView searchNameView = new SearchNameView(searchNameController, searchNameViewModel, viewManagerModel);
         views.add(searchNameView, searchNameView.viewName);
-
-//        MainMenuView mainMenuView = new MainMenuView(mainMenuViewModel, viewManagerModel);
-//        views.add(mainMenuView, mainMenuView.viewName);
 
 
 //    THE DEFAULT VIEW

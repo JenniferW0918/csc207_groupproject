@@ -7,7 +7,7 @@ import java.beans.PropertyChangeSupport;
 /**Showing search results.**/
 public class SearchedNameViewModel extends ViewModel {
     public static final String TITLE_LABEL = "View of Searches";
-    public static final String MAIN_MENU = "Main Menu";
+//    public static final String MAIN_MENU = "Main Menu";
 
     private SearchedNameState state = new SearchedNameState();
 

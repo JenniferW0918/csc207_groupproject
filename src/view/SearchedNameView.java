@@ -21,7 +21,7 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
     //    JLabel term;
 //    JLabel location;
     private JList<String> businessList;
-    final JButton exit;
+//    final JButton exit;
 
 
 
@@ -46,18 +46,16 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
 
         //ADDING Buttons
         JPanel buttons = new JPanel();
-        exit = new JButton(SearchedNameViewModel.MAIN_MENU);
-        buttons.add(exit);
-        exit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SearchedNameView.this.viewManagerModel.setActiveView("main menu"); // switches to MainMenuView
-                SearchedNameView.this.viewManagerModel.firePropertyChanged();
-            }
-        });
+//        exit = new JButton(SearchedNameViewModel.MAIN_MENU);
+//        buttons.add(exit);
+//        exit.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                SearchedNameView.this.viewManagerModel.setActiveView("main menu"); // switches to MainMenuView
+//                SearchedNameView.this.viewManagerModel.firePropertyChanged();
+//            }
+//        });
         add(title);
-//        add(term);
-//        add(location);
         add(businessList);
         add(buttons);
     }
