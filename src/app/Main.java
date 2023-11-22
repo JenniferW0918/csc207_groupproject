@@ -51,9 +51,6 @@ public class Main {
         SearchNameController searchNameController = new SearchNameController(searchNameInteractor);
 
 
-        SearchedNameView searchedNameView = new SearchedNameView(searchedNameViewModel, viewManagerModel);
-        views.add(searchedNameView, searchedNameView.viewName);
-
         SearchNameView searchNameView = new SearchNameView(searchNameController, searchNameViewModel, viewManagerModel);
         views.add(searchNameView, searchNameView.viewName);
 

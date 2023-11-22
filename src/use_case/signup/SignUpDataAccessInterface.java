@@ -1,8 +1,9 @@
-package use_case.add_user;
+package use_case.signup;
 
 import entity.User;
 
-public interface AddUserDataAccessInterface {
+public interface SignUpDataAccessInterface {
     boolean existsByName(String identifier);
+
     void save(User user);
 }

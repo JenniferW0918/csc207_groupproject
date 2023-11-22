@@ -1,6 +1,7 @@
 package interface_adapter.seached_name;
 
 public class SearchedNameState {
+
     private String term = "";
     private String location = "";
 
@@ -28,6 +29,5 @@ public class SearchedNameState {
     public void setLocation(String location) {
         this.location = location;
     }
-
 
 }

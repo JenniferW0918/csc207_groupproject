@@ -8,12 +8,14 @@ import java.beans.PropertyChangeSupport;
 public class SearchNameViewModel extends ViewModel {
 
     public static final String TITLE_LABEL = "Search View";
+
     public static final String TERM_LABEL = "Type Term:";
     public static final String LOCATION_LABEL = "Type Location:";
 
     public static final String SEARCH_NAME_BUTTON_LABEL = "Search Name";
 
     public static final String MAIN_MENU = "Main Menu";
+
 
     private SearchNameState state = new SearchNameState();
 

@@ -6,7 +6,9 @@ public class SearchNameResult {
     private final String term; // search query
 
     private final String location; // location
+
     private final ArrayList<Business> businesses; // lists of businesses
+
 
     public SearchNameResult(String term, String location, ArrayList<Business> businesses) {
         this.term = term;
@@ -25,6 +27,7 @@ public class SearchNameResult {
     public ArrayList<Business> getBusinesses() {
         return businesses;
     }
+
 
     public String toString() {
         String result = "";

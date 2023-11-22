@@ -1,12 +1,11 @@
 package view;
 
-import interface_adapter.ViewManagerModel;
+
 import interface_adapter.search_name.SearchNameController;
 import interface_adapter.search_name.SearchNameState;
 import interface_adapter.search_name.SearchNameViewModel;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -101,6 +100,7 @@ public class SearchNameView extends JPanel implements ActionListener, PropertyCh
                     }
                 });
 
+
         termInputField.addKeyListener(
                 new KeyListener() {
                     @Override
@@ -142,7 +142,6 @@ public class SearchNameView extends JPanel implements ActionListener, PropertyCh
     public void propertyChange(PropertyChangeEvent evt) {
         SearchNameState state = (SearchNameState) evt.getNewValue();
     }
-
 }
 
 

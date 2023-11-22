@@ -29,5 +29,18 @@ public class AddBusinessAccountInputData {
         return password;
     }
 
+    String getName(){
+        return name;
+    }
+
+    String getAddress(){
+        return address;
+    }
+
+    Category getCategories(){
+        return categories;
+    }
+
+
 }
 
