@@ -1,19 +1,21 @@
 package app;
 
-import interface_adapter.login.LoginViewModel;
-import interface_adapter.logged_in.LoggedInViewModel;
-import interface_adapter.add_user.AddUserViewModel;
+import data_access.SearchNameDataAccessObject;
+import entity.Business;
+import entity.SearchNameResult;
+import interface_adapter.main_menu.MainMenuViewModel;
+import interface_adapter.seached_name.SearchedNameViewModel;
+import interface_adapter.search_name.SearchNameController;
+import interface_adapter.search_name.SearchNamePresenter;
+import interface_adapter.search_name.SearchNameViewModel;
 import interface_adapter.ViewManagerModel;
-import use_case.login.LoginUserDataAccessInterface;
-import view.LoggedInView;
-import view.LoginView;
-import view.AddUserView;
-import view.ViewManager;
-import entity.Accounts;
-
+import use_case.search_name.SearchNameInputData;
+import use_case.search_name.SearchNameInteractor;
+import view.*;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,7 +23,7 @@ public class Main {
         // various cards, and the layout, and stitch them together.
 
         // The main application window.
-        JFrame application = new JFrame("Login Example");
+        JFrame application = new JFrame("NomNomNow!!!");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();
@@ -38,26 +40,39 @@ public class Main {
         // This information will be changed by a presenter object that is reporting the
         // results from the use case. The ViewModels are observable, and will
         // be observed by the Views.
-        LoginViewModel loginViewModel = new LoginViewModel();
-        LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
-        AddUserViewModel addUserViewModel = new AddUserViewModel();
+        SearchNameViewModel searchNameViewModel = new SearchNameViewModel();
+        SearchedNameViewModel searchedNameViewModel = new SearchedNameViewModel();
 
-        Accounts accounts = new Accounts();
 
-        SignUpView signupView = SignUpUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel,
-                userDataAccessObject, userDataAccessObject, clearViewModel);
-        views.add(signupView, signupView.viewName);
+        // Making searchNameView object, maybe make a factory for this
+        SearchNameDataAccessObject searchNameDataAccessObject = new SearchNameDataAccessObject();
+        SearchNamePresenter searchNamePresenter = new SearchNamePresenter(searchNameViewModel, viewManagerModel);
+        SearchNameInteractor searchNameInteractor = new SearchNameInteractor(searchNameDataAccessObject, searchNamePresenter);
+        SearchNameController searchNameController = new SearchNameController(searchNameInteractor);
 
-        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
-        views.add(loginView, loginView.viewName);
 
-        LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
-        views.add(loggedInView, loggedInView.viewName);
+        SearchNameView searchNameView = new SearchNameView(searchNameController, searchNameViewModel, viewManagerModel);
+        views.add(searchNameView, searchNameView.viewName);
 
-        viewManagerModel.setActiveView(signupView.viewName);
+
+//    THE DEFAULT VIEW
+        viewManagerModel.setActiveView(searchedNameView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();
         application.setVisible(true);
+
+
+
+        /// Testing SearchFeature
+        SearchNameInputData searchNameInputData = new SearchNameInputData("ice-cream", "Toronto");
+        searchNameInteractor.execute(searchNameInputData);
+
+        SearchNameResult result = searchNameDataAccessObject.getSearchName(searchNameInputData);
+        System.out.println(result.toString());
+//
+//        ArrayList<Business> businesses = searchNameDataAccessObject.getSearchName(searchNameInputData).getBusinesses();
+//        for (Business business : businesses) {
+//        System.out.println(business.toString());
     }
 }

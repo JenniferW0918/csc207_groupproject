@@ -6,7 +6,9 @@ public class SearchNameResult {
     private final String term; // search query
 
     private final String location; // location
-    private ArrayList<Business> businesses; // lists of businesses
+
+    private final ArrayList<Business> businesses; // lists of businesses
+
 
     public SearchNameResult(String term, String location, ArrayList<Business> businesses) {
         this.term = term;
@@ -24,5 +26,17 @@ public class SearchNameResult {
 
     public ArrayList<Business> getBusinesses() {
         return businesses;
+    }
+
+
+    public String toString() {
+        String result = "";
+        result += "Term: " + term + "\n";
+        result += "Location: " + location + "\n";
+        result += "Businesses: " + "\n";
+        for (Business business : businesses) {
+            result += business.toString() + "\n";
+        }
+        return result;
     }
 }

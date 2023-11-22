@@ -19,13 +19,17 @@ public class SearchNameDataAccessObject implements SearchNameDataAccessInterface
 
     private static final String MATCH_LIMIT = "5";
 
+
+    public  SearchNameDataAccessObject() {
+    }
+
     /**
      * Calls API and returns SearchNameResult */
     public SearchNameResult getSearchName(SearchNameInputData searchNameInputData) {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
-                .url(String.format(API_URL, searchNameInputData.location, searchNameInputData.term, MATCH_LIMIT))
+                .url(String.format(API_URL, searchNameInputData.getLocation(), searchNameInputData.getTerm(), MATCH_LIMIT))
                 .get()
                 .addHeader("accept", "application/json")
                 .addHeader("Authorization", API_TOKEN)
@@ -34,12 +38,10 @@ public class SearchNameDataAccessObject implements SearchNameDataAccessInterface
         try {
             Response response = client.newCall(request).execute();
 
-            if (response.code() == 200) {
-                assert response.body() != null;
-                return turnToSearchNameResult(searchNameInputData.location, searchNameInputData.term, response.body().string());
-
+            if (response.code() == 200 && response.body() != null) {
+                return turnToSearchNameResult(searchNameInputData.getLocation(), searchNameInputData.getTerm(), response.body().string());
             } else {
-                throw new RuntimeException("No results found");
+                throw new RuntimeException("No results found :(");
             }
         } catch (IOException | JSONException e) {
             throw new RuntimeException(e);
@@ -58,9 +60,21 @@ public class SearchNameDataAccessObject implements SearchNameDataAccessInterface
         ArrayList<Business> businesses = new ArrayList<>();
         for (int i = 0; i < businessesJson.length(); i++) {
             JSONObject businessJson = businessesJson.getJSONObject(i);
-            String name = businessJson.getString("name");
-            String address = String.valueOf(businessJson.getJSONObject("display_address"));
-            Boolean is_closed = businessJson.getBoolean("is_closed");
+            String name = businessJson.getString("name");  // Getting name
+            boolean is_closed = businessJson.getBoolean("is_closed");  // Getting is_closed
+
+            //Getting address
+            JSONObject locationJSON = businessJson.getJSONObject("location");
+            JSONArray displayAddress = locationJSON.getJSONArray("display_address");
+            StringBuilder addressBuilder = new StringBuilder();
+            for (int j = 0; j < displayAddress.length(); j++) {
+                addressBuilder.append(displayAddress.getString(j));
+                if (j < displayAddress.length() - 1) {
+                    addressBuilder.append(", ");
+                }
+            }
+            String address = addressBuilder.toString();
+
 
             Business business = new Business(name, address, is_closed);
             businesses.add(business);

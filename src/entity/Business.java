@@ -1,7 +1,5 @@
 package entity;
 
-import java.util.Map;
-
 
 public class Business {
     private final String name;
@@ -11,7 +9,7 @@ public class Business {
     public Business(String name, String address, boolean is_closed) {
         this.name = name;
         this.address = address;
-        this.is_closed = true;
+        this.is_closed = is_closed;
     }
 
 
@@ -26,5 +24,14 @@ public class Business {
 
     public boolean is_Closed() {
         return is_closed;
+    }
+
+    public String toString() {
+        if (is_closed) {
+            return "Name: " + name + "\nAddress: " + address + "\nOpen: " + "No" + "\n";
+        }
+        else {
+            return "Name: " + name + "\nAddress: " + address + "\nOpen: " + "Yes" + "\n";
+        }
     }
 }
