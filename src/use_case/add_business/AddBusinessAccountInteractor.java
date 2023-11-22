@@ -36,8 +36,8 @@ public class AddBusinessAccountInteractor implements AddBusinessAccountInputBoun
                     addBusinessAccountInputData.getCategories());
             Accounts.addBusinessAccount(businessAccount);
 
-            AddBusinessAccountOutputData addBusinessAccountOutputData = new AddBusinessAccountOutputData(user.getName(),
-                    false);
+            AddBusinessAccountOutputData addBusinessAccountOutputData = new AddBusinessAccountOutputData(
+                    businessAccount.getName(), false);
             userPresenter.prepareSuccessView(addBusinessAccountOutputData);
         }
     }

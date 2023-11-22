@@ -24,9 +24,6 @@ public class AddBusinessAccountPresenter implements AddBusinessAccountOutputBoun
 
     @Override
     public void prepareSuccessView(AddBusinessAccountOutputData response) {
-        // On success, switch to the login view.
-        //LocalDateTime responseTime = LocalDateTime.parse(response.getCreationTime());
-        //response.setCreationTime(responseTime.format(DateTimeFormatter.ofPattern("hh:mm:ss")));
 
         LoginState loginState = loginViewModel.getState();
         loginState.setUsername(response.getUsername());
