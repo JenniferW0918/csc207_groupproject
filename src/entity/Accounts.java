@@ -3,11 +3,11 @@ package entity;
 import java.util.ArrayList;
 
 public class Accounts {
-    private final ArrayList<User> users;
-    private static ArrayList<BusinessAccount> businesses = new ArrayList<>();
 
+    private static ArrayList<User> users = new ArrayList<>();
+    private static ArrayList<Business> businesses = new ArrayList<>();
 
-    private Accounts() {
+    public Accounts() {
         this.users = new ArrayList<>();
         this.businesses = new ArrayList<>();
     }
@@ -20,7 +20,7 @@ public class Accounts {
         businesses.add(businessAccount);
     }
 
-    public boolean removeUser(User user) {
+    public static boolean removeUser(User user) {
         return users.remove(user);
     }
 
@@ -28,11 +28,16 @@ public class Accounts {
         return businesses.remove(businessAccount);
     }
 
-    public ArrayList<User> getUsers() {
+    public static ArrayList<User> getUsers() {
         return new ArrayList<>(users);  // Returning a copy
     }
 
+
     public static ArrayList<BusinessAccount> getBusinessAccounts() {
         return new ArrayList<>(businesses);  // Returning a copy
+    }
+
+    public static void getAccounts(Accounts accounts) {
+
     }
 }

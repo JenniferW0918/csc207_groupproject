@@ -20,8 +20,7 @@ public class SearchNameDataAccessObject implements SearchNameDataAccessInterface
     private static final String MATCH_LIMIT = "5";
 
     /**
-     * Calls API and returns SearchNameResult
-     **/
+     * Calls API and returns SearchNameResult */
     public SearchNameResult getSearchName(SearchNameInputData searchNameInputData) {
         OkHttpClient client = new OkHttpClient();
 
@@ -51,7 +50,7 @@ public class SearchNameDataAccessObject implements SearchNameDataAccessInterface
 
     /**
      * Turns output from API into SearchNameResult
-     **/
+     */
     private SearchNameResult turnToSearchNameResult(String location, String term, String apiOutput) {
         JSONObject jsonObject = new JSONObject(apiOutput);
         JSONArray businessesJson = jsonObject.getJSONArray("businesses");
