@@ -44,7 +44,7 @@ public class Main {
 
         Accounts accounts = new Accounts();
 
-        SignupView signupView = SignupUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel,
+        SignUpView signupView = SignUpUseCaseFactory.create(viewManagerModel, loginViewModel, signupViewModel,
                 userDataAccessObject, userDataAccessObject, clearViewModel);
         views.add(signupView, signupView.viewName);
 
