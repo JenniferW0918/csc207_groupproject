@@ -29,7 +29,7 @@ public class SearchNameState {
     }
 
     public String getLocation() {
-            return location;
+        return location;
     }
 
     public void setTerm(String username) {
