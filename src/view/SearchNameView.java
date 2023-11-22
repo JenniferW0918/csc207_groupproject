@@ -1,11 +1,15 @@
 package view;
 
-
+import com.sun.source.tree.NewArrayTree;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.seached_name.SearchedNameState;
+import interface_adapter.seached_name.SearchedNameViewModel;
 import interface_adapter.search_name.SearchNameController;
 import interface_adapter.search_name.SearchNameState;
 import interface_adapter.search_name.SearchNameViewModel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -28,8 +32,6 @@ public class SearchNameView extends JPanel implements ActionListener, PropertyCh
 
     final JButton searchName;
 
-//    final JButton exit;
-
 
     public SearchNameView(SearchNameController searchNameController, SearchNameViewModel searchNameViewModel, ViewManagerModel viewManagerModel) {
         this.viewManagerModel = viewManagerModel;
@@ -51,34 +53,6 @@ public class SearchNameView extends JPanel implements ActionListener, PropertyCh
         JPanel buttons = new JPanel();
         searchName = new JButton(SearchNameViewModel.SEARCH_NAME_BUTTON_LABEL);
         buttons.add(searchName);
-//        exit = new JButton(SearchNameViewModel.MAIN_MENU);
-////        buttons.add(exit);
-//        exit.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                viewManagerModel.setActiveView("main menu"); // switches to MainMenuView
-//                viewManagerModel.firePropertyChanged();
-//            }
-//        });
-
-
-        searchName.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-//                        if (evt.getSource().equals(searchName)) {
-//                            SearchNameState currentState = searchNameViewModel.getState();
-//
-//                            searchNameController.execute(
-//                                    currentState.getTerm(),
-//                                    currentState.getLocation()
-//                            );
-//                        }
-                        viewManagerModel.setActiveView("searched name"); // switches to SearchedNameView
-                        viewManagerModel.firePropertyChanged();
-                    }
-                }
-        );
-
 
 
         //Adding key listener for LOCATION
@@ -87,7 +61,8 @@ public class SearchNameView extends JPanel implements ActionListener, PropertyCh
                     @Override
                     public void keyTyped(KeyEvent e) {
                         SearchNameState currentState = searchNameViewModel.getState();
-                        currentState.setLocation(locationInputField.getText() + e.getKeyChar());
+                        String location = locationInputField.getText() + e.getKeyChar();
+                        currentState.setLocation(location);
                         searchNameViewModel.setState(currentState);
                     }
 
@@ -99,7 +74,6 @@ public class SearchNameView extends JPanel implements ActionListener, PropertyCh
                     public void keyReleased(KeyEvent e) {
                     }
                 });
-
 
         termInputField.addKeyListener(
                 new KeyListener() {
@@ -122,6 +96,40 @@ public class SearchNameView extends JPanel implements ActionListener, PropertyCh
                 }
         );
 
+
+        searchName.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(searchName)) {
+                            String term = termInputField.getText();
+                            String location = locationInputField.getText();
+
+                            // Now update the state
+                            SearchNameState currentState = searchNameViewModel.getState();
+                            searchNameController.execute(currentState.getTerm(), currentState.getLocation());
+                            searchNameViewModel.setState(currentState);
+
+
+
+                            // Update SearchedNameViewModel
+                            SearchedNameState searchedState = new SearchedNameState();
+                            searchedState.setTerm(term);
+                            searchedState.setLocation(location);
+                            SearchedNameViewModel searchedNameViewModel = new SearchedNameViewModel();
+                            searchedNameViewModel.setState(searchedState);
+
+                            // Get SearchResults
+                            searchedState.setSearchResults("Working on it"); // TODO: Implement this
+                            searchedNameViewModel.setState(searchedState);
+
+                            viewManagerModel.setActiveView("searched name"); // switches to SearchedNameView
+                            viewManagerModel.firePropertyChanged();
+                        }
+                    }
+                }
+        );
+
+
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         /*Confused on what this means **/
@@ -142,6 +150,7 @@ public class SearchNameView extends JPanel implements ActionListener, PropertyCh
     public void propertyChange(PropertyChangeEvent evt) {
         SearchNameState state = (SearchNameState) evt.getNewValue();
     }
+
 }
 
 

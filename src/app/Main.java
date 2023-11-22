@@ -1,14 +1,16 @@
 package app;
 
+import data_access.Accounts;
 import data_access.SearchNameDataAccessObject;
 import entity.Business;
 import entity.SearchNameResult;
-import interface_adapter.main_menu.MainMenuViewModel;
+import interface_adapter.login.LoginViewModel;
 import interface_adapter.seached_name.SearchedNameViewModel;
 import interface_adapter.search_name.SearchNameController;
 import interface_adapter.search_name.SearchNamePresenter;
 import interface_adapter.search_name.SearchNameViewModel;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.signup.SignUpViewModel;
 import use_case.search_name.SearchNameInputData;
 import use_case.search_name.SearchNameInteractor;
 import view.*;
@@ -42,21 +44,30 @@ public class Main {
         // be observed by the Views.
         SearchNameViewModel searchNameViewModel = new SearchNameViewModel();
         SearchedNameViewModel searchedNameViewModel = new SearchedNameViewModel();
+        LoginViewModel loginViewModel = new LoginViewModel();
+        SignUpViewModel signUpViewModel = new SignUpViewModel();
 
 
-        // Making searchNameView object, maybe make a factory for this
+        //Making Data Access Objects
         SearchNameDataAccessObject searchNameDataAccessObject = new SearchNameDataAccessObject();
-        SearchNamePresenter searchNamePresenter = new SearchNamePresenter(searchNameViewModel, viewManagerModel);
-        SearchNameInteractor searchNameInteractor = new SearchNameInteractor(searchNameDataAccessObject, searchNamePresenter);
-        SearchNameController searchNameController = new SearchNameController(searchNameInteractor);
+        Accounts userDataAccessObject = new Accounts();
 
-
-        SearchNameView searchNameView = new SearchNameView(searchNameController, searchNameViewModel, viewManagerModel);
+        // Making searchNameView
+        SearchNameView searchNameView = SearchNameUseCaseFactory.createSearchNameView(viewManagerModel,
+                searchNameViewModel, searchNameDataAccessObject);
         views.add(searchNameView, searchNameView.viewName);
+
+        //Making SearchedNameView
+        SearchedNameView searchedNameView = new SearchedNameView(searchedNameViewModel, viewManagerModel);
+        views.add(searchedNameView, searchedNameView.viewName);
+
+        // Making SignUpView
+        SignUpView signUpView = SignUpUseCaseFactory.create(viewManagerModel, loginViewModel, signUpViewModel, userDataAccessObject);
+        views.add(signUpView, signUpView.viewName);
 
 
 //    THE DEFAULT VIEW
-        viewManagerModel.setActiveView(searchedNameView.viewName);
+        viewManagerModel.setActiveView(signUpView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();
@@ -66,13 +77,7 @@ public class Main {
 
         /// Testing SearchFeature
         SearchNameInputData searchNameInputData = new SearchNameInputData("ice-cream", "Toronto");
-        searchNameInteractor.execute(searchNameInputData);
-
         SearchNameResult result = searchNameDataAccessObject.getSearchName(searchNameInputData);
         System.out.println(result.toString());
-//
-//        ArrayList<Business> businesses = searchNameDataAccessObject.getSearchName(searchNameInputData).getBusinesses();
-//        for (Business business : businesses) {
-//        System.out.println(business.toString());
     }
 }

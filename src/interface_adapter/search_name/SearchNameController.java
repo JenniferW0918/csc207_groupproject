@@ -16,5 +16,12 @@ public class SearchNameController {
         SearchNameInputData searchNameInputData = new SearchNameInputData(
                 location, term);
         searchNameUseCaseInteractor.execute(searchNameInputData);
+
+
     }
+
+//    public String finalResults(){
+//        SearchNameOutputData searchNameOutputData = searchNameUseCaseInteractor.getSearchNameOutputData();
+//        return searchNameOutputData.getSearchNameResult().getSearchResults();
 }
+
