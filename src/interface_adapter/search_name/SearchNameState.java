@@ -48,6 +48,7 @@ public class SearchNameState {
         this.locationError = locationError;
     }
 
+
     @Override
     public String toString() {
         return "SignupState{" +

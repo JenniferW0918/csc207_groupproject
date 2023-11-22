@@ -1,7 +1,6 @@
 package view;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.main_menu.MainMenuState;
 import interface_adapter.seached_name.SearchedNameState;
 import interface_adapter.seached_name.SearchedNameViewModel;
 
@@ -18,47 +17,51 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
     private final SearchedNameViewModel searchedNameViewModel;
     private final ViewManagerModel viewManagerModel;
 
-    //    JLabel term;
-//    JLabel location;
-    private JList<String> businessList;
-//    final JButton exit;
+    private JTextArea searchResultsArea;
+
+    final JButton newSearch;
 
 
 
     public SearchedNameView(SearchedNameViewModel searchedNameViewModel, ViewManagerModel viewManagerModel) {
         this.viewManagerModel = viewManagerModel;
         this.searchedNameViewModel = searchedNameViewModel;
-//        term = new JLabel("term");
-//        location = new JLabel("location");
-        businessList = new JList<>();
-
 
         // Adding titles and Labels.
         JLabel title = new JLabel(SearchedNameViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-//        LabelTextPanel termInfo = new LabelTextPanel(
-//                new JLabel(SearchedNameViewModel.TERM_LABEL), termInputField);
-//        LabelTextPanel locationInfo = new LabelTextPanel(
-//                new JLabel(SearchedNameViewModel.LOCATION_LABEL), locationInputField);
-
-
 
         //ADDING Buttons
         JPanel buttons = new JPanel();
-//        exit = new JButton(SearchedNameViewModel.MAIN_MENU);
-//        buttons.add(exit);
-//        exit.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                SearchedNameView.this.viewManagerModel.setActiveView("main menu"); // switches to MainMenuView
-//                SearchedNameView.this.viewManagerModel.firePropertyChanged();
-//            }
-//        });
+        newSearch = new JButton(SearchedNameViewModel.NEW_SEARCH);
+        buttons.add(newSearch);
+        newSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SearchedNameView.this.viewManagerModel.setActiveView("search name"); // switches to MainMenuView
+                SearchedNameView.this.viewManagerModel.firePropertyChanged();
+            }
+        });
+
+
+
+        // Adding SEARCH RESULTS
+        searchResultsArea = new JTextArea(10, 30);
+        searchResultsArea.setEditable(false);
+        searchResultsArea.setText("Haven't been able to get results to show up here yet.");
+        JScrollPane scrollPane = new JScrollPane(searchResultsArea); // adds scroll bar to text area
+
+
         add(title);
-        add(businessList);
+        add(scrollPane);
         add(buttons);
     }
+
+    public void updateSearchResults(String results) {
+        searchResultsArea.setText(results);
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -68,6 +71,8 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         SearchedNameState state = (SearchedNameState) evt.getNewValue();
+
+        updateSearchResults(state.getSearchResults());
     }
 
 }
