@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Accounts {
 
     private static ArrayList<User> users = new ArrayList<>();
-    private static ArrayList<Business> businesses = new ArrayList<>();
+    private static ArrayList<BusinessAccount> businesses = new ArrayList<>();
 
     public Accounts() {
         this.users = new ArrayList<>();

@@ -3,6 +3,7 @@ package app;
 import data_access.SearchNameDataAccessObject;
 import entity.Business;
 import entity.SearchNameResult;
+import interface_adapter.add_business.AddBusinessAccountViewModel;
 import interface_adapter.main_menu.MainMenuViewModel;
 import interface_adapter.seached_name.SearchedNameViewModel;
 import interface_adapter.search_name.SearchNameController;
@@ -42,6 +43,7 @@ public class Main {
         // be observed by the Views.
         SearchNameViewModel searchNameViewModel = new SearchNameViewModel();
         SearchedNameViewModel searchedNameViewModel = new SearchedNameViewModel();
+        AddBusinessAccountViewModel addBusinessAccountViewModel = new AddBusinessAccountViewModel();
 
 
         // Making searchNameView object, maybe make a factory for this
@@ -49,6 +51,9 @@ public class Main {
         SearchNamePresenter searchNamePresenter = new SearchNamePresenter(searchNameViewModel, viewManagerModel);
         SearchNameInteractor searchNameInteractor = new SearchNameInteractor(searchNameDataAccessObject, searchNamePresenter);
         SearchNameController searchNameController = new SearchNameController(searchNameInteractor);
+
+        // Making an AddBusinessAccountView object
+
 
 
         SearchNameView searchNameView = new SearchNameView(searchNameController, searchNameViewModel, viewManagerModel);

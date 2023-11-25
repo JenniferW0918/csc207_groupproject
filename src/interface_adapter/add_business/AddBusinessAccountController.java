@@ -13,7 +13,7 @@ public class AddBusinessAccountController {
         this.userAddBusinessAccountUseCaseInteractor = userAddBusinessUseCaseInteractor;
     }
 
-    public void execute(String username, String name, String password, String address, Category categories) {
+    public void execute(String username, String name, String password, String address, String categories) {
         AddBusinessAccountInputData addBusinessInputData = new AddBusinessAccountInputData(username, name, password,
                 address, categories);
 
