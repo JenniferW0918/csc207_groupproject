@@ -3,13 +3,17 @@ package app;
 import data_access.SearchNameDataAccessObject;
 import entity.Business;
 import entity.SearchNameResult;
+import interface_adapter.add_business.AddBusinessAccountController;
 import interface_adapter.add_business.AddBusinessAccountViewModel;
 import interface_adapter.main_menu.MainMenuViewModel;
 import interface_adapter.seached_name.SearchedNameViewModel;
 import interface_adapter.search_name.SearchNameController;
 import interface_adapter.search_name.SearchNamePresenter;
 import interface_adapter.search_name.SearchNameViewModel;
+import interface_adapter.login.LoginViewModel;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.signup.AddBusinessAccountPresenter;
+import use_case.add_business.AddBusinessAccountInteractor;
 import use_case.search_name.SearchNameInputData;
 import use_case.search_name.SearchNameInteractor;
 import view.*;
@@ -44,6 +48,7 @@ public class Main {
         SearchNameViewModel searchNameViewModel = new SearchNameViewModel();
         SearchedNameViewModel searchedNameViewModel = new SearchedNameViewModel();
         AddBusinessAccountViewModel addBusinessAccountViewModel = new AddBusinessAccountViewModel();
+        LoginViewModel loginViewModel = new LoginViewModel();
 
 
         // Making searchNameView object, maybe make a factory for this
@@ -52,12 +57,18 @@ public class Main {
         SearchNameInteractor searchNameInteractor = new SearchNameInteractor(searchNameDataAccessObject, searchNamePresenter);
         SearchNameController searchNameController = new SearchNameController(searchNameInteractor);
 
-        // Making an AddBusinessAccountView object
-
-
-
         SearchNameView searchNameView = new SearchNameView(searchNameController, searchNameViewModel, viewManagerModel);
         views.add(searchNameView, searchNameView.viewName);
+
+        // Making an AddBusinessAccountView object
+        AddBusinessAccountPresenter addBusinessAccountPresenter = new AddBusinessAccountPresenter(viewManagerModel,
+                addBusinessAccountViewModel, loginViewModel);
+        AddBusinessAccountInteractor addBusinessAccountInteractor = new AddBusinessAccountInteractor(userAddBusinessUseCaseInteractor);
+        AddBusinessAccountController addBusinessAccountController = new AddBusinessAccountController(userAddBusinessUseCaseInteractor);
+
+        AddBusinessAccountView addBusinessAccountView = new AddBusinessAccountView(addBusinessAccountController,
+                addBusinessAccountViewModel);
+        views.add(addBusinessAccountView, addBusinessAccountView.viewName);
 
 
 //    THE DEFAULT VIEW
