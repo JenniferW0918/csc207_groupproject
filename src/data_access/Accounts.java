@@ -1,8 +1,12 @@
-package entity;
+package data_access;
+
+import entity.BusinessAccount;
+import entity.User;
+import use_case.signup.SignUpDataAccessInterface;
 
 import java.util.ArrayList;
 
-public class Accounts {
+public class Accounts implements SignUpDataAccessInterface {
 
     private static ArrayList<User> users = new ArrayList<>();
     private static ArrayList<BusinessAccount> businesses = new ArrayList<>();
@@ -38,6 +42,16 @@ public class Accounts {
     }
 
     public static void getAccounts(Accounts accounts) {
+
+    }
+
+    @Override
+    public boolean existsByName(String identifier) {
+        return false;
+    }
+
+    @Override
+    public void save(User user) {
 
     }
 }

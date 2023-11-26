@@ -6,8 +6,13 @@ import java.beans.PropertyChangeSupport;
 
 /**Showing search results.**/
 public class SearchedNameViewModel extends ViewModel {
-    public static final String TITLE_LABEL = "View of Searches";
-//    public static final String MAIN_MENU = "Main Menu";
+    public static final String TITLE_LABEL = "Search Results";
+
+    public static final String NEW_SEARCH = "New Search";
+
+    public String Term;
+    public String Location;
+
 
     private SearchedNameState state = new SearchedNameState();
 
@@ -34,6 +39,22 @@ public class SearchedNameViewModel extends ViewModel {
 
     public SearchedNameState getState() {
         return state;
+    }
+
+    public String getTerm() {
+        return Term;
+    }
+
+    public String getLocation() {
+        return Location;
+    }
+
+    public void setTerm(String Term) {
+        this.Term = Term;
+    }
+
+    public void setLocation(String Location) {
+        this.Location = Location;
     }
 
 }
