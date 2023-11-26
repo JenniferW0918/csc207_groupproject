@@ -14,37 +14,44 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class AddBusinessAccountView extends JPanel implements ActionListener, PropertyChangeListener {
-    public final String viewName = "sign up";
+    public final String viewName = "Add Business Account";
 
     private final AddBusinessAccountViewModel addBusinessAccountViewModel;
     private final JTextField usernameInputField = new JTextField(15);
+    private final JTextField nameInputField = new JTextField(15);
     private final JPasswordField passwordInputField = new JPasswordField(15);
-    private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
+    private final JTextField addressInputField = new JTextField(15);
+    private final JTextField categoriesInputField = new JTextField(15);
     private final AddBusinessAccountController addBusinessAccountController;
 
 
     private final JButton addBusinessAccount;
 
 
-    public AddBusinessAccountView(AddBusinessAccountController controller, AddBusinessAccountViewModel signupViewModel){
+    public AddBusinessAccountView(AddBusinessAccountController controller,
+                                  AddBusinessAccountViewModel addBusinessAccountViewModel){
 
         this.addBusinessAccountController = controller;
-        this.addBusinessAccountViewModel = signupViewModel;
-        signupViewModel.addPropertyChangeListener(this);
+        this.addBusinessAccountViewModel = addBusinessAccountViewModel;
+        addBusinessAccountViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel(AddBusinessAccountViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         LabelTextPanel usernameInfo = new LabelTextPanel(
                 new JLabel(AddBusinessAccountViewModel.USERNAME_LABEL), usernameInputField);
+        LabelTextPanel nameInfo = new LabelTextPanel(
+                new JLabel(AddBusinessAccountViewModel.NAME_LABEL), nameInputField);
         LabelTextPanel passwordInfo = new LabelTextPanel(
                 new JLabel(AddBusinessAccountViewModel.PASSWORD_LABEL), passwordInputField);
+        LabelTextPanel addressInfo = new LabelTextPanel(
+                new JLabel(AddBusinessAccountViewModel.ADDRESS_LABEL), addressInputField);
+        LabelTextPanel categoriesInfo = new LabelTextPanel(
+                new JLabel(AddBusinessAccountViewModel.CATEGORIES_LABEL), categoriesInputField);
 
         JPanel buttons = new JPanel();
         addBusinessAccount = new JButton(AddBusinessAccountViewModel.SIGNUP_BUTTON_LABEL);
         buttons.add(addBusinessAccount);
-        cancel = new JButton(AddBusinessAccountViewModel.CANCEL_BUTTON_LABEL);
-        buttons.add(cancel);
 
         addBusinessAccount.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
@@ -65,8 +72,6 @@ public class AddBusinessAccountView extends JPanel implements ActionListener, Pr
                 }
         );
 
-
-        cancel.addActionListener(this);
 
         // This makes a new KeyListener implementing class, instantiates it, and
         // makes it listen to keystrokes in the usernameInputField.
@@ -91,6 +96,27 @@ public class AddBusinessAccountView extends JPanel implements ActionListener, Pr
                     }
                 });
 
+        nameInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        AddBusinessAccountState currentState = addBusinessAccountViewModel.getState();
+                        currentState.setName(nameInputField.getText() + e.getKeyChar());
+                        addBusinessAccountViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed (KeyEvent e) {
+
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e){
+
+                    }
+                }
+        );
+
         passwordInputField.addKeyListener(
                 new KeyListener() {
                     @Override
@@ -112,13 +138,13 @@ public class AddBusinessAccountView extends JPanel implements ActionListener, Pr
                 }
         );
 
-        repeatPasswordInputField.addKeyListener(
+        addressInputField.addKeyListener(
                 new KeyListener() {
                     @Override
                     public void keyTyped(KeyEvent e) {
                         AddBusinessAccountState currentState = addBusinessAccountViewModel.getState();
-                        currentState.setRepeatPassword(repeatPasswordInputField.getText() + e.getKeyChar());
-                        addBusinessAccountViewModel.setState(currentState); // Hmm, is this necessary?
+                        currentState.setAddress(addressInputField.getText() + e.getKeyChar());
+                        addBusinessAccountViewModel.setState(currentState);
                     }
 
                     @Override
@@ -133,33 +159,46 @@ public class AddBusinessAccountView extends JPanel implements ActionListener, Pr
                 }
         );
 
+        categoriesInputField.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        AddBusinessAccountState currentState = addBusinessAccountViewModel.getState();
+                        currentState.setCategories(categoriesInputField.getText() + e.getKeyChar());
+                        addBusinessAccountViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+
+                    }
+                }
+        );
+
+
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
         this.add(usernameInfo);
+        this.add(nameInfo);
         this.add(passwordInfo);
+        this.add(addressInfo);
+        this.add(categoriesInfo);
         this.add(buttons);
     }
 
-    /**
-     * React to a button click that results in evt.
-     */
-    public void actionPerformed(ActionEvent evt) {
-        JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getSource().equals(addBusinessAccountViewModel)) {
-            AddBusinessAccountState state = (AddBusinessAccountState) evt.getNewValue();
-            if (state.getUsernameError() != null) {
-                JOptionPane.showMessageDialog(this, state.getUsernameError());
-            }
-        } else if (evt.getSource().equals(clearViewModel)) {
-            ClearState state = (ClearState) evt.getNewValue();
-            if (state.getClearedUsernames() != null) {
-                JOptionPane.showMessageDialog(this, state.getClearedUsernames());
-            }
 
-        }
-    }}
+    }
+}

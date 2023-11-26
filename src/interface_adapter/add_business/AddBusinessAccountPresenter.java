@@ -16,10 +16,10 @@ public class AddBusinessAccountPresenter implements AddBusinessAccountOutputBoun
 
     public AddBusinessAccountPresenter(ViewManagerModel viewManagerModel,
                                        AddBusinessAccountViewModel addBusinessViewModel,
-                                       LoginViewModel loginViewModel, LoginViewModel loginViewModel1) {
+                                       LoginViewModel loginViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.addBusinessAccountViewModel = addBusinessViewModel;
-        this.loginViewModel = loginViewModel1;
+        this.loginViewModel = loginViewModel;
     }
 
     @Override
