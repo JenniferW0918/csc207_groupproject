@@ -1,31 +1,38 @@
 package interface_adapter.search_name;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.seached_name.SearchedNameState;
+import interface_adapter.seached_name.SearchedNameViewModel;
 import use_case.search_name.SearchNameOutputBoundary;
 import use_case.search_name.SearchNameOutputData;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class SearchNamePresenter implements SearchNameOutputBoundary {
     private final SearchNameViewModel searchNameViewModel;
     private final ViewManagerModel viewManagerModel;
+    private final SearchedNameViewModel searchedNameViewModel;
 
-    public SearchNamePresenter(SearchNameViewModel searchNameViewModel, ViewManagerModel viewManagerModel) {
+    public SearchNamePresenter(SearchNameViewModel searchNameViewModel, ViewManagerModel viewManagerModel,
+                               SearchedNameViewModel searchedNameViewModel){
         this.searchNameViewModel = searchNameViewModel;
         this.viewManagerModel = viewManagerModel;
+        this.searchedNameViewModel = searchedNameViewModel;
     }
 
 
     @Override
     public void prepareSuccessView(SearchNameOutputData searchNameOutputData) {
-        SearchNameState searchNameState = searchNameViewModel.getState(); //returns state object
-        searchNameState.setTerm(searchNameOutputData.getSearchNameResult().getTerm());
 
-        this.searchNameViewModel.setState(searchNameState);
+        /// switches to SearchedNameView and sets its state
+        SearchedNameState searchedNameState = searchedNameViewModel.getState();
+        searchedNameState.setTerm(searchNameOutputData.getSearchNameResult().getTerm());
+        searchedNameState.setLocation(searchNameOutputData.getSearchNameResult().getLocation());
+        searchedNameState.setSearchResults(searchNameOutputData.getSearchNameResult().toString());
+        searchedNameViewModel.setState(searchedNameState);
 
-        searchNameViewModel.firePropertyChanged();
-        viewManagerModel.setActiveView(searchNameViewModel.getViewName());
+        searchedNameViewModel.firePropertyChanged();
+
+        viewManagerModel.setActiveView(searchedNameViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
 
     }
@@ -35,7 +42,7 @@ public class SearchNamePresenter implements SearchNameOutputBoundary {
         SearchNameState searchNameState = searchNameViewModel.getState();
         searchNameState.setLocationError(error);
         searchNameState.setTermError(error);
-
         searchNameViewModel.firePropertyChanged();
+
     }
 }

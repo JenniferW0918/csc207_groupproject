@@ -6,10 +6,9 @@ public class SearchNameOutputData {
     public final SearchNameResult searchNameResult;
     public boolean useCaseFailed;
 
-    public SearchNameOutputData( SearchNameResult searchNameResult,  boolean useCaseFailed) {
+    public SearchNameOutputData(SearchNameResult searchNameResult,  boolean useCaseFailed) {
         this.searchNameResult = searchNameResult;
         this.useCaseFailed = useCaseFailed;
-
     }
 
     public SearchNameResult getSearchNameResult() {
