@@ -1,8 +1,5 @@
 package use_case.search_name;
 import entity.SearchNameResult;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 
 import data_access.SearchNameDataAccessObject;
 

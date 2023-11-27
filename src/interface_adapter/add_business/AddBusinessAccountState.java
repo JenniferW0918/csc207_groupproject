@@ -11,8 +11,8 @@ public class AddBusinessAccountState {
     private String passwordError = null;
     private String address = "";
     private String addressError = null;
-    private Category categories = new Category(null, ""); // ?? not sure if this is right
-    private Category categoriesError = null;
+    private String categories = "";
+    private String categoriesError = null;
 
 
     public AddBusinessAccountState(AddBusinessAccountState copy) {
@@ -63,11 +63,11 @@ public class AddBusinessAccountState {
         return addressError;
     }
 
-    public Category getCategories() {
+    public String getCategories() {
         return categories;
     }
 
-    public Category getCategoriesError() {
+    public String getCategoriesError() {
         return categoriesError;
     }
 
@@ -104,11 +104,11 @@ public class AddBusinessAccountState {
         this.addressError = addressError;
     }
 
-    public void setCategories(Category categories) {
+    public void setCategories(String categories) {
         this.categories = categories;
     }
 
-    public void setCategoriesError(Category categoriesError) {
+    public void setCategoriesError(String categoriesError) {
         this.categoriesError = categoriesError;
     }
 

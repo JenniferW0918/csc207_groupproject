@@ -9,11 +9,11 @@ public class AddBusinessAccountInputData {
     final private String name;
     final private String password;
     final private String address;
-    final private Category categories;
+    final private String categories;
 
 
     public AddBusinessAccountInputData(String username, String name, String password, String address,
-                                       Category categories) {
+                                       String categories) {
         this.username = username;
         this.name = name;
         this.password = password;
@@ -37,7 +37,7 @@ public class AddBusinessAccountInputData {
         return address;
     }
 
-    Category getCategories(){
+    String getCategories(){
         return categories;
     }
 
