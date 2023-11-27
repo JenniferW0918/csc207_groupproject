@@ -40,10 +40,10 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(createUser)) {
-                            SignUpState currentState = signupViewModel.getState();
+                            //SignUpState currentState = signupViewModel.getState();
 
                             signupController.execute(
-                                    currentState.getAccountType()
+                                    "user"
                             );
                         }
                     }
@@ -54,10 +54,10 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        SignUpState currentState = signupViewModel.getState();
+                        //SignUpState currentState = signupViewModel.getState();
 
                         signupController.execute(
-                                currentState.getAccountType()
+                                "business"
                         );
                     }
                 }
@@ -78,7 +78,6 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
      * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
-        JOptionPane.showConfirmDialog(this, "Cancel not implemented yet.");
     }
 
     @Override
