@@ -3,55 +3,70 @@ package data_access;
 import entity.BusinessAccount;
 import entity.User;
 import use_case.signup.SignUpDataAccessInterface;
+import use_case.add_business.AddBusinessAccountDataAccessInterface;
 
 import java.util.ArrayList;
 
-public class Accounts implements SignUpDataAccessInterface {
+public class Accounts implements SignUpDataAccessInterface, AddBusinessAccountDataAccessInterface{
 
-    private static ArrayList<User> users = new ArrayList<>();
-    private static ArrayList<BusinessAccount> businesses = new ArrayList<>();
+    private final ArrayList<User> users = new ArrayList<>();
+    private final ArrayList<BusinessAccount> businesses = new ArrayList<>();
 
     public Accounts() {
-        this.users = new ArrayList<>();
-        this.businesses = new ArrayList<>();
     }
 
-    public void addUser(User user) {
+    @Override
+    public void saveUser(User user) {
         users.add(user);
     }
 
-    public static void addBusinessAccount(BusinessAccount businessAccount) {
-        businesses.add(businessAccount);
+    public boolean removeUser(User user) {
+        return users.remove(user);
     }
 
-    public static boolean removeUser(User user) {
-        return users.remove(user);
+
+    @Override
+    public boolean userExistsByName(String identifier) {
+        for (User user : users) {
+            if (user.getName().equals(identifier)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    @Override
+    public void saveBusiness(BusinessAccount businessAccount) {
+        businesses.add(businessAccount);
+
     }
 
     public boolean removeBusiness(BusinessAccount businessAccount) {
         return businesses.remove(businessAccount);
     }
 
-    public static ArrayList<User> getUsers() {
+
+    @Override
+    public boolean businessExistsByName(String identifier) {
+        for (BusinessAccount businessAccount : businesses) {
+            if (businessAccount.getName().equals(identifier)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public ArrayList<User> getUsers() {
         return new ArrayList<>(users);  // Returning a copy
     }
 
 
-    public static ArrayList<BusinessAccount> getBusinessAccounts() {
+    public ArrayList<BusinessAccount> getBusinessAccounts() {
         return new ArrayList<>(businesses);  // Returning a copy
     }
 
     public static void getAccounts(Accounts accounts) {
-
     }
 
-    @Override
-    public boolean existsByName(String identifier) {
-        return false;
-    }
-
-    @Override
-    public void save(User user) {
-
-    }
 }

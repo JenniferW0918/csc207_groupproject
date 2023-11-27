@@ -9,6 +9,7 @@ import interface_adapter.add_user.AddUserController;
 import interface_adapter.add_user.AddUserPresenter;
 import interface_adapter.add_user.AddUserViewModel;
 import interface_adapter.seached_name.SearchedNameViewModel;
+import interface_adapter.search_name.SearchNameController;
 import interface_adapter.search_name.SearchNameViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.ViewManagerModel;
@@ -74,7 +75,7 @@ public class Main {
 
         // Making searchNameView
         SearchNameView searchNameView = SearchNameUseCaseFactory.createSearchNameView(viewManagerModel,
-                searchNameViewModel, searchNameDataAccessObject);
+                searchNameViewModel, searchNameDataAccessObject, searchedNameViewModel);
         views.add(searchNameView, searchNameView.viewName);
 
         //Making SearchedNameView

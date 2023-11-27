@@ -2,9 +2,7 @@ package use_case.add_user;
 
 import entity.User;
 import entity.UserFactoryInterface;
-import entity.Accounts;
-
-import java.time.LocalDateTime;
+import data_access.Accounts;
 
 public class AddUserInteractor implements AddUserInputBoundary {
     final AddUserOutputBoundary addUserPresenter;
@@ -22,7 +20,7 @@ public class AddUserInteractor implements AddUserInputBoundary {
             addUserPresenter.prepareFailView("User already exists.");
         } else {
             User user = userFactoryInterface.create(addUserInputData.getName(), addUserInputData.getUsername(), addUserInputData.getPassword());
-            Accounts.addUser(user);
+            Accounts.saveUser(user);
 
             AddUserOutputData addUserOutputData = new AddUserOutputData(user.getName(), false);
             addUserPresenter.prepareSuccessView(addUserOutputData);

@@ -32,7 +32,7 @@ public class SearchNameState {
         return location;
     }
 
-    public void setTerm(String username) {
+    public void setTerm(String term) {
         this.term = term;
     }
 
@@ -48,12 +48,4 @@ public class SearchNameState {
         this.locationError = locationError;
     }
 
-
-    @Override
-    public String toString() {
-        return "SignupState{" +
-                "location='" + location + '\'' +
-                ", term='" + term + '\'' +
-                '}';
-    }
 }

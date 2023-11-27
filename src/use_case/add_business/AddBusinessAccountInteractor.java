@@ -2,10 +2,7 @@ package use_case.add_business;
 
 import entity.BusinessAccount;
 import entity.BusinessAccountFactoryInterface;
-import entity.Accounts;
-
-
-import java.time.LocalDateTime;
+import data_access.Accounts;
 
 public class AddBusinessAccountInteractor implements AddBusinessAccountInputBoundary {
     final AddBusinessAccountDataAccessInterface addBusinessAccountDataAccessObject;
@@ -34,7 +31,7 @@ public class AddBusinessAccountInteractor implements AddBusinessAccountInputBoun
                     addBusinessAccountInputData.getPassword(),
                     addBusinessAccountInputData.getAddress(),
                     addBusinessAccountInputData.getCategories());
-            Accounts.addBusinessAccount(businessAccount);
+            Accounts.saveBusiness(businessAccount);
 
             AddBusinessAccountOutputData addBusinessAccountOutputData = new AddBusinessAccountOutputData(
                     businessAccount.getName(), false);
