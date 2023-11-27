@@ -7,22 +7,19 @@ import java.beans.PropertyChangeSupport;
 
 public class SignUpViewModel extends ViewModel {
 
-    public static final String CLEAR_BUTTON_LABEL = "Clear";
-    public static final String TITLE_LABEL = "Sign Up View";
-    public static final String USERNAME_LABEL = "Choose username";
-    public static final String PASSWORD_LABEL = "Choose password";
-    public static final String REPEAT_PASSWORD_LABEL = "Enter password again";
-
-    public static final String SIGNUP_BUTTON_LABEL = "Sign up";
-    public static final String CANCEL_BUTTON_LABEL = "Cancel";
+    public static final String TITLE_LABEL = "Choose an Account";
+    public static final String USER_BUTTON_LABEL = "Create User";
+    public static final String BUSINESS_BUTTON_LABEL = "Create Business";
 
     private SignUpState state = new SignUpState();
 
     public SignUpViewModel() {
+
         super("sign up");
     }
 
     public void setState(SignUpState state) {
+
         this.state = state;
     }
 
@@ -31,6 +28,7 @@ public class SignUpViewModel extends ViewModel {
     // This is what the Signup Presenter will call to let the ViewModel know
     // to alert the View
     public void firePropertyChanged() {
+
         support.firePropertyChange("state", null, this.state);
     }
 
@@ -39,6 +37,7 @@ public class SignUpViewModel extends ViewModel {
     }
 
     public SignUpState getState() {
+
         return state;
     }
 }

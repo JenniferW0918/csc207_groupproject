@@ -2,26 +2,23 @@ package app;
 
 import data_access.Accounts;
 import data_access.SearchNameDataAccessObject;
-import entity.Business;
 import entity.SearchNameResult;
 import interface_adapter.add_business.AddBusinessAccountController;
 import interface_adapter.add_business.AddBusinessAccountViewModel;
-import interface_adapter.main_menu.MainMenuViewModel;
+import interface_adapter.add_user.AddUserController;
+import interface_adapter.add_user.AddUserPresenter;
+import interface_adapter.add_user.AddUserViewModel;
 import interface_adapter.seached_name.SearchedNameViewModel;
-import interface_adapter.search_name.SearchNameController;
-import interface_adapter.search_name.SearchNamePresenter;
 import interface_adapter.search_name.SearchNameViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.signup.AddBusinessAccountPresenter;
 import use_case.add_business.AddBusinessAccountInteractor;
+import use_case.add_user.AddUserInteractor;
 import use_case.search_name.SearchNameInputData;
-import use_case.search_name.SearchNameInteractor;
 import view.*;
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -48,6 +45,7 @@ public class Main {
         // be observed by the Views.
         SearchNameViewModel searchNameViewModel = new SearchNameViewModel();
         SearchedNameViewModel searchedNameViewModel = new SearchedNameViewModel();
+        AddUserViewModel addUserViewModel = new AddUserViewModel();
         AddBusinessAccountViewModel addBusinessAccountViewModel = new AddBusinessAccountViewModel();
         LoginViewModel loginViewModel = new LoginViewModel();
 
@@ -56,9 +54,13 @@ public class Main {
         SearchNameDataAccessObject searchNameDataAccessObject = new SearchNameDataAccessObject();
         Accounts userDataAccessObject = new Accounts();
 
+        // Making an AddUserView object
+        AddUserPresenter addUserPresenter = new AddUserPresenter(viewManagerModel, addUserViewModel, loginViewModel);
+        AddUserInteractor addUserInteractor = new AddUserInteractor(userAddUserUseCaseInteractor);
+        AddUserController addUserController = new AddUserController(userAddUserUseCaseInteractor);
 
-        SearchNameView searchNameView = new SearchNameView(searchNameController, searchNameViewModel, viewManagerModel);
-        views.add(searchNameView, searchNameView.viewName);
+        AddUserView addUserView = new AddUserView(addUserController, addUserViewModel);
+        views.add(addUserView, addUserView.viewName);
 
         // Making an AddBusinessAccountView object
         AddBusinessAccountPresenter addBusinessAccountPresenter = new AddBusinessAccountPresenter(viewManagerModel,

@@ -2,19 +2,15 @@ package use_case.signup;
 
 public class SignUpInputData {
 
-    final private String username;
-    final private String password;
+    final private String accountType;
 
-    public SignUpInputData(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public SignUpInputData(String accountType) {
+
+        this.accountType = accountType;
     }
 
-    String getUsername() {
-        return username;
-    }
+    String getAccountType() {
 
-    String getPassword() {
-        return password;
+        return accountType;
     }
 }

@@ -5,16 +5,15 @@ import use_case.signup.SignUpInputData;
 
 public class SignUpController {
 
-    final SignUpInputBoundary userSignUpUseCaseInteractor;
-    public SignUpController(SignUpInputBoundary userSignUpUseCaseInteractor) {
-        this.userSignUpUseCaseInteractor = userSignUpUseCaseInteractor;
+    final SignUpInputBoundary signUpUseCaseInteractor;
+    public SignUpController(SignUpInputBoundary signUpUseCaseInteractor) {
+        this.signUpUseCaseInteractor = signUpUseCaseInteractor;
     }
 
-    public void execute(String username, String password1, String password2) {
-        SignUpInputData signupInputData = new SignUpInputData(
-                username, password1);
+    public void execute(String accountType) {
+        SignUpInputData signupInputData = new SignUpInputData(accountType);
 
-        userSignUpUseCaseInteractor.execute(signupInputData);
+        signUpUseCaseInteractor.execute(signupInputData);
     }
 }
 
