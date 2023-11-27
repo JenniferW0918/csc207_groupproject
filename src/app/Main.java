@@ -7,17 +7,13 @@ import entity.SearchNameResult;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.seached_name.SearchedNameViewModel;
 import interface_adapter.search_name.SearchNameController;
-import interface_adapter.search_name.SearchNamePresenter;
 import interface_adapter.search_name.SearchNameViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.signup.SignUpViewModel;
 import use_case.search_name.SearchNameInputData;
-import use_case.search_name.SearchNameInteractor;
 import view.*;
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -54,7 +50,7 @@ public class Main {
 
         // Making searchNameView
         SearchNameView searchNameView = SearchNameUseCaseFactory.createSearchNameView(viewManagerModel,
-                searchNameViewModel, searchNameDataAccessObject);
+                searchNameViewModel, searchNameDataAccessObject, searchedNameViewModel);
         views.add(searchNameView, searchNameView.viewName);
 
         //Making SearchedNameView
