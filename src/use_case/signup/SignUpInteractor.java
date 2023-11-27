@@ -7,8 +7,6 @@ import interface_adapter.add_user.AddUserPresenter;
 import use_case.add_user.AddUserInteractor;
 import view.AddUserView;
 
-import java.time.LocalDateTime;
-
 public class SignUpInteractor implements SignUpInputBoundary {
     final SignUpDataAccessInterface userDataAccessObject;
     final SignUpOutputBoundary userPresenter;

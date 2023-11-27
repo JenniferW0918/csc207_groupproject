@@ -20,7 +20,7 @@ public class SearchNameInteractor implements SearchNameInputBoundary {
 
         SearchNameResult searchNameResult = searchNameDataAccessObject.getSearchName(searchNameInputData);
 
-        if(searchNameResult == null){  // is it null if no results found?
+        if(searchNameResult == null){
             searchNamePresenter.prepareFailView("No results found :(");
         }
         else {

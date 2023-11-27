@@ -41,20 +41,4 @@ public class SearchedNameViewModel extends ViewModel {
         return state;
     }
 
-    public String getTerm() {
-        return Term;
-    }
-
-    public String getLocation() {
-        return Location;
-    }
-
-    public void setTerm(String Term) {
-        this.Term = Term;
-    }
-
-    public void setLocation(String Location) {
-        this.Location = Location;
-    }
-
 }

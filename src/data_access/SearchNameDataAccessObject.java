@@ -17,7 +17,7 @@ public class SearchNameDataAccessObject implements SearchNameDataAccessInterface
 
     // private static final String API_TOKEN = "Bearer " + System.getenv("YOUR_ENV_VARIABLE_FOR_TOKEN");
 
-    private static final String MATCH_LIMIT = "5";
+    private static final String MATCH_LIMIT = "10";
 
 
     public  SearchNameDataAccessObject() {

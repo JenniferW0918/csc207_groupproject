@@ -7,21 +7,14 @@ import use_case.search_name.SearchNameOutputData;
 public class SearchNameController {
     private final SearchNameInputBoundary searchNameUseCaseInteractor;
 
-    public SearchNameController(SearchNameInputBoundary searchNameUseCaseInteractor)
-    {
+    public SearchNameController(SearchNameInputBoundary searchNameUseCaseInteractor) {
         this.searchNameUseCaseInteractor = searchNameUseCaseInteractor;
     }
 
-    public void execute(String location, String term){
+    public void execute(String term, String location) {
         SearchNameInputData searchNameInputData = new SearchNameInputData(
-                location, term);
+                term, location);
         searchNameUseCaseInteractor.execute(searchNameInputData);
-
-
     }
-
-//    public String finalResults(){
-//        SearchNameOutputData searchNameOutputData = searchNameUseCaseInteractor.getSearchNameOutputData();
-//        return searchNameOutputData.getSearchNameResult().getSearchResults();
 }
 

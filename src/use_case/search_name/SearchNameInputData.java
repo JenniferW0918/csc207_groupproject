@@ -5,15 +5,16 @@ public class SearchNameInputData {
     private final String term;
 
     public SearchNameInputData(String term, String location) {
-        this.location = location;
         this.term = term;
+        this.location = location;
+    }
+
+    public String getTerm() {
+        return term;
     }
 
     public String getLocation() {
         return location;
     }
 
-    public String getTerm() {
-        return term;
-    }
 }

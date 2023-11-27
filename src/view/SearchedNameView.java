@@ -1,6 +1,7 @@
 package view;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.seached_name.SearchedNameState;
 import interface_adapter.seached_name.SearchedNameViewModel;
 
@@ -21,15 +22,24 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
 
     final JButton newSearch;
 
+    final JLabel Term;
+
+    final JLabel Location;
 
 
     public SearchedNameView(SearchedNameViewModel searchedNameViewModel, ViewManagerModel viewManagerModel) {
         this.viewManagerModel = viewManagerModel;
         this.searchedNameViewModel = searchedNameViewModel;
 
+        this.searchedNameViewModel.addPropertyChangeListener(this);
+
+
         // Adding titles and Labels.
         JLabel title = new JLabel(SearchedNameViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        Term = new JLabel();
+        Location = new JLabel();
 
 
         //ADDING Buttons
@@ -47,19 +57,17 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
 
 
         // Adding SEARCH RESULTS
-        searchResultsArea = new JTextArea(10, 30);
+        searchResultsArea = new JTextArea(20, 40);
         searchResultsArea.setEditable(false);
-        searchResultsArea.setText("Haven't been able to get results to show up here yet.");
         JScrollPane scrollPane = new JScrollPane(searchResultsArea); // adds scroll bar to text area
+        searchResultsArea.setText(searchedNameViewModel.getState().getSearchResults());
 
 
         add(title);
         add(scrollPane);
+        add(Term);
+        add(Location);
         add(buttons);
-    }
-
-    public void updateSearchResults(String results) {
-        searchResultsArea.setText(results);
     }
 
 
@@ -71,8 +79,10 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         SearchedNameState state = (SearchedNameState) evt.getNewValue();
+        searchResultsArea.setText(state.getSearchResults());
+        Term.setText(state.getTerm());
+        Location.setText(state.getLocation());
+        //JScrollPane scrollPane = new JScrollPane(searchResultsArea); // adds scroll bar to text area
 
-        updateSearchResults(state.getSearchResults());
     }
-
 }
