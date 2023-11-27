@@ -3,12 +3,16 @@ package interface_adapter.add_user;
 public class AddUserState {
     private String username = "";
     private String usernameError = null;
+    private String name = "";
+    private String nameError = null;
     private String password = "";
     private String passwordError = null;
 
     public AddUserState(AddUserState copy) {
         username = copy.username;
         usernameError = copy.usernameError;
+        name = copy.name;
+        nameError = copy.nameError;
         password = copy.password;
         passwordError = copy.passwordError;
     }
@@ -24,6 +28,16 @@ public class AddUserState {
     public String getUsernameError() {
         return
                 usernameError;
+    }
+
+    public String getName() {
+
+        return name;
+    }
+
+    public String getNameError() {
+
+        return nameError;
     }
 
     public String getPassword() {
@@ -44,6 +58,16 @@ public class AddUserState {
     public void setUsernameError(String usernameError) {
 
         this.usernameError = usernameError;
+    }
+
+    public void setName(String name) {
+
+        this.name = name;
+    }
+
+    public void setNameError(String nameError) {
+
+        this.nameError = nameError;
     }
 
     public void setPassword(String password) {
