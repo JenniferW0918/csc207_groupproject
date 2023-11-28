@@ -37,7 +37,7 @@ public class Accounts implements SignUpDataAccessInterface, AddBusinessAccountDa
 
 
     @Override
-    public void saveBusiness(BusinessAccount businessAccount) {
+    public static void saveBusiness(BusinessAccount businessAccount) {
         businesses.add(businessAccount);
 
     }
@@ -62,7 +62,7 @@ public class Accounts implements SignUpDataAccessInterface, AddBusinessAccountDa
     }
 
 
-    public ArrayList<BusinessAccount> getBusinessAccounts() {
+    public static ArrayList<BusinessAccount> getBusinessAccounts() {
         return new ArrayList<>(businesses);  // Returning a copy
     }
 
