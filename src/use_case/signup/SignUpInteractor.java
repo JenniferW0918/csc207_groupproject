@@ -10,28 +10,19 @@ import view.AddUserView;
 public class SignUpInteractor implements SignUpInputBoundary {
     final SignUpDataAccessInterface userDataAccessObject;
     final SignUpOutputBoundary userPresenter;
-    final UserFactory userFactory;
 
     public SignUpInteractor(SignUpDataAccessInterface signupDataAccessInterface,
-                            SignUpOutputBoundary signupOutputBoundary,
-                            UserFactory userFactory) {
+                            SignUpOutputBoundary signupOutputBoundary) {
         this.userDataAccessObject = signupDataAccessInterface;
         this.userPresenter = signupOutputBoundary;
-        this.userFactory = userFactory;
     }
 
     @Override
     public void execute(SignUpInputData signupInputData) {
         if (signupInputData.getAccountType() == "user") {
-            AddUserPresenter addUserPresenter = new AddUserPresenter(viewManagerModel, addUserViewModel, loginViewModel);
-            AddUserInteractor addUserInteractor = new AddUserInteractor(userAddUserUseCaseInteractor);
-            AddUserController addUserController = new AddUserController(userAddUserUseCaseInteractor);
-
-            AddUserView addUserView = new AddUserView(addUserController, addUserViewModel);
-            views.add(addUserView, addUserView.viewName);
-
+            userPresenter.prepareSuccessUserView(new SignUpOutputData());
         } else {
-            userPresenter.prepareSuccessView(signupOutputData);
+            userPresenter.prepareSuccessBusinessView(SignupOutputData());
         }
     }
 }
