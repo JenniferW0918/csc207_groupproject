@@ -5,7 +5,6 @@ import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.add_business.AddBusinessAccountController;
 import interface_adapter.add_business.AddBusinessAccountViewModel;
-import interface_adapter.login.LoginViewModel;
 import interface_adapter.search_name.SearchNameViewModel;
 import interface_adapter.signup.AddBusinessAccountPresenter;
 import interface_adapter.signup.SignUpController;

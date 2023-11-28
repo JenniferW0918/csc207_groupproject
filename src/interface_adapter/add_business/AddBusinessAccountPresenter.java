@@ -1,9 +1,8 @@
-package interface_adapter.signup;
+package interface_adapter.add_business;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.add_business.AddBusinessAccountViewModel;
 import interface_adapter.add_business.AddBusinessAccountState;
-import interface_adapter.login.LoginState;
 import interface_adapter.search_name.SearchNameState;
 import interface_adapter.search_name.SearchNameViewModel;
 import use_case.add_business.AddBusinessAccountOutputBoundary;
