@@ -15,11 +15,14 @@ import interface_adapter.search_name.SearchNameViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.signup.AddBusinessAccountPresenter;
+import interface_adapter.signup.SignUpPresenter;
+import interface_adapter.signup.SignUpViewModel;
 import use_case.add_business.AddBusinessAccountDataAccessInterface;
 import use_case.add_business.AddBusinessAccountInteractor;
 import use_case.add_business.AddBusinessAccountOutputBoundary;
 import use_case.add_user.AddUserInteractor;
 import use_case.search_name.SearchNameInputData;
+import use_case.signup.SignUpInteractor;
 import view.*;
 import javax.swing.*;
 import java.awt.*;
@@ -49,13 +52,17 @@ public class Main {
         // be observed by the Views.
         SearchNameViewModel searchNameViewModel = new SearchNameViewModel();
         SearchedNameViewModel searchedNameViewModel = new SearchedNameViewModel();
+        SignUpViewModel signupViewModel = new SignUpViewModel();
         AddUserViewModel addUserViewModel = new AddUserViewModel();
         AddBusinessAccountViewModel addBusinessAccountViewModel = new AddBusinessAccountViewModel();
-
 
         //Making Data Access Objects
         SearchNameDataAccessObject searchNameDataAccessObject = new SearchNameDataAccessObject();
         Accounts userDataAccessObject = new Accounts();
+
+        // Making a SignUpView object
+        SignUpPresenter signupPresenter = new SignUpPresenter(viewManagerModel, signupViewModel, loginViewModel);
+        SignUpInteractor signupInteractor = new SignUpInteractor();
 
         // Making business data access object:
         Accounts businessDataAccessObject = new Accounts(); // this isn't right, but not sure how to create the business
