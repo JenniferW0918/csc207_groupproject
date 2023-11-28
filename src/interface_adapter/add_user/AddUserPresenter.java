@@ -1,35 +1,35 @@
 package interface_adapter.add_user;
 
-import interface_adapter.login.LoginState;
-import interface_adapter.login.LoginViewModel;
+import interface_adapter.search_name.SearchNameViewModel;
 import use_case.add_user.AddUserOutputBoundary;
 import use_case.add_user.AddUserOutputData;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.search_name.SearchNameState;
+import interface_adapter.search_name.SearchNameViewModel;
 
 public class AddUserPresenter implements AddUserOutputBoundary {
 
     private final AddUserViewModel addUserViewModel;
-    private final LoginViewModel loginViewModel;
+    private final SearchNameViewModel searchNameViewModel;
     private ViewManagerModel viewManagerModel;
 
     public AddUserPresenter(ViewManagerModel viewManagerModel,
                             AddUserViewModel addUserViewModel,
-                            LoginViewModel loginViewModel) {
+                            SearchNameViewModel searchNameViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.addUserViewModel = addUserViewModel;
-        this.loginViewModel = loginViewModel;
+        this.searchNameViewModel = searchNameViewModel;
     }
 
     @Override
     public void prepareSuccessView(AddUserOutputData response) {
         // On success, switch to the login view.
 
-        LoginState loginState = loginViewModel.getState();
-        loginState.setUsername(response.getUsername());
-        this.loginViewModel.setState(loginState);
-        loginViewModel.firePropertyChanged();
+        SearchNameState searchNameState = searchNameViewModel.getState();
+        this.searchNameViewModel.setState(searchNameState);
+        searchNameViewModel.firePropertyChanged();
 
-        viewManagerModel.setActiveView(loginViewModel.getViewName());
+        viewManagerModel.setActiveView(searchNameViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 

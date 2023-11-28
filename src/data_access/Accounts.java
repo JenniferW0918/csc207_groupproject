@@ -2,21 +2,22 @@ package data_access;
 
 import entity.BusinessAccount;
 import entity.User;
+import use_case.add_user.AddUserDataAccessInterface;
 import use_case.signup.SignUpDataAccessInterface;
 import use_case.add_business.AddBusinessAccountDataAccessInterface;
 
 import java.util.ArrayList;
 
-public class Accounts implements SignUpDataAccessInterface, AddBusinessAccountDataAccessInterface{
+public class Accounts implements SignUpDataAccessInterface, AddBusinessAccountDataAccessInterface, AddUserDataAccessInterface {
 
-    private final ArrayList<User> users = new ArrayList<>();
-    private final ArrayList<BusinessAccount> businesses = new ArrayList<>();
+    private static final ArrayList<User> users = new ArrayList<>();
+    private static final ArrayList<BusinessAccount> businesses = new ArrayList<>();
 
     public Accounts() {
     }
 
     @Override
-    public void saveUser(User user) {
+    public static void saveUser(User user) {
         users.add(user);
     }
 
@@ -57,7 +58,7 @@ public class Accounts implements SignUpDataAccessInterface, AddBusinessAccountDa
         return false;
     }
 
-    public ArrayList<User> getUsers() {
+    public static ArrayList<User> getUsers() {
         return new ArrayList<>(users);  // Returning a copy
     }
 
