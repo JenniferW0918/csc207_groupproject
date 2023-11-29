@@ -1,7 +1,6 @@
 package view;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.seached_name.SearchedNameState;
 import interface_adapter.seached_name.SearchedNameViewModel;
 
