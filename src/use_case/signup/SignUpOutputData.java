@@ -2,13 +2,13 @@ package use_case.signup;
 
 public class SignUpOutputData {
 
-    private final String username;
+    private final String accountType;
 
-    public SignUpOutputData(String username) {
-        this.username = username;
+    public SignUpOutputData(String accountType) {
+        this.accountType = accountType;
     }
 
-    public String getUsername() {
-        return username;
+    public String getAccountType() {
+        return accountType;
     }
 }
