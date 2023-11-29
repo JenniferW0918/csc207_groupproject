@@ -2,12 +2,8 @@ package interface_adapter.signup;
 
 import interface_adapter.search_name.SearchNameViewModel
 import interface_adapter.ViewManagerModel;
-import interface_adapter.search_name.SearchNameViewModel;
 import use_case.signup.SignUpOutputBoundary;
 import use_case.signup.SignUpOutputData;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class SignUpPresenter implements SignUpOutputBoundary {
 
@@ -24,7 +20,7 @@ public class SignUpPresenter implements SignUpOutputBoundary {
     }
 
     @Override
-    public void prepareSuccessView(SignUpOutputData response) {
+    public void prepareSuccessUserView(SignUpOutputData response) {
         // On success, switch to the create user view.
         LoginState loginState = loginViewModel.getState();
         loginState.setUsername(response.getUsername());
@@ -36,7 +32,7 @@ public class SignUpPresenter implements SignUpOutputBoundary {
     }
 
     @Override
-    public void prepareFailView(String error) {
+    public void prepareSuccessBusinessView(SignUpOutputData response) {
         SignUpState signupState = signupViewModel.getState();
         signupViewModel.firePropertyChanged();
     }

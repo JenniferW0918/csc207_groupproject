@@ -4,4 +4,3 @@ public interface SignUpOutputBoundary {
     void prepareSuccessUserView(SignUpOutputData user);
 
     void prepareSuccessBusinessView(SignUpOutputData user);
-}
