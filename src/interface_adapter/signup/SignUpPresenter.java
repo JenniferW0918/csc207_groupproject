@@ -15,6 +15,7 @@ import view.AddUserView;
 import view.SignUpView;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class SignUpPresenter implements SignUpOutputBoundary {
 
@@ -38,12 +39,12 @@ public class SignUpPresenter implements SignUpOutputBoundary {
     @Override
     public void prepareSuccessUserView(SignUpOutputData response) {
         // On success, switch to the create user view.
-        AddUserView addUserView = addUserUseCaseFactory.createUserView(viewManagerModel, searchNameViewModel, addUserViewModel, dataAccessObject);
-        viewManagerModel.setActiveView(addUserView.viewName);
-        viewManagerModel.firePropertyChanged();
+        AddUserState addUserState = addUserViewModel.getState();
+        this.addUserViewModel.setState(addUserState);
+        addUserViewModel.firePropertyChanged();
 
-        JFrame frame = new JFrame("Create User");
-        frame.setSize(400, 300);
+        viewManagerModel.setActiveView(addUserViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
     }
 
     @Override

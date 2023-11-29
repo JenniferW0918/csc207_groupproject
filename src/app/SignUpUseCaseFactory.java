@@ -1,5 +1,6 @@
 package app;
 
+import data_access.Accounts;
 import interface_adapter.add_business.AddBusinessAccountViewModel;
 import interface_adapter.add_user.AddUserViewModel;
 import interface_adapter.search_name.SearchNameViewModel;
@@ -26,18 +27,20 @@ public class SignUpUseCaseFactory {
             ViewManagerModel viewManagerModel,
             SignUpViewModel signUpViewModel,
             AddUserViewModel addUserViewModel,
-            AddBusinessAccountViewModel addBusinessAccountViewModel) {
+            AddBusinessAccountViewModel addBusinessAccountViewModel,
+            Accounts dataAccessObject) {
 
-            SignUpController signUpController = createUserSignupUseCase(viewManagerModel, addUserViewModel, addBusinessAccountViewModel);
+            SignUpController signUpController = createSignUpUseCase(viewManagerModel, addUserViewModel, addBusinessAccountViewModel, dataAccessObject);
             return new SignUpView(signUpController, signUpViewModel);
     }
 
-    private static SignUpController createUserSignupUseCase(ViewManagerModel viewManagerModel,
+    private static SignUpController createSignUpUseCase(ViewManagerModel viewManagerModel,
                                                             AddUserViewModel addUserViewModel,
-                                                            AddBusinessAccountViewModel addBusinessAccountViewModel) {
+                                                            AddBusinessAccountViewModel addBusinessAccountViewModel,
+                                                            Accounts dataAccessObject) {
 
         // Notice how we pass this method's parameters to the Presenter.
-        SignUpOutputBoundary signupOutputBoundary = new SignUpPresenter(viewManagerModel, addUserViewModel, addBusinessAccountViewModel);
+        SignUpOutputBoundary signupOutputBoundary = new SignUpPresenter(viewManagerModel, addUserViewModel, addBusinessAccountViewModel, dataAccessObject);
 
         SignUpInputBoundary userSignupInteractor = new SignUpInteractor(
                 signupOutputBoundary);
