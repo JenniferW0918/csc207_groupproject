@@ -1,5 +1,6 @@
 package app;
 
+import data_access.Accounts;
 import entity.BusinessAccountFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.add_business.AddBusinessAccountController;
@@ -18,17 +19,18 @@ import java.io.IOException;
 public class AddBusinessUseCaseFactory {
     private AddBusinessUseCaseFactory() {}
 
-    public static AddBusinessAccountView create(
-            ViewManagerModel viewManagerModel, SearchNameViewModel searchNameViewModel,
+    public static AddBusinessAccountView createBusinessView(
+            ViewManagerModel viewManagerModel,
+            SearchNameViewModel searchNameViewModel,
             AddBusinessAccountViewModel addBusinessAccountViewModel,
-            AddBusinessAccountDataAccessInterface businessDataAccessObject) {
+            Accounts dataAccessObject) {
 
         try {
             AddBusinessAccountController addBusinessAccountController = createBusinessAccountSignupUseCase(
-                    viewManagerModel, addBusinessAccountViewModel, searchNameViewModel, businessDataAccessObject);
+                    viewManagerModel, addBusinessAccountViewModel, searchNameViewModel, dataAccessObject);
             return new AddBusinessAccountView(addBusinessAccountController, addBusinessAccountViewModel);
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Could not open user data file.");
+            JOptionPane.showMessageDialog(null, "What do we write here?");
         }
 
         return null;
@@ -37,7 +39,7 @@ public class AddBusinessUseCaseFactory {
     private static AddBusinessAccountController createBusinessAccountSignupUseCase(ViewManagerModel viewManagerModel,
                                                                        AddBusinessAccountViewModel addBusinessAccountViewModel,
                                                                        SearchNameViewModel searchNameViewModel,
-                                                                       AddBusinessAccountDataAccessInterface businessDataAccessObject) throws IOException {
+                                                                       Accounts dataAccessObject) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
         AddBusinessAccountOutputBoundary addBusinessAccountOutputBoundary = new AddBusinessAccountPresenter(
@@ -46,7 +48,7 @@ public class AddBusinessUseCaseFactory {
         BusinessAccountFactory businessAccountFactory = new BusinessAccountFactory();
 
         AddBusinessAccountInputBoundary addBusinessInteractor = new AddBusinessAccountInteractor(
-                businessDataAccessObject, addBusinessAccountOutputBoundary, businessAccountFactory);
+                dataAccessObject, addBusinessAccountOutputBoundary, businessAccountFactory);
 
         return new AddBusinessAccountController(addBusinessInteractor);
     }

@@ -23,7 +23,7 @@ public class AddUserPresenter implements AddUserOutputBoundary {
 
     @Override
     public void prepareSuccessView(AddUserOutputData response) {
-        // On success, switch to the login view.
+        // On success, switch to the search view.
 
         SearchNameState searchNameState = searchNameViewModel.getState();
         this.searchNameViewModel.setState(searchNameState);

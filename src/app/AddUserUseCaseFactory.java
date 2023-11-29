@@ -1,5 +1,6 @@
 package app;
 
+import data_access.Accounts;
 import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.add_user.AddUserController;
@@ -18,35 +19,36 @@ import java.io.IOException;
 public class AddUserUseCaseFactory {
     private AddUserUseCaseFactory() {}
 
-    public static AddUserView create(
-            ViewManagerModel viewManagerModel, SearchNameViewModel searchNameViewModel,
+    public static AddUserView createUserView(
+            ViewManagerModel viewManagerModel,
+            SearchNameViewModel searchNameViewModel,
             AddUserViewModel addUserViewModel,
-            AddUserDataAccessInterface userDataAccessObject) {
+            Accounts dataAccessObject) {
 
         try {
-            AddUserController addUserController = createUserSignupUseCase(
-                    viewManagerModel, addUserViewModel, searchNameViewModel, userDataAccessObject);
+            AddUserController addUserController = createUserUseCase(
+                    viewManagerModel, addUserViewModel, searchNameViewModel, dataAccessObject);
             return new AddUserView(addUserController, addUserViewModel);
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Could not open user data file.");
+            JOptionPane.showMessageDialog(null, "What do we write here?");
         }
 
         return null;
     }
 
-    private static AddUserController createUserSignupUseCase(ViewManagerModel viewManagerModel,
-                                                                                   AddUserViewModel addUserViewModel,
-                                                                                   SearchNameViewModel searchNameViewModel,
-                                                                                   AddUserDataAccessInterface userDataAccessObject) throws IOException {
+    private static AddUserController createUserUseCase(ViewManagerModel viewManagerModel,
+                                                       AddUserViewModel addUserViewModel,
+                                                       SearchNameViewModel searchNameViewModel,
+                                                       Accounts dataAccessObject) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
         AddUserOutputBoundary addUserOutputBoundary = new AddUserPresenter(
                 viewManagerModel, addUserViewModel, searchNameViewModel);
 
-       UserFactory userFactory = new UserFactory();
+        UserFactory userFactory = new UserFactory();
 
         AddUserInputBoundary addUserInteractor = new AddUserInteractor(
-                userDataAccessObject, addUserOutputBoundary, userFactory);
+                dataAccessObject, addUserOutputBoundary, userFactory);
 
         return new AddUserController(addUserInteractor);
     }

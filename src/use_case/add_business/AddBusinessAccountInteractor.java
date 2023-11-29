@@ -5,14 +5,14 @@ import entity.BusinessAccountFactoryInterface;
 import data_access.Accounts;
 
 public class AddBusinessAccountInteractor implements AddBusinessAccountInputBoundary {
-    final AddBusinessAccountDataAccessInterface addBusinessAccountDataAccessObject;
+    final Accounts dataAccessObject;
     final AddBusinessAccountOutputBoundary userPresenter;
     final BusinessAccountFactoryInterface businessAccountFactoryInterface;
 
-    public AddBusinessAccountInteractor(AddBusinessAccountDataAccessInterface addBusinessDataAccessInterface,
+    public AddBusinessAccountInteractor(Accounts dataAccessObject,
                                         AddBusinessAccountOutputBoundary addBusinessOutputBoundary,
                                         BusinessAccountFactoryInterface businessAccountFactoryInterface) {
-        this.addBusinessAccountDataAccessObject = addBusinessDataAccessInterface;
+        this.dataAccessObject = dataAccessObject;
         this.userPresenter = addBusinessOutputBoundary;
         this.businessAccountFactoryInterface = businessAccountFactoryInterface;
     }
@@ -21,7 +21,7 @@ public class AddBusinessAccountInteractor implements AddBusinessAccountInputBoun
     public void execute(AddBusinessAccountInputData addBusinessAccountInputData) {
         // need to iterate through accounts.getBusinessAccount bc it returns an array list of BusinessAccounts
         // so if addBusinessInputData.getUsername() == one of the usernames in array list, "user already exists"
-        if (Accounts.getBusinessAccounts().contains(addBusinessAccountInputData.getUsername())) {
+        if (dataAccessObject.getBusinessAccounts().contains(addBusinessAccountInputData.getUsername())) {
             userPresenter.prepareFailView("User already exists.");
         } else {
 
@@ -31,7 +31,7 @@ public class AddBusinessAccountInteractor implements AddBusinessAccountInputBoun
                     addBusinessAccountInputData.getPassword(),
                     addBusinessAccountInputData.getAddress(),
                     addBusinessAccountInputData.getCategories());
-            //Accounts.saveBusiness(businessAccount);
+            dataAccessObject.saveBusiness(businessAccount);
 
             AddBusinessAccountOutputData addBusinessAccountOutputData = new AddBusinessAccountOutputData(
                     businessAccount.getName(), false);
