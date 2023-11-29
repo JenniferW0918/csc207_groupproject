@@ -36,11 +36,10 @@ public class SignUpPresenter implements SignUpOutputBoundary {
         this.dataAccessObject = dataAccessObject;
     }
 
-    @Override
-    public void prepareSuccessUserView(SignUpOutputData response) {
+    /*@Override
+    public void prepareSuccessUserView(SignUpOutputData userAccountType) {
         // On success, switch to the create user view.
         AddUserState addUserState = addUserViewModel.getState();
-        this.addUserViewModel.setState(addUserState);
         addUserViewModel.firePropertyChanged();
 
         viewManagerModel.setActiveView(addUserViewModel.getViewName());
@@ -48,12 +47,34 @@ public class SignUpPresenter implements SignUpOutputBoundary {
     }
 
     @Override
-    public void prepareSuccessBusinessView(SignUpOutputData response) {
+    public void prepareSuccessBusinessView(SignUpOutputData businessAccountType) {
         AddBusinessAccountState addBusinessAccountState = addBusinessAccountViewModel.getState();
         this.addBusinessAccountViewModel.setState(addBusinessAccountState);
         addBusinessAccountViewModel.firePropertyChanged();
 
         viewManagerModel.setActiveView(addBusinessAccountViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
+    }*/
+    @Override
+    public void prepareSuccessView(SignUpOutputData accountType) {
+        //switch to add user or add business frame depending on account type
+        if (accountType.equals("user")) {
+
+            AddUserState addUserState = addUserViewModel.getState();
+            this.addUserViewModel.setState(addUserState);
+            addUserViewModel.firePropertyChanged();
+
+            viewManagerModel.setActiveView(addUserViewModel.getViewName());
+            viewManagerModel.firePropertyChanged();
+
+        } else if (accountType.equals("business")) {
+
+            AddBusinessAccountState addBusinessAccountState = addBusinessAccountViewModel.getState();
+            this.addBusinessAccountViewModel.setState(addBusinessAccountState);
+            addBusinessAccountViewModel.firePropertyChanged();
+
+            viewManagerModel.setActiveView(addBusinessAccountViewModel.getViewName());
+            viewManagerModel.firePropertyChanged();
+        }
     }
 }

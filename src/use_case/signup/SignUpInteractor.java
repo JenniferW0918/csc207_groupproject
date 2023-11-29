@@ -16,10 +16,11 @@ public class SignUpInteractor implements SignUpInputBoundary {
 
     @Override
     public void execute(SignUpInputData signupInputData) {
-        if (signupInputData.getAccountType() == "user") {
+        /*if (signupInputData.getAccountType() == "user") {
             userPresenter.prepareSuccessUserView(new SignUpOutputData("user"));
         } else {
             userPresenter.prepareSuccessBusinessView(new SignUpOutputData("business"));
-        }
+        }*/
+        userPresenter.prepareSuccessView(new SignUpOutputData(signupInputData.getAccountType()));
     }
 }

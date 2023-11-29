@@ -54,7 +54,6 @@ public class Main {
         SignUpViewModel signupViewModel = new SignUpViewModel();
         AddBusinessAccountViewModel addBusinessAccountViewModel = new AddBusinessAccountViewModel();
         AddUserViewModel addUserViewModel = new AddUserViewModel();
-        AddBusinessAccountViewModel addBusinessAccountViewModel1 = new AddBusinessAccountViewModel();
 
         //Making Data Access Objects
         SearchNameDataAccessObject searchNameDataAccessObject = new SearchNameDataAccessObject();
@@ -74,6 +73,7 @@ public class Main {
                 searchNameViewModel,
                 addBusinessAccountViewModel,
                 dataAccessObject);
+        views.add(addBusinessAccountView, addBusinessAccountView.viewName);
 
         // Creating SearchName View
         SearchNameView searchNameView = SearchNameUseCaseFactory.createSearchNameView(
@@ -95,9 +95,9 @@ public class Main {
                 addBusinessAccountViewModel,
                 dataAccessObject);
         views.add(signUpView, signUpView.viewName);
+
         viewManagerModel.setActiveView(signUpView.viewName);
         viewManagerModel.firePropertyChanged();
-
 
         application.pack();
         application.setVisible(true);

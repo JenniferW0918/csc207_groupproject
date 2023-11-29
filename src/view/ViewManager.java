@@ -24,6 +24,14 @@ public class ViewManager implements PropertyChangeListener {
         if (evt.getPropertyName().equals("view")) {
             String viewModelName = (String) evt.getNewValue();
             cardLayout.show(views, viewModelName);
+        } else if (evt.getPropertyName().equals("add user")) {
+            cardLayout.show(views,"add user");
+        } else if (evt.getPropertyName().equals("add business")) {
+            cardLayout.show(views,"add business");
         }
+    }
+
+    public void toUserCreation(PropertyChangeEvent evt) {
+        cardLayout.show(views,"add user");
     }
 }

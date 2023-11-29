@@ -17,7 +17,7 @@ public class AddUserViewModel extends ViewModel {
     private AddUserState state = new AddUserState();
 
     public AddUserViewModel() {
-        super("sign up");
+        super("add user");
     }
 
     public void setState(AddUserState state) {

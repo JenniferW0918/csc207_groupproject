@@ -22,7 +22,7 @@ public class AddBusinessAccountViewModel extends ViewModel {
     private AddBusinessAccountState state = new AddBusinessAccountState();
 
     public AddBusinessAccountViewModel() {
-        super("sign up");
+        super("add business");
     }
 
     public void setState(AddBusinessAccountState state) {
