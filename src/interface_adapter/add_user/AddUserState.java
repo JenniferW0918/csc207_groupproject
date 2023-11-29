@@ -7,6 +7,8 @@ public class AddUserState {
     private String nameError = null;
     private String password = "";
     private String passwordError = null;
+    private String accountType = "";
+    private String accountTypeError = null;
 
     public AddUserState(AddUserState copy) {
         username = copy.username;
@@ -15,6 +17,8 @@ public class AddUserState {
         nameError = copy.nameError;
         password = copy.password;
         passwordError = copy.passwordError;
+        accountType = copy.accountType;
+        accountTypeError = copy.accountTypeError;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -50,6 +54,14 @@ public class AddUserState {
                 passwordError;
     }
 
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public String getAccountTypeError() {
+        return accountTypeError;
+    }
+
     public void setUsername(String username) {
 
         this.username = username;
@@ -78,5 +90,13 @@ public class AddUserState {
     public void setPasswordError(String passwordError) {
 
         this.passwordError = passwordError;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
+
+    public void setAccountTypeError(String accountTypeError) {
+        this.accountTypeError = accountTypeError;
     }
 }
