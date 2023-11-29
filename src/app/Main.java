@@ -58,29 +58,46 @@ public class Main {
 
         //Making Data Access Objects
         SearchNameDataAccessObject searchNameDataAccessObject = new SearchNameDataAccessObject();
-        Accounts userDataAccessObject = new Accounts();
-        Accounts businessDataAccessObject = new Accounts(); // this isn't right, but not sure how to create the business
-        // data access object or what the business data access object is meant to be.
-/*
-        // Making searchNameView
-        SearchNameView searchNameView = SearchNameUseCaseFactory.createSearchNameView(viewManagerModel,
-                searchNameViewModel, searchNameDataAccessObject, searchedNameViewModel);
+        Accounts dataAccessObject = new Accounts();
+
+        // Creating AddUser View
+        AddUserView addUserView = AddUserUseCaseFactory.createUserView(
+                viewManagerModel,
+                searchNameViewModel,
+                addUserViewModel,
+                dataAccessObject);
+        views.add(addUserView, addUserView.viewName);
+
+        // Creating AddBusiness View
+        AddBusinessAccountView addBusinessAccountView = AddBusinessUseCaseFactory.createBusinessView(
+                viewManagerModel,
+                searchNameViewModel,
+                addBusinessAccountViewModel,
+                dataAccessObject);
+
+        // Creating SearchName View
+        SearchNameView searchNameView = SearchNameUseCaseFactory.createSearchNameView(
+                viewManagerModel,
+                searchNameViewModel,
+                searchNameDataAccessObject,
+                searchedNameViewModel);
         views.add(searchNameView, searchNameView.viewName);
 
-        //Making SearchedNameView
+        // Creating SearchedName View
         SearchedNameView searchedNameView = new SearchedNameView(searchedNameViewModel, viewManagerModel);
         views.add(searchedNameView, searchedNameView.viewName);
 
-        // Making an AddBusinessAccount View
-        AddBusinessAccountView addBusinessAccountView = AddBusinessUseCaseFactory.create(viewManagerModel,
-                searchNameViewModel, addBusinessAccountViewModel, businessDataAccessObject);
-*/
-
-//    THE DEFAULT VIEW
-        SignUpView signUpView = SignUpUseCaseFactory.createSignUpView(viewManagerModel, signupViewModel, addUserViewModel, addBusinessAccountViewModel);
+        // THE DEFAULT VIEW
+        SignUpView signUpView = SignUpUseCaseFactory.createSignUpView(
+                viewManagerModel,
+                signupViewModel,
+                addUserViewModel,
+                addBusinessAccountViewModel,
+                dataAccessObject);
         views.add(signUpView, signUpView.viewName);
         viewManagerModel.setActiveView(signUpView.viewName);
         viewManagerModel.firePropertyChanged();
+
 
         application.pack();
         application.setVisible(true);

@@ -1,30 +1,27 @@
 package use_case.add_user;
 
-import entity.BusinessAccount;
-import entity.BusinessAccountFactoryInterface;
-import entity.User;
-import entity.UserFactoryInterface;
+import entity.*;
 import data_access.Accounts;
 import use_case.add_user.AddUserDataAccessInterface;
 import use_case.add_user.AddUserOutputBoundary;
 import use_case.add_user.AddUserOutputData;
 
 public class AddUserInteractor implements AddUserInputBoundary {
-    final AddUserDataAccessInterface addUserDataAccessObject;
+    final Accounts dataAccessObject;
     final AddUserOutputBoundary addUserPresenter;
     final UserFactoryInterface userFactoryInterface;
 
-    public AddUserInteractor(AddUserDataAccessInterface addUserDataAccessInterface,
+    public AddUserInteractor(Accounts dataAccessObject,
                                         AddUserOutputBoundary addUserOutputBoundary,
                                         UserFactoryInterface userFactoryInterface) {
-        this.addUserDataAccessObject = addUserDataAccessInterface;
+        this.dataAccessObject = dataAccessObject;
         this.addUserPresenter = addUserOutputBoundary;
         this.userFactoryInterface = userFactoryInterface;
     }
 
     @Override
     public void execute(AddUserInputData addUserInputData) {
-        if (Accounts.getUsers().contains(addUserInputData.getUsername())) {
+        if (dataAccessObject.getUsers().contains(addUserInputData.getUsername())) {
             addUserPresenter.prepareFailView("User already exists.");
         } else {
 
@@ -32,7 +29,7 @@ public class AddUserInteractor implements AddUserInputBoundary {
                     addUserInputData.getName(),
                     addUserInputData.getUsername(),
                     addUserInputData.getPassword());
-            //Accounts.saveUser(user);
+            dataAccessObject.saveUser(user);
 
             AddUserOutputData addUserOutputData = new AddUserOutputData(
                     user.getName(), false);

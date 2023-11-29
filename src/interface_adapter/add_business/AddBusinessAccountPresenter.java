@@ -7,6 +7,9 @@ import interface_adapter.search_name.SearchNameState;
 import interface_adapter.search_name.SearchNameViewModel;
 import use_case.add_business.AddBusinessAccountOutputBoundary;
 import use_case.add_business.AddBusinessAccountOutputData;
+import view.AddUserView;
+
+import javax.swing.*;
 
 public class AddBusinessAccountPresenter implements AddBusinessAccountOutputBoundary {
 
