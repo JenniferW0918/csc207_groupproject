@@ -12,9 +12,8 @@ import interface_adapter.add_user.AddUserViewModel;
 import interface_adapter.seached_name.SearchedNameViewModel;
 import interface_adapter.search_name.SearchNameController;
 import interface_adapter.search_name.SearchNameViewModel;
-import interface_adapter.login.LoginViewModel;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.signup.AddBusinessAccountPresenter;
+import interface_adapter.add_business.AddBusinessAccountPresenter;
 import interface_adapter.signup.SignUpPresenter;
 import interface_adapter.signup.SignUpViewModel;
 import use_case.add_business.AddBusinessAccountDataAccessInterface;
@@ -53,31 +52,16 @@ public class Main {
         SearchNameViewModel searchNameViewModel = new SearchNameViewModel();
         SearchedNameViewModel searchedNameViewModel = new SearchedNameViewModel();
         SignUpViewModel signupViewModel = new SignUpViewModel();
-        AddUserViewModel addUserViewModel = new AddUserViewModel();
         AddBusinessAccountViewModel addBusinessAccountViewModel = new AddBusinessAccountViewModel();
+        AddUserViewModel addUserViewModel = new AddUserViewModel();
+        AddBusinessAccountViewModel addBusinessAccountViewModel1 = new AddBusinessAccountViewModel();
 
         //Making Data Access Objects
         SearchNameDataAccessObject searchNameDataAccessObject = new SearchNameDataAccessObject();
         Accounts userDataAccessObject = new Accounts();
-
-        // Making a SignUpView object
-        SignUpPresenter signupPresenter = new SignUpPresenter(viewManagerModel, signupViewModel, loginViewModel);
-        SignUpInteractor signupInteractor = new SignUpInteractor();
-
-        // Making business data access object:
         Accounts businessDataAccessObject = new Accounts(); // this isn't right, but not sure how to create the business
         // data access object or what the business data access object is meant to be.
-
-        // Making an AddUserView object
-        AddUserPresenter addUserPresenter = new AddUserPresenter(viewManagerModel, addUserViewModel, loginViewModel);
-        AddUserInteractor addUserInteractor = new AddUserInteractor(userAddUserUseCaseInteractor);
-        AddUserController addUserController = new AddUserController(userAddUserUseCaseInteractor);
-
-
-        AddUserView addUserView = new AddUserView(addUserController, addUserViewModel);
-        views.add(addUserView, addUserView.viewName);
-
-
+/*
         // Making searchNameView
         SearchNameView searchNameView = SearchNameUseCaseFactory.createSearchNameView(viewManagerModel,
                 searchNameViewModel, searchNameDataAccessObject, searchedNameViewModel);
@@ -90,16 +74,16 @@ public class Main {
         // Making an AddBusinessAccount View
         AddBusinessAccountView addBusinessAccountView = AddBusinessUseCaseFactory.create(viewManagerModel,
                 searchNameViewModel, addBusinessAccountViewModel, businessDataAccessObject);
-
+*/
 
 //    THE DEFAULT VIEW
+        SignUpView signUpView = SignUpUseCaseFactory.createSignUpView(viewManagerModel, signupViewModel, addUserViewModel, addBusinessAccountViewModel);
+        views.add(signUpView, signUpView.viewName);
         viewManagerModel.setActiveView(signUpView.viewName);
         viewManagerModel.firePropertyChanged();
 
         application.pack();
         application.setVisible(true);
-
-
 
         /// Testing SearchFeature
         SearchNameInputData searchNameInputData = new SearchNameInputData("ice-cream", "Toronto");

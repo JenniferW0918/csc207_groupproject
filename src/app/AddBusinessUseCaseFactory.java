@@ -1,25 +1,16 @@
 package app;
 
 import entity.BusinessAccountFactory;
-import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.add_business.AddBusinessAccountController;
 import interface_adapter.add_business.AddBusinessAccountViewModel;
 import interface_adapter.search_name.SearchNameViewModel;
-import interface_adapter.signup.AddBusinessAccountPresenter;
-import interface_adapter.signup.SignUpController;
-import interface_adapter.signup.SignUpPresenter;
-import interface_adapter.signup.SignUpViewModel;
+import interface_adapter.add_business.AddBusinessAccountPresenter;
 import use_case.add_business.AddBusinessAccountDataAccessInterface;
 import use_case.add_business.AddBusinessAccountInputBoundary;
 import use_case.add_business.AddBusinessAccountInteractor;
 import use_case.add_business.AddBusinessAccountOutputBoundary;
-import use_case.signup.SignUpDataAccessInterface;
-import use_case.signup.SignUpInputBoundary;
-import use_case.signup.SignUpInteractor;
-import use_case.signup.SignUpOutputBoundary;
 import view.AddBusinessAccountView;
-import view.SignUpView;
 
 import javax.swing.*;
 import java.io.IOException;

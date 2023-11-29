@@ -32,7 +32,7 @@ public class AddUserInteractor implements AddUserInputBoundary {
                     addUserInputData.getName(),
                     addUserInputData.getUsername(),
                     addUserInputData.getPassword());
-            Accounts.saveUser(user);
+            //Accounts.saveUser(user);
 
             AddUserOutputData addUserOutputData = new AddUserOutputData(
                     user.getName(), false);
