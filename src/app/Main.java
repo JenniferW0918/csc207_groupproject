@@ -85,7 +85,6 @@ public class Main {
         application.pack();
         application.setVisible(true);
 
-
         /// Testing SearchFeature
         SearchNameInputData searchNameInputData = new SearchNameInputData("ice-cream", "Toronto");
         SearchNameResult result = searchNameDataAccessObject.getSearchName(searchNameInputData);
