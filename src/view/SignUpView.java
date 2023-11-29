@@ -45,10 +45,10 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(createUser)) {
                             //SignUpState currentState = signupViewModel.getState();
-
-                            signupController.execute(
-                                    "user"
-                            );
+                            System.out.println("Add User button clicked!"); // checking program registers button was clicked
+                            signupController.execute("user");
+                            viewManagerModel.setActiveView("Add User Account");
+                            viewManagerModel.firePropertyChanged();
                         }
                     }
                 }
@@ -59,7 +59,7 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
                     @Override
                     public void actionPerformed(ActionEvent e) {
 
-                        System.out.println("Add Business button clicked!"); // checking program registers the button was clicked
+                        System.out.println("Add Business button clicked!"); // checking program registers button was clicked
                         signupController.execute("business");
                         viewManagerModel.setActiveView("Add Business Account");
                         viewManagerModel.firePropertyChanged();
