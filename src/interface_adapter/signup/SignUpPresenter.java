@@ -22,6 +22,7 @@ public class SignUpPresenter implements SignUpOutputBoundary {
     private final AddUserViewModel addUserViewModel;
     private final AddBusinessAccountViewModel addBusinessAccountViewModel;
     private ViewManagerModel viewManagerModel;
+    private SignUpViewModel signupViewModel;
     private AddUserUseCaseFactory addUserUseCaseFactory;
     private SearchNameViewModel searchNameViewModel;
     private Accounts dataAccessObject;
@@ -40,7 +41,8 @@ public class SignUpPresenter implements SignUpOutputBoundary {
     public void prepareSuccessUserView(SignUpOutputData response) {
         // On success, switch to the create user view.
         AddUserState addUserState = addUserViewModel.getState();
-        this.addUserViewModel.setState(addUserState);
+        addUserState.setAccountType(response.getAccountType());
+        addUserViewModel.setState(addUserState);
         addUserViewModel.firePropertyChanged();
 
         viewManagerModel.setActiveView(addUserViewModel.getViewName());
@@ -49,8 +51,10 @@ public class SignUpPresenter implements SignUpOutputBoundary {
 
     @Override
     public void prepareSuccessBusinessView(SignUpOutputData response) {
+        // on success, switch to add business account view
         AddBusinessAccountState addBusinessAccountState = addBusinessAccountViewModel.getState();
-        this.addBusinessAccountViewModel.setState(addBusinessAccountState);
+        addBusinessAccountState.setAccountType(response.getAccountType());
+        addBusinessAccountViewModel.setState(addBusinessAccountState);
         addBusinessAccountViewModel.firePropertyChanged();
 
         viewManagerModel.setActiveView(addBusinessAccountViewModel.getViewName());

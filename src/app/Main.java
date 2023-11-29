@@ -74,6 +74,7 @@ public class Main {
                 searchNameViewModel,
                 addBusinessAccountViewModel,
                 dataAccessObject);
+        views.add(addBusinessAccountView, addBusinessAccountView.viewName);
 
         // Creating SearchName View
         SearchNameView searchNameView = SearchNameUseCaseFactory.createSearchNameView(
