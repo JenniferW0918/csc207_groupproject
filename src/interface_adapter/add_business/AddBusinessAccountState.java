@@ -14,6 +14,8 @@ public class AddBusinessAccountState {
     private String categories = "";
     private String categoriesError = null;
 
+    private String accountType = "";
+
 
     public AddBusinessAccountState(AddBusinessAccountState copy) {
         username = copy.username;
@@ -26,6 +28,7 @@ public class AddBusinessAccountState {
         addressError = copy.addressError;
         categories = copy.categories;
         categoriesError = copy.categoriesError;
+        accountType = copy.accountType;
     }
 
     public AddBusinessAccountState() {
@@ -112,6 +115,9 @@ public class AddBusinessAccountState {
         this.categoriesError = categoriesError;
     }
 
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
 
 
     @Override
