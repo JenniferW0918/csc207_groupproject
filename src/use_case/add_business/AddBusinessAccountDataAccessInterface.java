@@ -3,7 +3,7 @@ package use_case.add_business;
 import entity.BusinessAccount;
 
 public interface AddBusinessAccountDataAccessInterface {
-    boolean businessExistsByName(String identifier);
+    boolean businessExistsByUsername(String identifier);
 
     void saveBusiness(BusinessAccount businessAccount);
 }

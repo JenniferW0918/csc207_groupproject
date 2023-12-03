@@ -51,15 +51,13 @@ public class AddUserView extends JPanel implements ActionListener, PropertyChang
                 // This creates an anonymous subclass of ActionListener and instantiates it.
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(addUser)) {
-                            AddUserState currentState = addUserViewModel.getState();
+                        AddUserState currentState = addUserViewModel.getState();
 
-                            addUserController.execute(
-                                    currentState.getUsername(),
-                                    currentState.getName(),
-                                    currentState.getPassword()
-                            );
-                        }
+                        addUserController.execute(
+                                currentState.getName(),
+                                currentState.getUsername(),
+                                currentState.getPassword()
+                        );
                     }
                 }
         );
@@ -93,7 +91,8 @@ public class AddUserView extends JPanel implements ActionListener, PropertyChang
                     @Override
                     public void keyTyped(KeyEvent e) {
                         AddUserState currentState = addUserViewModel.getState();
-                        currentState.setName(nameInputField.getText() + e.getKeyChar());
+                        String text = nameInputField.getText() + e.getKeyChar();
+                        currentState.setName(text);
                         addUserViewModel.setState(currentState);
                     }
 
@@ -143,10 +142,14 @@ public class AddUserView extends JPanel implements ActionListener, PropertyChang
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        System.out.println("Click " + e.getActionCommand());
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-
+        /* AddUserState state = (AddUserState) evt.getNewValue();
+        if (state.getUsernameError() != null) {
+            JOptionPane.showMessageDialog(this, state.getUsernameError());
+        } */
     }
 }

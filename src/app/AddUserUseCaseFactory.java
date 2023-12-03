@@ -2,6 +2,7 @@ package app;
 
 import data_access.Accounts;
 import entity.UserFactory;
+import entity.UserFactoryInterface;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.add_user.AddUserController;
 import interface_adapter.add_user.AddUserViewModel;
@@ -45,10 +46,10 @@ public class AddUserUseCaseFactory {
         AddUserOutputBoundary addUserOutputBoundary = new AddUserPresenter(
                 viewManagerModel, addUserViewModel, searchNameViewModel);
 
-        UserFactory userFactory = new UserFactory();
+        UserFactoryInterface userFactoryInterface = new UserFactory();
 
         AddUserInputBoundary addUserInteractor = new AddUserInteractor(
-                dataAccessObject, addUserOutputBoundary, userFactory);
+                dataAccessObject, addUserOutputBoundary, userFactoryInterface);
 
         return new AddUserController(addUserInteractor);
     }
