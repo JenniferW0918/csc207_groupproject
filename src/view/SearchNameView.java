@@ -92,6 +92,15 @@ public class SearchNameView extends JPanel implements ActionListener, PropertyCh
                             // Now update the state
                             SearchNameState currentState = searchNameViewModel.getState();
                             searchNameController.execute(currentState.getTerm(), currentState.getLocation());
+
+                            // Clear the term and location fields
+                            termInputField.setText("");
+                            locationInputField.setText("");
+                            // Clear the state
+                            currentState.setTerm("");
+                            currentState.setLocation("");
+                            searchNameViewModel.setState(currentState);
+                            searchNameViewModel.firePropertyChanged();
                         }
                     }
                 }
@@ -108,9 +117,7 @@ public class SearchNameView extends JPanel implements ActionListener, PropertyCh
     }
 
 
-    @Override
     public void actionPerformed(ActionEvent e) {
-        JOptionPane.showConfirmDialog(this, "Not implemented yet.");
         System.out.println("Click " +e.getActionCommand());
     }
 

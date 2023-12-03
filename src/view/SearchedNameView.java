@@ -33,6 +33,7 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
         this.searchedNameViewModel.addPropertyChangeListener(this);
 
 
+
         // Adding titles and Labels.
         JLabel title = new JLabel(SearchedNameViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -45,18 +46,27 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
         JPanel buttons = new JPanel();
         newSearch = new JButton(SearchedNameViewModel.NEW_SEARCH);
         buttons.add(newSearch);
-        newSearch.addActionListener(new ActionListener() {
-            @Override
+        newSearch.addActionListener(
+                new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                SearchedNameView.this.viewManagerModel.setActiveView("search name"); // switches to MainMenuView
+                if (e.getSource().equals(newSearch)) {
+                SearchedNameView.this.viewManagerModel.setActiveView("search name");
                 SearchedNameView.this.viewManagerModel.firePropertyChanged();
-            }
+
+                // Reset the state of the view model.
+                SearchedNameState currentState = searchedNameViewModel.getState();
+                currentState.setSearchResults("");
+                currentState.setTerm("");
+                currentState.setLocation("");
+                searchedNameViewModel.setState(currentState);
+                searchedNameViewModel.firePropertyChanged();
+            }}
         });
 
 
 
         // Adding SEARCH RESULTS
-        searchResultsArea = new JTextArea(20, 40);
+        searchResultsArea = new JTextArea(15, 25);
         searchResultsArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(searchResultsArea); // adds scroll bar to text area
         searchResultsArea.setText(searchedNameViewModel.getState().getSearchResults());
@@ -70,9 +80,9 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
     }
 
 
-    @Override
     public void actionPerformed(ActionEvent e) {
-        JOptionPane.showConfirmDialog(this, "Not implemented yet.");
+        System.out.println("Event source: " + e.getSource());
+
     }
 
     @Override
@@ -81,7 +91,5 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
         searchResultsArea.setText(state.getSearchResults());
         Term.setText(state.getTerm());
         Location.setText(state.getLocation());
-        //JScrollPane scrollPane = new JScrollPane(searchResultsArea); // adds scroll bar to text area
-
     }
 }
