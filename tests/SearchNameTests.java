@@ -1,112 +1,378 @@
-import app.*;
-import entity.SearchNameResult;
-import org.junit.Before;
+import app.Main;
+import entity.Business;
 import use_case.search_name.*;
 import interface_adapter.search_name.*;
-import view.SearchNameView;
+//import view.LabelTextPanel;
 import view.SearchedNameView;
+import view.SearchNameView;
+import entity.SearchNameResult;
 import data_access.SearchNameDataAccessObject;
 
+import static app.Main.*;
+import static java.lang.Thread.sleep;
 import static org.junit.Assert.*;
-import org.junit.Test;
+
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.util.Objects;
 
+/*Things to test.
+ * - Buttons are present, searchName, newSearch  (DONE)
+ * - View changes to searchedNameView when searchName button is pressed in searchNameView (DONE)
+ * - View changes to searchNameView when newSearch button is pressed in searchedNameView (DONE)
+ * - SearchNameView has a text field for search results (DONE)
+ * - Errors pop up when search term is empty or location is empty or arguments are wrong. JDialog is displayed (DONE)
+ */
+
+/** Tests for SearchName use case, SearchedName, SearchNameResults, Business*/
 public class SearchNameTests {
+    static String message = "";
+    static boolean popUpDiscovered = false;
 
-    private static final String TEST_TERM = "Creamy Lemon Butter Chicken";
-    private static final String TEST_LOCATION = "Toronto";
-
-    private static final SearchNameDataAccessObject DATA_ACCESS = new SearchNameDataAccessObject();
-
-    private static final SearchNameInputData INPUT_DATA = new SearchNameInputData(TEST_TERM, TEST_LOCATION);
-
-    private static final String RESULT =
-            "Term: Creamy Lemon Butter Chicken\n" +
-            "Location: Toronto\n" +
-            "Businesses: \n" +
-            "Name: Rikki Tikki\n" +
-            "Address: 209 Augusta Avenue, Toronto, ON M5T 2L4, Canada\n" +
-            "Open: Yes\n" +
-            "\n" +
-            "Name: The Senator\n" +
-            "Address: 249 Victoria Street, Toronto, ON M5B 1T8, Canada\n" +
-            "Open: Yes\n" +
-            "\n" +
-            "Name: Le Baratin\n" +
-            "Address: 1600 Dundas Street. W, Toronto, ON M6K 1T8, Canada\n" +
-            "Open: Yes\n" +
-            "\n" +
-            "Name: Maison Selby\n" +
-            "Address: 592 Sherbourne Street, Toronto, ON M4X 1L4, Canada\n" +
-            "Open: Yes\n" +
-            "\n" +
-            "Name: Himalayan Kitchen\n" +
-            "Address: 1526 Queen Street W, Toronto, ON M6R 1A1, Canada\n" +
-            "Open: Yes\n" +
-            "\n" +
-            "Name: Aloette\n" +
-            "Address: 163 Spadina Avenue, 1st Floor, Toronto, ON M5V 2L6, Canada\n" +
-            "Open: Yes\n" +
-            "\n" +
-            "Name: Grey Gardens\n" +
-            "Address: 199 Augusta Avenue, Toronto, ON M5T 2L4, Canada\n" +
-            "Open: Yes\n" +
-            "\n" +
-            "Name: Milou\n" +
-            "Address: 1375 Dundas St W, Toronto, ON M6J 1Y3, Canada\n" +
-            "Open: Yes\n" +
-            "\n" +
-            "Name: Union\n" +
-            "Address: 72A Ossington Avenue, Toronto, ON M6J 2Y7, Canada\n" +
-            "Open: Yes\n" +
-            "\n" +
-            "Name: Khau Gully\n" +
-            "Address: 1991 Yonge Street, Toronto, ON M4S 1Z8, Canada\n" +
-            "Open: Yes\n\n";
+    /*HELPERS*/
+    public void makeSearchUI(char[] termChars, char[] locationChars) {
+        Main.main(null);
+        SearchNameView sv = getSearchNameView(); // search name view
+        Main.viewManagerModel.setActiveView(sv.viewName);
+        Main.viewManagerModel.firePropertyChanged();
+        JPanel jp3 = (JPanel) sv.getComponent(1); // term field panel
+        JPanel jp4 = (JPanel) sv.getComponent(2); // location field panel
+        JTextField termField = (JTextField) jp3.getComponent(1);
+        JTextField locationField = (JTextField) jp4.getComponent(1);
 
 
+        // Set the term and text input field.
 
-    public void makeASearch() {
+        // Type 'Pizza' into the term field
+//        char[] termChars = {'p', 'i', 'z', 'z', 'a'};
+        for (char character : termChars) {
+            KeyEvent eventTyped = new KeyEvent(
+                    termField,
+                    KeyEvent.KEY_TYPED,
+                    System.currentTimeMillis(),
+                    0,
+                    KeyEvent.VK_UNDEFINED,
+                    character);
+
+            jp3.dispatchEvent(eventTyped);
+
+            // Pause execution for a second
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            // Move to the right to avoid overwriting characters
+            KeyEvent eventRight = new KeyEvent(
+                    termField,
+                    KeyEvent.KEY_PRESSED,
+                    System.currentTimeMillis(),
+                    0,
+                    KeyEvent.VK_RIGHT,
+                    KeyEvent.CHAR_UNDEFINED);
+
+            jp3.dispatchEvent(eventRight);
+        }
+
+        // Type 'Toronto' into the location field
+//        char[] locationChars = {'t', 'o', 'r', 'o', 'n', 't', 'o'};
+        for (char character : locationChars) {
+            KeyEvent eventTyped = new KeyEvent(
+                    locationField,
+                    KeyEvent.KEY_TYPED,
+                    System.currentTimeMillis(),
+                    0,
+                    KeyEvent.VK_UNDEFINED,
+                    character);
+
+            jp4.dispatchEvent(eventTyped);
+
+            // Pause execution for a second
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            // Move to the right to avoid overwriting characters
+            KeyEvent eventRight = new KeyEvent(
+                    locationField,
+                    KeyEvent.KEY_PRESSED,
+                    System.currentTimeMillis(),
+                    0,
+                    KeyEvent.VK_RIGHT,
+                    KeyEvent.CHAR_UNDEFINED);
+
+            jp4.dispatchEvent(eventRight);
+        }
 
     }
 
-    /**
-     * Test that the search name use case uses the correct parameters.
-     */
+    public SearchNameView getSearchNameView() {
+        JFrame app = null;
+        Window[] windows = Window.getWindows();
+        for (Window window : windows) {
+            if (window instanceof JFrame) {
+                app = (JFrame) window;
+            }
+        }
+        assertNotNull(app); // found the window?
+
+        Component root = app.getComponent(0);
+        Component cp = ((JRootPane) root).getContentPane();
+
+        JPanel jp = (JPanel) cp;
+
+        JPanel jp2 = (JPanel) jp.getComponent(0);
+
+        return (SearchNameView) jp2.getComponent(2);
+    }
+
+    public SearchedNameView getSearchedNameView() {
+        JFrame app = null;
+        Window[] windows = Window.getWindows();
+        for (Window window : windows) {
+            if (window instanceof JFrame) {
+                app = (JFrame) window;
+            }
+        }
+
+        assertNotNull(app); // found the window?
+
+        Component root = app.getComponent(0);
+        Component cp = ((JRootPane) root).getContentPane();
+
+        JPanel jp = (JPanel) cp;
+
+        JPanel jp2 = (JPanel) jp.getComponent(0);
+
+        return (SearchedNameView) jp2.getComponent(3);
+    }
+
+
+    public JButton getSearchButton() {
+        SearchNameView sv = getSearchNameView();
+
+        JPanel buttons = (JPanel) sv.getComponent(3);
+
+        return (JButton) buttons.getComponent(0); // this should be the searchName button
+    }
+
+
+    public JButton getNewSearchButton() {
+        SearchedNameView sv2 = getSearchedNameView();
+
+        JPanel buttons = (JPanel) sv2.getComponent(4);
+
+        return (JButton) buttons.getComponent(0); // this should be the newSearch button
+    }
+
+    private Timer createCloseTimer() {
+        ActionListener close = new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Window[] windows = Window.getWindows();
+                for (Window window : windows) {
+
+                    if (window instanceof JDialog) {
+
+                        JDialog dialog = (JDialog)window;
+
+                        // this ignores old dialogs
+                        if (dialog.isVisible()) {
+                            String s = ((JOptionPane) ((BorderLayout) dialog.getRootPane()
+                                    .getContentPane().getLayout()).getLayoutComponent(BorderLayout.CENTER)).getMessage().toString();
+                            System.out.println("message = " + s);
+
+                            // store the information we got from the JDialog
+                            SearchNameTests.message = s;
+                            SearchNameTests.popUpDiscovered = true;
+
+                            System.out.println("disposing of..." + window.getClass());
+                            window.dispose();
+                        }
+                    }
+                }
+            }
+
+        };
+
+        Timer t = new Timer(1000, close);
+        t.setRepeats(false);
+        return t;
+    }
+
+
+    /*TESTS*/
+
 
     @org.junit.Test
-    public void testResultsParameter() {
+    public void testViewChangeOnSearch () {
+        makeSearchUI(new char[]{'P', 'i', 'z', 'z', 'a'}, new char[] {'T', 'o', 'r', 'o', 'n', 't', 'o'});
+        JButton button = getSearchButton();
+        button.doClick();
+
+        assert (viewManagerModel.getActiveView().equals("searched name"));
+        SearchedNameView sv2 = getSearchedNameView();
+        JScrollPane scrollPane = (JScrollPane) sv2.getComponent(1);
+        JTextArea searchResultsArea = (JTextArea) scrollPane.getViewport().getView();
+        assert(searchResultsArea.getText().contains("Pizza"));
+        assert(searchResultsArea.getText().contains("Toronto"));
+    }
+
+    @org.junit.Test
+    public void errorOnEmptyTerm() {
+        makeSearchUI(new char[] {}, new char[]{'T', 'o', 'r', 'o', 'n', 't', 'o'});
+        JButton button = getSearchButton();
+
+        createCloseTimer().start();
+
+        button.doClick();
+
+        assert (popUpDiscovered);
+        assert (message.equals("Please enter a term"));
+
+    }
+
+    @org.junit.Test
+    public void errorOnEmptyLocation() {
+        popUpDiscovered = false;
+        makeSearchUI(new char[] {'P', 'i', 'z', 'z', 'a'}, new char[]{});
+        JButton button = getSearchButton();
+
+        createCloseTimer().start();
+
+        button.doClick();
+
+        assert (popUpDiscovered);
+        assert (message.equals("Please enter a location"));
+    }
+
+    @org.junit.Test
+    public void errorOnEmptyTermAndLocation() {
+        popUpDiscovered = false;
+        makeSearchUI(new char[] {}, new char[]{});
+        JButton button = getSearchButton();
+        createCloseTimer().start();
+        button.doClick();
+
+        assert (popUpDiscovered);
+        assert (!Objects.equals(message, ""));
+    }
+
+    @org.junit.Test
+    public void errorOnInvalidTermLocation(){
+        popUpDiscovered = false;
+        makeSearchUI(new char[] {'j','j'}, new char[]{'j', 'j'});
+        JButton button = getSearchButton();
+        createCloseTimer().start();
+        button.doClick();
+
+        assert (popUpDiscovered);
+        assert (Objects.equals(message, "No results found :("));
+    }
+
+    @org.junit.Test
+    public void testViewChangeSearchNameButton() {
+        Main.main(null);
+        makeSearchUI(new char[] {'P', 'i', 'z', 'z', 'a'}, new char[] {'T', 'o', 'r', 'o', 'n', 't', 'o'});
+        JButton b = getSearchButton();
+        b.doClick();
+        assert(viewManagerModel.getActiveView().equals("searched name"));
+    }
+
+    @org.junit.Test
+    public void testViewChangeNewSearchButton() {
+        Main.main(null);
+        viewManagerModel.setActiveView("searched name");
+        viewManagerModel.firePropertyChanged();
+
+        JButton b = getNewSearchButton();
+        b.doClick();
+
+        assert(viewManagerModel.getActiveView().equals("search name"));
+    }
+    @org.junit.Test
+    public void testSearchNameDataAccessObject() {
         SearchNameDataAccessObject searchNameDataAccessObject = new SearchNameDataAccessObject();
-        SearchNameInputData searchNameInputData = new SearchNameInputData("Creamy Lemon Butter Chicken", "Toronto");
-        SearchNameResult result = searchNameDataAccessObject.getSearchName(searchNameInputData);
+        SearchNameInputData inputData = new SearchNameInputData("Creamy Lemon Butter Chicken", "Toronto");
+
+        SearchNameResult result = searchNameDataAccessObject.getSearchName(inputData);
+
+
+        assertNotNull(result);
+        assertNotNull(result.getBusinesses());
+        assertFalse(result.getBusinesses().isEmpty());
         assertEquals(result.getTerm(), "Creamy Lemon Butter Chicken");
         assertEquals(result.getLocation(), "Toronto");
     }
 
-
     @org.junit.Test
-    public void testResults() {
-        SearchNameDataAccessObject searchNameDataAccessObject = new SearchNameDataAccessObject();
-        SearchNameInputData searchNameInputData = new SearchNameInputData("Creamy Lemon Butter Chicken", "Toronto");
-        SearchNameResult result = searchNameDataAccessObject.getSearchName(searchNameInputData);
-        assertEquals(result.toString(), RESULT);
+    public void testSearchNameViewModel() {
+        SearchNameViewModel searchNameViewModel = new SearchNameViewModel();
+
+        SearchNameState initialState = searchNameViewModel.getState();
+        initialState.setLocation("Ottawa");
+        initialState.setTerm("Pizza");
+        searchNameViewModel.setState(initialState);
+
+        SearchNameState updatedState = searchNameViewModel.getState();
+        assertEquals("Pizza", updatedState.getTerm());
+        assertEquals("Ottawa", updatedState.getLocation());
     }
-    /**
-     *
-     * Test that the Clear button is present and where it is expected to be
-     */
+
     @org.junit.Test
     public void testSearchNameButtonPresent() {
         Main.main(null);
-        JButton button = getButton();
-        assert(button.getText().equals("Clear"));
+        JButton button = getSearchButton();
+        assert(button.getText().equals("Search Name"));
     }
 
-    private JButton getButton() {
-        return null;
+    @org.junit.Test
+    public void testNewSearchButtonPresent() {
+        Main.main(null);
+        JButton button = getNewSearchButton();
+        assert(button.getText().equals("New Search"));
     }
+
+    @org.junit.Test
+    public void testTextFieldsPresent(){
+        Main.main(null);
+        SearchNameView sv = getSearchNameView(); // search name view
+
+        JPanel jp3 = (JPanel) sv.getComponent(1); // term field panel
+        JPanel jp4 = (JPanel) sv.getComponent(2); // location field panel
+
+        assertEquals("Type Term:", ((JLabel) jp3.getComponent(0)).getText());
+        assertEquals("Type Location:", ((JLabel) jp4.getComponent(0)).getText());
+        assert jp3.getComponent(1).isValid(); // term field is valid
+        assert jp4.getComponent(1).isValid(); // location field is valid
+    }
+
+    // Testing Businesses made for search reuslts nor business accounts.
+    @org.junit.Test
+    public void testBusiness(){
+        Business business = new Business("Korean bbq", "Yonge Street", true);
+
+        assertEquals(business.getName(), "Korean bbq");
+        assertEquals(business.getAddress(), "Yonge Street");
+        assertTrue(business.is_Closed());
+
+        String businessStr = business.toString();
+        assert(Objects.equals(businessStr, "Name: Korean bbq\nAddress: Yonge Street\nOpen: No\n"));
+
+        Business business2 = new Business("Korean bbq", "Yonge Street", false);
+        String businessStr2 = business2.toString();
+        assert(Objects.equals(businessStr2, "Name: Korean bbq\nAddress: Yonge Street\nOpen: Yes\n"));
+    }
+
 
 
 }
-
