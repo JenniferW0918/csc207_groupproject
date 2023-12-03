@@ -16,16 +16,10 @@ public class SearchNameUseCaseFactory {
                                            SearchNameDataAccessObject searchNameDataAccessObject,
                                                       SearchedNameViewModel searchedNameViewModel) {
 
-        try {
             SearchNamePresenter searchNamePresenter = new SearchNamePresenter(searchNameViewModel, viewManagerModel, searchedNameViewModel);
             SearchNameInputBoundary searchNameInteractor = new SearchNameInteractor(searchNameDataAccessObject, searchNamePresenter);
             SearchNameController searchNameController = new SearchNameController(searchNameInteractor);
             return new SearchNameView(searchNameController, searchNameViewModel);
-
-        } catch (Exception e) {
-            System.out.println("Error creating search name use case: " + e.getMessage());
-            return null;
-        }
     }
 }
 
