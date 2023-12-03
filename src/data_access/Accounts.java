@@ -9,50 +9,46 @@ import java.util.ArrayList;
 
 public class Accounts implements AddBusinessAccountDataAccessInterface, AddUserDataAccessInterface {
 
-    private static final ArrayList<User> users = new ArrayList<>();
-    private static final ArrayList<BusinessAccount> businesses = new ArrayList<>();
+    private final ArrayList<User> users = new ArrayList<>();
+    private final ArrayList<BusinessAccount> businesses = new ArrayList<>();
 
     public Accounts() {
     }
 
     @Override
     public void saveUser(User user) {
-        users.add(user);
+        if (!userExistsByUsername(user.getUsername()))
+            users.add(user);
     }
 
     @Override
-    public boolean userExistsByName(String identifier) {
+    public boolean userExistsByUsername(String identifier) {
         for (User user : users) {
-            if (user.getName().equals(identifier)) {
-                return true;
-            }
+            return user.getUsername().equals(identifier);
         }
         return false;
     }
 
     @Override
     public void saveBusiness(BusinessAccount businessAccount) {
-        businesses.add(businessAccount);
-
+        if (!businessExistsByUsername(businessAccount.getUsername()))
+            businesses.add(businessAccount);
     }
 
     @Override
-    public boolean businessExistsByName(String identifier) {
+    public boolean businessExistsByUsername(String identifier) {
         for (BusinessAccount businessAccount : businesses) {
-            if (businessAccount.getName().equals(identifier)) {
-                return true;
-            }
+            return businessAccount.getUsername().equals(identifier);
         }
         return false;
     }
 
-    public static ArrayList<User> getUsers() {
+    public ArrayList<User> getUsers() {
         return new ArrayList<>(users);  // Returning a copy
     }
 
 
-    public static ArrayList<BusinessAccount> getBusinessAccounts() {
+    public ArrayList<BusinessAccount> getBusinessAccounts() {
         return new ArrayList<>(businesses);  // Returning a copy
     }
-
 }
