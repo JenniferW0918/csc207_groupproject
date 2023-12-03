@@ -20,9 +20,9 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
     private JTextArea searchResultsArea;
 
     final JButton newSearch;
+    final JButton logOut;
 
     final JLabel Term;
-
     final JLabel Location;
 
 
@@ -46,6 +46,9 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
         JPanel buttons = new JPanel();
         newSearch = new JButton(SearchedNameViewModel.NEW_SEARCH);
         buttons.add(newSearch);
+        logOut = new JButton(SearchedNameViewModel.LOG_OUT);
+        buttons.add(logOut);
+        
         newSearch.addActionListener(
                 new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -63,6 +66,14 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
             }}
         });
 
+        logOut.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        SearchedNameView.this.viewManagerModel.setActiveView("Account Creation"); // switches to SignUpView
+                        SearchedNameView.this.viewManagerModel.firePropertyChanged();
+                    }
+        });
 
 
         // Adding SEARCH RESULTS
