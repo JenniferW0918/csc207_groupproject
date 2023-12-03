@@ -13,12 +13,12 @@ public class AccountsTests {
                 "test");
         accounts.saveBusiness(businessAccount);
         assert(accounts.businessExistsByUsername("test"));
+        assert(!accounts.businessExistsByUsername("not test"));
     }
 
     @org.junit.Test
-    public void testSameBusinessStorage(){
+    public void testDuplicateBusinessStorage(){
         Accounts accounts = new Accounts();
-        ArrayList<BusinessAccount> businessAccounts = accounts.getBusinessAccounts();
         BusinessAccount businessAccount = new BusinessAccount(
                 "test", "test", "test", "test",
                 "test");
@@ -32,7 +32,8 @@ public class AccountsTests {
                 "test");
         accounts.saveBusiness(businessAccount2);
 
-        assert(businessAccounts.size() <= 1); // test that the business has not been added again
+        ArrayList<BusinessAccount> businessAccounts = accounts.getBusinessAccounts();
+        assert(businessAccounts.size() == 1); // test that the business has not been added again
     }
 
     @org.junit.Test
@@ -41,12 +42,12 @@ public class AccountsTests {
         User users = new User("test", "test", "test");
         accounts.saveUser(users);
         assert(accounts.userExistsByUsername("test"));
+        assert(!accounts.userExistsByUsername("not test"));
     }
 
     @org.junit.Test
     public void testDuplicateUser(){
         Accounts accounts = new Accounts();
-        ArrayList<User> userAccounts = accounts.getUsers();
 
         User user1 = new User("test", "test", "test");
         accounts.saveUser(user1);
@@ -55,7 +56,8 @@ public class AccountsTests {
         User users2 = new User("test", "test", "test");
         accounts.saveUser(users2);
 
-        assert(userAccounts.size() <= 1); // why won't it pas when I make it just == 1. why does it have to be <= 1
+        ArrayList<User> userAccounts = accounts.getUsers();
+        assert(userAccounts.size() == 1);
     }
 
     @org.junit.Test
@@ -108,6 +110,21 @@ public class AccountsTests {
         BusinessAccountFactory businessAccountFactory = new BusinessAccountFactory();
         BusinessAccount createdBusiness = businessAccountFactory.create("name", "username", "password", "address", "categories");
         assert(createdBusiness != null);
+    }
+
+    @org.junit.Test
+    public void testAccountsUsersList(){
+        Accounts accounts = new Accounts();
+        User user = new User("name", "username", "password");
+        accounts.saveUser(user);
+        assert(accounts.getUsers().size() == 1);
+
+        User user1 = new User("name1", "username1", "password1");
+        accounts.saveUser(user1);
+        assert(accounts.getUsers().size() == 2);
+
+        assert(accounts.getUsers().contains(user));
+        assert(accounts.getUsers().contains(user1));
     }
 
 
