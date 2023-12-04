@@ -17,11 +17,12 @@ public class Accounts implements AddBusinessAccountDataAccessInterface, AddUserD
 
     @Override
     public void saveUser(User user) {
-        users.add(user);
+        if (!userExistsByUsername(user.getUsername()))
+            users.add(user);
     }
 
     @Override
-    public boolean userExistsByUsername(String identifier) {
+     public boolean userExistsByUsername(String identifier) {
         for (User user : users) {
             if (user.getUsername().equals(identifier)) {
                 return true;
@@ -32,8 +33,8 @@ public class Accounts implements AddBusinessAccountDataAccessInterface, AddUserD
 
     @Override
     public void saveBusiness(BusinessAccount businessAccount) {
-        businesses.add(businessAccount);
-
+        if (!businessExistsByUsername(businessAccount.getUsername()))
+            businesses.add(businessAccount);
     }
 
     @Override
@@ -42,7 +43,6 @@ public class Accounts implements AddBusinessAccountDataAccessInterface, AddUserD
             if (businessAccount.getUsername().equals(identifier)) {
                 return true;
             }
-        }
         return false;
     }
 
@@ -54,5 +54,4 @@ public class Accounts implements AddBusinessAccountDataAccessInterface, AddUserD
     public ArrayList<BusinessAccount> getBusinessAccounts() {
         return new ArrayList<>(businesses);  // Returning a copy
     }
-
 }
