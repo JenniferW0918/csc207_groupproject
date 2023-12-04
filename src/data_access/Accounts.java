@@ -22,7 +22,7 @@ public class Accounts implements AddBusinessAccountDataAccessInterface, AddUserD
     }
 
     @Override
-     public boolean userExistsByUsername(String identifier) {
+    public boolean userExistsByUsername(String identifier) {
         for (User user : users) {
             if (user.getUsername().equals(identifier)) {
                 return true;
@@ -43,15 +43,16 @@ public class Accounts implements AddBusinessAccountDataAccessInterface, AddUserD
             if (businessAccount.getUsername().equals(identifier)) {
                 return true;
             }
+        }
         return false;
     }
 
-    public ArrayList<User> getUsers() {
+    public ArrayList<User> getUsers () {
         return new ArrayList<>(users);  // Returning a copy
-    }
+        }
 
-
-    public ArrayList<BusinessAccount> getBusinessAccounts() {
+    public ArrayList<BusinessAccount> getBusinessAccounts () {
         return new ArrayList<>(businesses);  // Returning a copy
-    }
+        }
+
 }
