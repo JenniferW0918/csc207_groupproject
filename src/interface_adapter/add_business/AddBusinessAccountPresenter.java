@@ -40,7 +40,9 @@ public class AddBusinessAccountPresenter implements AddBusinessAccountOutputBoun
     public void prepareFailView(String error) {
         AddBusinessAccountState addBusinessAccountState = addBusinessAccountViewModel.getState();
         addBusinessAccountState.setUsernameError(error);
+        addBusinessAccountViewModel.setState(addBusinessAccountState);
         addBusinessAccountViewModel.firePropertyChanged();
+        JOptionPane.showConfirmDialog(null, error);
     }
 }
 

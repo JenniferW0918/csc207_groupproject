@@ -7,6 +7,8 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.search_name.SearchNameState;
 import interface_adapter.search_name.SearchNameViewModel;
 
+import javax.swing.*;
+
 public class AddUserPresenter implements AddUserOutputBoundary {
 
     private final AddUserViewModel addUserViewModel;
@@ -37,7 +39,9 @@ public class AddUserPresenter implements AddUserOutputBoundary {
     public void prepareFailView(String error) {
         AddUserState addUserState = addUserViewModel.getState();
         addUserState.setUsernameError(error);
+        addUserViewModel.setState(addUserState);
         addUserViewModel.firePropertyChanged();
+        JOptionPane.showConfirmDialog(null, error);
     }
 }
 
