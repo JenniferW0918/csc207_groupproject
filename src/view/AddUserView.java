@@ -58,6 +58,10 @@ public class AddUserView extends JPanel implements ActionListener, PropertyChang
                                 currentState.getUsername(),
                                 currentState.getPassword()
                         );
+
+                        usernameInputField.setText("");
+                        nameInputField.setText("");
+                        passwordInputField.setText("");
                     }
                 }
         );
