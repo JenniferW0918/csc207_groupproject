@@ -14,7 +14,6 @@ public class SearchNameViewModel extends ViewModel {
 
     public static final String SEARCH_NAME_BUTTON_LABEL = "Search Name";
 
-
     private SearchNameState state = new SearchNameState();
 
     public SearchNameViewModel() {

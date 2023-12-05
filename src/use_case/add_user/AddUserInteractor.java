@@ -21,7 +21,7 @@ public class AddUserInteractor implements AddUserInputBoundary {
 
     @Override
     public void execute(AddUserInputData addUserInputData) {
-        if (dataAccessObject.getUsers().contains(addUserInputData.getUsername())) {
+        if (dataAccessObject.userExistsByUsername(addUserInputData.getUsername())) {
             addUserPresenter.prepareFailView("User already exists.");
         } else {
 

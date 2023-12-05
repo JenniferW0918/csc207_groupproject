@@ -43,13 +43,11 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
                 // This creates an anonymous subclass of ActionListener and instantiates it.
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(createUser)) {
-                            //SignUpState currentState = signupViewModel.getState();
-                            System.out.println("Add User button clicked!"); // checking program registers button was clicked
-                            signupController.execute("user");
-                            viewManagerModel.setActiveView("Add User Account");
-                            viewManagerModel.firePropertyChanged();
-                        }
+
+                        System.out.println("Add User button clicked!"); // checking program registers button was clicked
+                        signupController.execute("user");
+                        viewManagerModel.setActiveView("Add User Account");
+                        viewManagerModel.firePropertyChanged();
                     }
                 }
         );
@@ -80,6 +78,7 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
      * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
+
         System.out.println("Click " + evt.getActionCommand());
     }
 

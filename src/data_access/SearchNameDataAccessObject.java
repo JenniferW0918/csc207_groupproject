@@ -35,14 +35,9 @@ public class SearchNameDataAccessObject implements SearchNameDataAccessInterface
                 .addHeader("Authorization", API_TOKEN)
                 .build();
 
-        try {
-            Response response = client.newCall(request).execute();
-
-            if (response.code() == 200 && response.body() != null) {
-                return turnToSearchNameResult(searchNameInputData.getLocation(), searchNameInputData.getTerm(), response.body().string());
-            } else {
-                throw new RuntimeException("No results found :(");
-            }
+        try (Response response = client.newCall(request).execute()){
+            assert response.body() != null;
+            return turnToSearchNameResult(searchNameInputData.getLocation(), searchNameInputData.getTerm(), response.body().string());
         } catch (IOException | JSONException e) {
             throw new RuntimeException(e);
         }

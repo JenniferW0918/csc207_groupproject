@@ -9,6 +9,7 @@ public class SearchedNameViewModel extends ViewModel {
     public static final String TITLE_LABEL = "Search Results";
 
     public static final String NEW_SEARCH = "New Search";
+    public static final String LOG_OUT = "Log Out";
 
     public String Term;
     public String Location;

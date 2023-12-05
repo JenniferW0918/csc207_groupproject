@@ -6,6 +6,8 @@ import interface_adapter.seached_name.SearchedNameViewModel;
 import use_case.search_name.SearchNameOutputBoundary;
 import use_case.search_name.SearchNameOutputData;
 
+import javax.swing.*;
+
 
 public class SearchNamePresenter implements SearchNameOutputBoundary {
     private final SearchNameViewModel searchNameViewModel;
@@ -42,7 +44,12 @@ public class SearchNamePresenter implements SearchNameOutputBoundary {
         SearchNameState searchNameState = searchNameViewModel.getState();
         searchNameState.setLocationError(error);
         searchNameState.setTermError(error);
+        searchNameViewModel.setState(searchNameState);
+
         searchNameViewModel.firePropertyChanged();
+
+
+        JOptionPane.showConfirmDialog(null, error);
 
     }
 }
