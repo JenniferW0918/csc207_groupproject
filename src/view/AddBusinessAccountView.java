@@ -67,6 +67,12 @@ public class AddBusinessAccountView extends JPanel implements ActionListener, Pr
                                     currentState.getAddress(),
                                     currentState.getCategories()
                             );
+
+                            usernameInputField.setText("");
+                            nameInputField.setText("");
+                            passwordInputField.setText("");
+                            addressInputField.setText("");
+                            categoriesInputField.setText("");
                         }
                     }
                 }
