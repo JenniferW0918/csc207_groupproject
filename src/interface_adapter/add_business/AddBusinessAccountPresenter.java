@@ -42,7 +42,7 @@ public class AddBusinessAccountPresenter implements AddBusinessAccountOutputBoun
         addBusinessAccountState.setUsernameError(error);
         addBusinessAccountViewModel.setState(addBusinessAccountState);
         addBusinessAccountViewModel.firePropertyChanged();
-        JOptionPane.showConfirmDialog(null, error);
+        JOptionPane.showMessageDialog(null, error);
     }
 }
 

@@ -41,7 +41,7 @@ public class AddUserPresenter implements AddUserOutputBoundary {
         addUserState.setUsernameError(error);
         addUserViewModel.setState(addUserState);
         addUserViewModel.firePropertyChanged();
-        JOptionPane.showConfirmDialog(null, error);
+        JOptionPane.showMessageDialog(null, error);
     }
 }
 
