@@ -19,10 +19,9 @@ public class AddBusinessAccountInteractor implements AddBusinessAccountInputBoun
 
     @Override
     public void execute(AddBusinessAccountInputData addBusinessAccountInputData) {
-        // need to check if the business account username already exists in accounts
-        // - ie check that a business account object with the same username doesn't already exist
-        if (dataAccessObject.getBusinessAccounts().contains(addBusinessAccountInputData.getUsername())) {
-
+        // need to iterate through accounts.getBusinessAccount bc it returns an array list of BusinessAccounts
+        // so if addBusinessInputData.getUsername() == one of the usernames in array list, "user already exists"
+        if (dataAccessObject.businessExistsByUsername(addBusinessAccountInputData.getUsername())) {
             userPresenter.prepareFailView("User already exists.");
         } else {
 
