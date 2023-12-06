@@ -5,7 +5,9 @@ import entity.User;
 
 
 public interface SignInUserDataAccessInterface {
-    boolean existsByName(String identifier);
+    boolean userExistsByUsername(String identifier);
+
+    boolean businessExistsByUsername(String identifier);
 
 
     User getUser(String username);

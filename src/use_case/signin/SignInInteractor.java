@@ -22,7 +22,7 @@ public class SignInInteractor implements SignInInputBoundary { // attempting pus
         String password = signInInputData.getPassword();
 
 
-        if (!dataAccessObject.userExistsByName(username) || !dataAccessObject.businessExistsByName(username)) {
+        if (!dataAccessObject.userExistsByUsername(username) || !dataAccessObject.businessExistsByUsername(username)) {
             signInPresenter.prepareFailView(username + ": Account does not exist.");
         } else {
             // need to go through array list of either Users or BusinessAccounts, find user or businessAccounts with the
