@@ -34,7 +34,7 @@ public class SearchNameTests {
     static boolean popUpDiscovered = false;
 
     /*HELPERS*/
-    public void makeSearchUI(char[] termChars, char[] locationChars) {
+    private void makeSearchUI(char[] termChars, char[] locationChars) {
         Main.main(null);
         SearchNameView sv = getSearchNameView(); // search name view
         Main.viewManagerModel.setActiveView(sv.viewName);
@@ -113,7 +113,7 @@ public class SearchNameTests {
 
     }
 
-    public SearchNameView getSearchNameView() {
+    private SearchNameView getSearchNameView() {
         JFrame app = null;
         Window[] windows = Window.getWindows();
         for (Window window : windows) {
@@ -133,7 +133,7 @@ public class SearchNameTests {
         return (SearchNameView) jp2.getComponent(2);
     }
 
-    public SearchedNameView getSearchedNameView() {
+    private SearchedNameView getSearchedNameView() {
         JFrame app = null;
         Window[] windows = Window.getWindows();
         for (Window window : windows) {
@@ -155,7 +155,7 @@ public class SearchNameTests {
     }
 
 
-    public JButton getSearchButton() {
+    private JButton getSearchButton() {
         SearchNameView sv = getSearchNameView();
 
         JPanel buttons = (JPanel) sv.getComponent(3);
@@ -163,14 +163,32 @@ public class SearchNameTests {
         return (JButton) buttons.getComponent(0); // this should be the searchName button
     }
 
+    private JButton getLogoutSearchButton() {
+        SearchNameView sv = getSearchNameView();
 
-    public JButton getNewSearchButton() {
+        JPanel buttons = (JPanel) sv.getComponent(3);
+
+        return (JButton) buttons.getComponent(1); // this should be the logout button
+
+    }
+
+        private JButton getNewSearchButton() {
         SearchedNameView sv2 = getSearchedNameView();
 
         JPanel buttons = (JPanel) sv2.getComponent(4);
 
         return (JButton) buttons.getComponent(0); // this should be the newSearch button
     }
+
+
+    private JButton getLogoutSearchedButton() {
+        SearchedNameView sv2 = getSearchedNameView();
+
+        JPanel buttons = (JPanel) sv2.getComponent(4);
+
+        return (JButton) buttons.getComponent(1); // this should be the logout button
+    }
+
 
     private Timer createCloseTimer() {
         ActionListener close = new ActionListener() {
@@ -341,6 +359,23 @@ public class SearchNameTests {
         JButton button = getNewSearchButton();
         assert(button.getText().equals("New Search"));
     }
+
+    @org.junit.Test
+
+
+    public void testLogOutButtonPresentSearch(){
+        Main.main(null);
+        JButton button = getLogoutSearchButton();
+        assert (button.getText().equals("Log Out"));
+    }
+
+    @org.junit.Test
+    public void testLogOutButtonPresentSearched(){
+        Main.main(null);
+        JButton button = getLogoutSearchedButton();
+        assert (button.getText().equals("Log Out"));
+    }
+
 
     @org.junit.Test
     public void testTextFieldsPresent(){

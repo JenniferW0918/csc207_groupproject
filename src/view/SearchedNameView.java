@@ -1,10 +1,14 @@
 package view;
 
+import entity.Business;
+import entity.SearchNameResult;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.seached_name.SearchedNameState;
 import interface_adapter.seached_name.SearchedNameViewModel;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,13 +21,15 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
     private final SearchedNameViewModel searchedNameViewModel;
     private final ViewManagerModel viewManagerModel;
 
-    private JTextArea searchResultsArea;
+    final JTextArea searchResultsArea;
 
     final JButton newSearch;
     final JButton logOut;
 
     final JLabel Term;
     final JLabel Location;
+
+//    final JList<String> jList;
 
 
     public SearchedNameView(SearchedNameViewModel searchedNameViewModel, ViewManagerModel viewManagerModel) {
@@ -83,11 +89,36 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
         searchResultsArea.setText(searchedNameViewModel.getState().getSearchResults());
 
 
+        // Adding JList
+//        String[] data =  searchedNameViewModel.getState().getSearchResultsList() /* {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"}*/;
+//
+//        jList = new JList<>(data);
+//        jList.setVisibleRowCount(8);
+//
+//        JScrollPane scrollPane2 = new JScrollPane(jList);
+//        JLabel selectedLabel = new JLabel("Selected Item: ");
+//
+//        jList.addListSelectionListener(new ListSelectionListener() {
+//            public void valueChanged(ListSelectionEvent e) {
+//                // Get the selected item from the JList
+//                String selectedValue = jList.getSelectedValue();
+//                // Update the JLabel to display the selected item
+//                selectedLabel.setText("Selected Item: " + selectedValue);
+//            }
+//        }
+//        );
+//
+//        JPanel panel = new JPanel();
+//        panel.add(selectedLabel);
+
+
         add(title);
         add(scrollPane);
         add(Term);
         add(Location);
         add(buttons);
+//        add(scrollPane2);
+//        add(panel);
     }
 
 
@@ -102,5 +133,6 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
         searchResultsArea.setText(state.getSearchResults());
         Term.setText(state.getTerm());
         Location.setText(state.getLocation());
+
     }
 }

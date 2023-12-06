@@ -19,7 +19,7 @@ public class SearchNameUseCaseFactory {
             SearchNamePresenter searchNamePresenter = new SearchNamePresenter(searchNameViewModel, viewManagerModel, searchedNameViewModel);
             SearchNameInputBoundary searchNameInteractor = new SearchNameInteractor(searchNameDataAccessObject, searchNamePresenter);
             SearchNameController searchNameController = new SearchNameController(searchNameInteractor);
-            return new SearchNameView(searchNameController, searchNameViewModel);
+            return new SearchNameView(searchNameController, searchNameViewModel, viewManagerModel);
     }
 }
 

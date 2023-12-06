@@ -20,7 +20,7 @@ public class SearchNameDataAccessObject implements SearchNameDataAccessInterface
     private static final String MATCH_LIMIT = "10";
 
 
-    public  SearchNameDataAccessObject() {
+    public SearchNameDataAccessObject() {
     }
 
     /**
@@ -35,7 +35,7 @@ public class SearchNameDataAccessObject implements SearchNameDataAccessInterface
                 .addHeader("Authorization", API_TOKEN)
                 .build();
 
-        try (Response response = client.newCall(request).execute()){
+        try (Response response = client.newCall(request).execute()) {
             assert response.body() != null;
             return turnToSearchNameResult(searchNameInputData.getLocation(), searchNameInputData.getTerm(), response.body().string());
         } catch (IOException | JSONException e) {
