@@ -58,6 +58,15 @@ public class AddUserView extends JPanel implements ActionListener, PropertyChang
                                 currentState.getUsername(),
                                 currentState.getPassword()
                         );
+
+                        usernameInputField.setText("");
+                        nameInputField.setText("");
+                        passwordInputField.setText("");
+                        currentState.setUsername("");
+                        currentState.setName("");
+                        currentState.setPassword("");
+                        addUserViewModel.setState(currentState);
+                        addUserViewModel.firePropertyChanged();
                     }
                 }
         );
@@ -147,9 +156,6 @@ public class AddUserView extends JPanel implements ActionListener, PropertyChang
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        /* AddUserState state = (AddUserState) evt.getNewValue();
-        if (state.getUsernameError() != null) {
-            JOptionPane.showMessageDialog(this, state.getUsernameError());
-        } */
+
     }
 }

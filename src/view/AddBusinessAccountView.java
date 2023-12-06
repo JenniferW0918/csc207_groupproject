@@ -67,6 +67,19 @@ public class AddBusinessAccountView extends JPanel implements ActionListener, Pr
                                     currentState.getAddress(),
                                     currentState.getCategories()
                             );
+
+                            usernameInputField.setText("");
+                            nameInputField.setText("");
+                            passwordInputField.setText("");
+                            addressInputField.setText("");
+                            categoriesInputField.setText("");
+                            currentState.setUsername("");
+                            currentState.setName("");
+                            currentState.setPassword("");
+                            currentState.setAddress("");
+                            currentState.setCategories("");
+                            addBusinessAccountViewModel.setState(currentState);
+                            addBusinessAccountViewModel.firePropertyChanged();
                         }
                     }
                 }
@@ -193,6 +206,7 @@ public class AddBusinessAccountView extends JPanel implements ActionListener, Pr
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        System.out.println("Click " + e.getActionCommand());
     }
 
     @Override

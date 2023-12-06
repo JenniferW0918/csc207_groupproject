@@ -49,7 +49,7 @@ public class SearchNamePresenter implements SearchNameOutputBoundary {
         searchNameViewModel.firePropertyChanged();
 
 
-        JOptionPane.showConfirmDialog(null, error);
+        JOptionPane.showMessageDialog(null, error);
 
     }
 }
