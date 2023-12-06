@@ -2,26 +2,15 @@ package app;
 
 import data_access.Accounts;
 import data_access.SearchNameDataAccessObject;
-import entity.BusinessAccountFactoryInterface;
 import entity.SearchNameResult;
-import interface_adapter.add_business.AddBusinessAccountController;
 import interface_adapter.add_business.AddBusinessAccountViewModel;
-import interface_adapter.add_user.AddUserController;
-import interface_adapter.add_user.AddUserPresenter;
 import interface_adapter.add_user.AddUserViewModel;
 import interface_adapter.seached_name.SearchedNameViewModel;
-import interface_adapter.search_name.SearchNameController;
 import interface_adapter.search_name.SearchNameViewModel;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.add_business.AddBusinessAccountPresenter;
-import interface_adapter.signup.SignUpPresenter;
+import interface_adapter.signin.SignInViewModel;
 import interface_adapter.signup.SignUpViewModel;
-import use_case.add_business.AddBusinessAccountDataAccessInterface;
-import use_case.add_business.AddBusinessAccountInteractor;
-import use_case.add_business.AddBusinessAccountOutputBoundary;
-import use_case.add_user.AddUserInteractor;
 import use_case.search_name.SearchNameInputData;
-import use_case.signup.SignUpInteractor;
 import view.*;
 import javax.swing.*;
 import java.awt.*;
@@ -58,7 +47,7 @@ public class Main {
         SignUpViewModel signupViewModel = new SignUpViewModel();
         AddBusinessAccountViewModel addBusinessAccountViewModel = new AddBusinessAccountViewModel();
         AddUserViewModel addUserViewModel = new AddUserViewModel();
-        AddBusinessAccountViewModel addBusinessAccountViewModel1 = new AddBusinessAccountViewModel();
+        SignInViewModel signInViewModel = new SignInViewModel();
 
         //Making Data Access Objects
         SearchNameDataAccessObject searchNameDataAccessObject = new SearchNameDataAccessObject();
@@ -91,6 +80,15 @@ public class Main {
         // Creating SearchedName View
         SearchedNameView searchedNameView = new SearchedNameView(searchedNameViewModel, viewManagerModel);
         views.add(searchedNameView, searchedNameView.viewName);
+
+        // Creating SignIn View
+        SignInView signInView = SignInUseCaseFactory.createSignInView(
+                viewManagerModel,
+                signInViewModel,
+                searchNameViewModel,
+                dataAccessObject);
+        views.add(signInView, signInView.viewName);
+
 
         // THE DEFAULT VIEW
         SignUpView signUpView = SignUpUseCaseFactory.createSignUpView(
