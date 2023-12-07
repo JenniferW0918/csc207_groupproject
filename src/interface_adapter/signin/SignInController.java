@@ -4,7 +4,7 @@ import use_case.signin.SignInInputBoundary;
 import use_case.signin.SignInInputData;
 
 
-public class SignInController { // attempting push
+public class SignInController {
 
 
     final SignInInputBoundary signInUseCaseInteractor;

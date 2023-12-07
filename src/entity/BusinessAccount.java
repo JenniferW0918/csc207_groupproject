@@ -1,22 +1,20 @@
 package entity;
 
-import java.util.Map;
-
 
 public class BusinessAccount {
     private final String username;
     private final String name;
     private final String password;
     private final String address;
-    private final String categories;
+    private final String category;
 
     public BusinessAccount(String username, String name, String password, String address,
-                           String categories) {
+                           String category) {
         this.username = username;
         this.name = name;
         this.password = password;
         this.address = address;
-        this.categories = categories;
+        this.category = category;
     }
 
     public String getUsername() {
@@ -35,6 +33,6 @@ public class BusinessAccount {
         return address;
     }
 
-    public String getCategories(){
-        return categories;}
+    public String getCategory(){
+        return category;}
 }

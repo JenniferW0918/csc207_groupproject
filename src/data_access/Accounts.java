@@ -7,7 +7,6 @@ import use_case.add_business.AddBusinessAccountDataAccessInterface;
 import use_case.signin.SignInUserDataAccessInterface;
 
 import java.util.ArrayList;
-
 public class Accounts implements AddBusinessAccountDataAccessInterface, AddUserDataAccessInterface, SignInUserDataAccessInterface {
 
     private final ArrayList<User> users = new ArrayList<>();
@@ -76,9 +75,9 @@ public class Accounts implements AddBusinessAccountDataAccessInterface, AddUserD
 
     public ArrayList<User> getUsers () {
         return new ArrayList<>(users);  // Returning a copy
-        }
+    }
 
     public ArrayList<BusinessAccount> getBusinessAccounts () {
         return new ArrayList<>(businesses);  // Returning a copy
-        }
+    }
 }

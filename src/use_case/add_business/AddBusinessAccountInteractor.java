@@ -19,23 +19,34 @@ public class AddBusinessAccountInteractor implements AddBusinessAccountInputBoun
 
     @Override
     public void execute(AddBusinessAccountInputData addBusinessAccountInputData) {
-        // need to iterate through accounts.getBusinessAccount bc it returns an array list of BusinessAccounts
-        // so if addBusinessInputData.getUsername() == one of the usernames in array list, "user already exists"
-        if (dataAccessObject.businessExistsByUsername(addBusinessAccountInputData.getUsername())||dataAccessObject.userExistsByUsername(addBusinessAccountInputData.getUsername())) {
+        // Check for empty values
+        if (isEmpty(addBusinessAccountInputData.getUsername())
+                || isEmpty(addBusinessAccountInputData.getName())
+                || isEmpty(addBusinessAccountInputData.getPassword())
+                || isEmpty(addBusinessAccountInputData.getAddress())
+                || isEmpty(addBusinessAccountInputData.getCategory())) {
+            userPresenter.prepareFailView("Please fill out all fields.");
+            System.out.println("Please fill out all fields.");
+        } else if (dataAccessObject.businessExistsByUsername(addBusinessAccountInputData.getUsername())
+                || dataAccessObject.userExistsByUsername(addBusinessAccountInputData.getUsername())) {
             userPresenter.prepareFailView("User already exists.");
         } else {
-
             BusinessAccount businessAccount = businessAccountFactoryInterface.create(
                     addBusinessAccountInputData.getUsername(),
                     addBusinessAccountInputData.getName(),
                     addBusinessAccountInputData.getPassword(),
                     addBusinessAccountInputData.getAddress(),
-                    addBusinessAccountInputData.getCategories());
+                    addBusinessAccountInputData.getCategory());
             dataAccessObject.saveBusiness(businessAccount);
 
             AddBusinessAccountOutputData addBusinessAccountOutputData = new AddBusinessAccountOutputData(
                     businessAccount.getName(), false);
             userPresenter.prepareSuccessView(addBusinessAccountOutputData);
         }
+    }
+
+    // Helper method to check if a string is empty
+    private boolean isEmpty(String value) {
+        return value == null || value.trim().isEmpty();
     }
 }

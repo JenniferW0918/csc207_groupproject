@@ -1,6 +1,6 @@
 package use_case.signin;
 
-public interface SignInOutputBoundary { // attempting push
+public interface SignInOutputBoundary {
     void prepareSuccessView(SignInOutputData user);
 
 

@@ -6,16 +6,16 @@ public class AddBusinessAccountInputData {
     final private String name;
     final private String password;
     final private String address;
-    final private String categories;
+    final private String category;
 
 
     public AddBusinessAccountInputData(String username, String name, String password, String address,
-                                       String categories) {
+                                       String category) {
         this.username = username;
         this.name = name;
         this.password = password;
         this.address = address;
-        this.categories = categories;
+        this.category = category;
     }
 
     String getUsername() {
@@ -34,8 +34,8 @@ public class AddBusinessAccountInputData {
         return address;
     }
 
-    String getCategories(){
-        return categories;
+    String getCategory(){
+        return category;
     }
 
 

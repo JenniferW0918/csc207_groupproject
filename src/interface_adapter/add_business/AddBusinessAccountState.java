@@ -9,8 +9,8 @@ public class AddBusinessAccountState {
     private String passwordError = null;
     private String address = "";
     private String addressError = null;
-    private String categories = "";
-    private String categoriesError = null;
+    private String category = "";
+    private String categoryError = null;
 
     private String accountType = "";
 
@@ -24,8 +24,8 @@ public class AddBusinessAccountState {
         passwordError = copy.passwordError;
         address = copy.address;
         addressError = copy.addressError;
-        categories = copy.categories;
-        categoriesError = copy.categoriesError;
+        category = copy.category;
+        categoryError = copy.categoryError;
         accountType = copy.accountType;
     }
 
@@ -64,12 +64,12 @@ public class AddBusinessAccountState {
         return addressError;
     }
 
-    public String getCategories() {
-        return categories;
+    public String getCategory() {
+        return category;
     }
 
-    public String getCategoriesError() {
-        return categoriesError;
+    public String getCategoryError() {
+        return categoryError;
     }
 
 
@@ -105,12 +105,12 @@ public class AddBusinessAccountState {
         this.addressError = addressError;
     }
 
-    public void setCategories(String categories) {
-        this.categories = categories;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public void setCategoriesError(String categoriesError) {
-        this.categoriesError = categoriesError;
+    public void setCategoryError(String categoryError) {
+        this.categoryError = categoryError;
     }
 
     public void setAccountType(String accountType) {

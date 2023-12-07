@@ -5,7 +5,7 @@ import java.beans.PropertyChangeSupport;
 import java.beans.PropertyChangeListener;
 
 
-public class SignInViewModel extends ViewModel { // attempting push
+public class SignInViewModel extends ViewModel {
 
 
     public final String TITLE_LABEL = "Sign in View";
