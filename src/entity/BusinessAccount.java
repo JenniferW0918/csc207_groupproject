@@ -1,7 +1,5 @@
 package entity;
 
-import java.util.Map;
-
 
 public class BusinessAccount {
     private final String username;

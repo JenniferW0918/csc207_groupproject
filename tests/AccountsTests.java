@@ -83,12 +83,12 @@ public class AccountsTests {
     public void testBusinessAccounts(){
         BusinessAccount businessAccount = new BusinessAccount(
                 "username", "name", "password", "address",
-                "categories");
+                "category");
         assert(businessAccount.getUsername().equals("username"));
         assert(businessAccount.getName().equals("name"));
         assert(businessAccount.getPassword().equals("password"));
         assert(businessAccount.getAddress().equals("address"));
-        assert(businessAccount.getCategories().equals("categories"));
+        assert(businessAccount.getCategory().equals("category"));
     }
 
     @org.junit.Test
