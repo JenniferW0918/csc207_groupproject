@@ -13,7 +13,7 @@ public class FirstViewInteractor implements FirstViewInputBoundary { // testing 
         if (firstViewInputData.getSigninOrSignup() == "signin") {
             present.prepareSuccessSignInView(new FirstViewOutputData("signin"));
         } else {
-            present.prepareSuccessSignUpView(new FirstViewOutputData("signup"));
+            present.prepareSuccessSignUpView(new FirstViewOutputData("sign up"));
         }
     }
 }

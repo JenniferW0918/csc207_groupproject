@@ -117,7 +117,7 @@ public class SearchNameView extends JPanel implements ActionListener, PropertyCh
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        viewManagerModel.setActiveView("Account Creation"); // switches to SignUpView
+                        viewManagerModel.setActiveView("First View"); // switches to First View
                         viewManagerModel.firePropertyChanged();
                     }
                 });

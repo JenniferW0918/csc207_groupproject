@@ -13,7 +13,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class SignUpView extends JPanel implements ActionListener, PropertyChangeListener {
-    public final String viewName = "Account Creation";
+    public final String viewName = "sign up";
 
     private final SignUpViewModel signupViewModel;
     private final SignUpController signupController;
