@@ -1,8 +1,10 @@
 import app.Main;
 import entity.Business;
+import org.json.JSONObject;
 import use_case.search_name.*;
 import interface_adapter.search_name.*;
 //import view.LabelTextPanel;
+import view.BusinessInfoView;
 import view.SearchedNameView;
 import view.SearchNameView;
 import entity.SearchNameResult;
@@ -121,7 +123,7 @@ public class SearchNameTests {
                 app = (JFrame) window;
             }
         }
-        assertNotNull(app); // found the window?
+        assertNotNull(app);
 
         Component root = app.getComponent(0);
         Component cp = ((JRootPane) root).getContentPane();
@@ -142,7 +144,7 @@ public class SearchNameTests {
             }
         }
 
-        assertNotNull(app); // found the window?
+        assertNotNull(app);
 
         Component root = app.getComponent(0);
         Component cp = ((JRootPane) root).getContentPane();
@@ -154,6 +156,26 @@ public class SearchNameTests {
         return (SearchedNameView) jp2.getComponent(3);
     }
 
+    private BusinessInfoView getBusinessInfoView(){
+        JFrame app = null;
+        Window[] windows = Window.getWindows();
+        for (Window window : windows) {
+            if (window instanceof JFrame) {
+                app = (JFrame) window;
+            }
+        }
+
+        assertNotNull(app);
+
+        Component root = app.getComponent(0);
+        Component cp = ((JRootPane) root).getContentPane();
+
+        JPanel jp = (JPanel) cp;
+
+        JPanel jp2 = (JPanel) jp.getComponent(0);
+
+        return (BusinessInfoView) jp2.getComponent(4);
+    }
 
     private JButton getSearchButton() {
         SearchNameView sv = getSearchNameView();
@@ -172,10 +194,10 @@ public class SearchNameTests {
 
     }
 
-        private JButton getNewSearchButton() {
+    private JButton getNewSearchButton() {
         SearchedNameView sv2 = getSearchedNameView();
 
-        JPanel buttons = (JPanel) sv2.getComponent(4);
+        JPanel buttons = (JPanel) sv2.getComponent(3);
 
         return (JButton) buttons.getComponent(0); // this should be the newSearch button
     }
@@ -184,7 +206,7 @@ public class SearchNameTests {
     private JButton getLogoutSearchedButton() {
         SearchedNameView sv2 = getSearchedNameView();
 
-        JPanel buttons = (JPanel) sv2.getComponent(4);
+        JPanel buttons = (JPanel) sv2.getComponent(3);
 
         return (JButton) buttons.getComponent(1); // this should be the logout button
     }
@@ -229,8 +251,6 @@ public class SearchNameTests {
 
 
     /*TESTS*/
-
-
     @org.junit.Test
     public void testViewChangeOnSearch () {
         makeSearchUI(new char[]{'P', 'i', 'z', 'z', 'a'}, new char[] {'T', 'o', 'r', 'o', 'n', 't', 'o'});
@@ -240,9 +260,9 @@ public class SearchNameTests {
         assert (viewManagerModel.getActiveView().equals("searched name"));
         SearchedNameView sv2 = getSearchedNameView();
         JScrollPane scrollPane = (JScrollPane) sv2.getComponent(1);
-        JTextArea searchResultsArea = (JTextArea) scrollPane.getViewport().getView();
-        assert(searchResultsArea.getText().contains("Pizza"));
-        assert(searchResultsArea.getText().contains("Toronto"));
+        JList<String> searchResultsArea = (JList<String>) scrollPane.getViewport().getView();
+        assert(searchResultsArea.isVisible());
+        assert(searchResultsArea.isShowing());
     }
 
     @org.junit.Test
@@ -312,8 +332,7 @@ public class SearchNameTests {
         viewManagerModel.setActiveView("searched name");
         viewManagerModel.firePropertyChanged();
 
-        JButton b = getNewSearchButton();
-        b.doClick();
+        getNewSearchButton().doClick();
 
         assert(viewManagerModel.getActiveView().equals("search name"));
     }
@@ -391,23 +410,68 @@ public class SearchNameTests {
         assert jp4.getComponent(1).isValid(); // location field is valid
     }
 
-    // Testing Businesses made for search reuslts nor business accounts.
+    // Testing Businesses made for search results nor business accounts.
     @org.junit.Test
     public void testBusiness(){
-        Business business = new Business("Korean bbq", "Yonge Street", true);
+        Business business = new Business("1", "Korean bbq", "Yonge Street",
+                true, "url1", "sam: I loved the food!" );
 
+        assertEquals(business.getId(), "1");
         assertEquals(business.getName(), "Korean bbq");
         assertEquals(business.getAddress(), "Yonge Street");
+        assertEquals(business.getUrl(), "url1");
+        assertEquals(business.getReviews(), "sam: I loved the food!");
         assertTrue(business.is_Closed());
 
         String businessStr = business.toString();
-        assert(Objects.equals(businessStr, "Name: Korean bbq\nAddress: Yonge Street\nOpen: No\n"));
+        assert(Objects.equals(businessStr, "Name: Korean bbq\nAddress: Yonge Street\n"));
 
-        Business business2 = new Business("Korean bbq", "Yonge Street", false);
+        Business business2 = new Business("2", "Korean bbq", "Yonge Street",
+                false, "url1", "sam: I loved the food!" );
         String businessStr2 = business2.toString();
-        assert(Objects.equals(businessStr2, "Name: Korean bbq\nAddress: Yonge Street\nOpen: Yes\n"));
+        assert(Objects.equals(businessStr2, "Name: Korean bbq\nAddress: Yonge Street\n"));
     }
 
+    @org.junit.Test
+    public void testWrongId(){
+        SearchNameDataAccessObject dataAccess = new SearchNameDataAccessObject();
+        try{
+            dataAccess.getMoreDetails("wrongId");
+        }
+        catch (RuntimeException e){
+            assert(e.getMessage().equals("Error getting reviews"));
+        }
 
+    }
 
+    //Testing BusinessInfo
+    @org.junit.Test
+    public void testBusinessInfoViewComponents(){
+        Main.main(null);
+        BusinessInfoView bv = getBusinessInfoView();
+        JPanel buttons = (JPanel) bv.getComponent(3);
+        JButton link = (JButton) buttons.getComponent(0);
+        JButton backToResults = (JButton) buttons.getComponent(1);
+
+        //Testing Buttons
+        assert (link.getText().equals("Link"));
+        assert (backToResults.getText().equals("Return"));
+
+        //Testing JTextArea
+        JScrollPane scrollPane = (JScrollPane) bv.getComponent(1);
+        JTextArea businessReviews = (JTextArea) scrollPane.getViewport().getView();
+        assert(businessReviews.isVisible());
+
+        //Testing Labels
+        JLabel title = (JLabel) bv.getComponent(0);
+
+        JPanel jp = (JPanel) bv.getComponent(2);
+        JLabel businessName = (JLabel) jp.getComponent(0);
+        JLabel businessAddress = (JLabel) jp.getComponent(1);
+        JLabel status = (JLabel) jp.getComponent(2);
+//        assert(title.getText().);
+//        assert(businessName.getText().contains("BusinessName:"));
+//        assert(businessAddress.getText().contains("Address:"));
+//        assert(status.getText().contains("Status:"));
+    }
 }

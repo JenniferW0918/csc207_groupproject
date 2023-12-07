@@ -1,6 +1,6 @@
 package entity;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 /** When api is called the data returned should be turned into a search result object */
 public class SearchNameResult {
