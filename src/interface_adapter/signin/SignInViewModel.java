@@ -8,11 +8,11 @@ import java.beans.PropertyChangeListener;
 public class SignInViewModel extends ViewModel { // attempting push
 
 
-    public final String TITLE_LABEL = "Signin View";
+    public final String TITLE_LABEL = "Sign in View";
     public final String USERNAME_LABEL = "enter your username";
     public final String PASSWORD_LABEL = "enter your password";
 
-    public static final String SIGNIN_BUTTON_LABEL = "Signin";
+    public static final String SIGNIN_BUTTON_LABEL = "Sign in";
     public static final String BACK_BUTTON_LABEL = "Back";
 
     private SignInState state = new SignInState();
