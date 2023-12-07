@@ -6,7 +6,7 @@ import interface_adapter.signup.SignUpState;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class FirstViewViewModel extends ViewModel {
+public class FirstViewViewModel extends ViewModel { // testing commits
 
     public static final String TITLE_LABEL = "Signin or Signup";
     public static final String SIGNIN_BUTTON_LABEL = "Signin";

@@ -2,7 +2,7 @@ package interface_adapter.first_view;
 
 import interface_adapter.signup.SignUpState;
 
-public class FirstViewState {
+public class FirstViewState { // testing commits
     private String signinOrSignup = "";
 
     public FirstViewState(FirstViewState copy) {
