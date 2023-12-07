@@ -30,6 +30,10 @@ public class SearchNamePresenter implements SearchNameOutputBoundary {
         searchedNameState.setTerm(searchNameOutputData.getSearchNameResult().getTerm());
         searchedNameState.setLocation(searchNameOutputData.getSearchNameResult().getLocation());
         searchedNameState.setSearchResults(searchNameOutputData.getSearchNameResult().toString());
+        // make set search results be a turned to a String[]
+        searchedNameState.setSearchResultsInteractive(searchNameOutputData.getSearchNameResult());
+
+
         searchedNameViewModel.setState(searchedNameState);
 
         searchedNameViewModel.firePropertyChanged();

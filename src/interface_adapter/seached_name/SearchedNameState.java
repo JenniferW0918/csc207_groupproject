@@ -1,15 +1,23 @@
 package interface_adapter.seached_name;
 
+import entity.SearchNameResult;
+
+import java.util.Map;
+
 public class SearchedNameState {
     private String term;
     private String location;
 
-    private String searchResults;
+    private String searchResults; // leaving just in case
+
+    private SearchNameResult searchResultsInteractive;
+
 
     public SearchedNameState(SearchedNameState copy) {
         term = copy.getTerm();
         location = copy.getLocation();
         searchResults = copy.getSearchResults();
+        searchResultsInteractive = copy.getSearchResultsInteractive();
     }
 
     public SearchedNameState() {
@@ -40,4 +48,10 @@ public class SearchedNameState {
         this.searchResults = searchResults;
     }
 
+    public void setSearchResultsInteractive(SearchNameResult searchResultsInteractive) {
+        this.searchResultsInteractive = searchResultsInteractive;}
+
+    public  SearchNameResult getSearchResultsInteractive() {
+       return searchResultsInteractive;
+    }
 }

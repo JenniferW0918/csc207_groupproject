@@ -14,6 +14,7 @@ import interface_adapter.search_name.SearchNameController;
 import interface_adapter.search_name.SearchNameViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.add_business.AddBusinessAccountPresenter;
+import interface_adapter.signin.SignInViewModel;
 import interface_adapter.signup.SignUpPresenter;
 import interface_adapter.signup.SignUpViewModel;
 import use_case.add_business.AddBusinessAccountDataAccessInterface;
@@ -59,6 +60,7 @@ public class Main {
         AddBusinessAccountViewModel addBusinessAccountViewModel = new AddBusinessAccountViewModel();
         AddUserViewModel addUserViewModel = new AddUserViewModel();
         AddBusinessAccountViewModel addBusinessAccountViewModel1 = new AddBusinessAccountViewModel();
+        SignInViewModel signInViewModel = new SignInViewModel();
 
         //Making Data Access Objects
         SearchNameDataAccessObject searchNameDataAccessObject = new SearchNameDataAccessObject();
@@ -91,6 +93,14 @@ public class Main {
         // Creating SearchedName View
         SearchedNameView searchedNameView = new SearchedNameView(searchedNameViewModel, viewManagerModel);
         views.add(searchedNameView, searchedNameView.viewName);
+
+        // Creating SignIn View
+        SignInView signInView = SignInUseCaseFactory.createSignInView(
+                viewManagerModel,
+                signInViewModel,
+                searchNameViewModel,
+                dataAccessObject);
+        views.add(signInView, signInView.viewName);
 
         // THE DEFAULT VIEW
         SignUpView signUpView = SignUpUseCaseFactory.createSignUpView(
