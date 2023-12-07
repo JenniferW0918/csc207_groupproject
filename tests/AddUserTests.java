@@ -1,15 +1,4 @@
-import app.Main;
-import app.AddUserUseCaseFactory;
-import entity.User;
-import entity.UserFactory;
-import entity.UserFactoryInterface;
-import view.AddUserView;
-import view.SearchNameView;
-import view.SignUpView;
-import interface_adapter.add_user.*;
-import use_case.add_user.*;
 
-import static app.Main.*;
 import data_access.Accounts;
 import entity.*;
 import interface_adapter.ViewManagerModel;
