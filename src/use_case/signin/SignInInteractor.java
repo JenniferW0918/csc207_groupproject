@@ -9,45 +9,42 @@ public class SignInInteractor implements SignInInputBoundary {
     final Accounts dataAccessObject;
     final SignInOutputBoundary signInPresenter;
 
-
     public SignInInteractor(Accounts dataAccessObject, SignInOutputBoundary signInOutputBoundary) {
         this.dataAccessObject = dataAccessObject;
         this.signInPresenter = signInOutputBoundary;
     }
-
 
     @Override
     public void execute(SignInInputData signInInputData) {
         String username = signInInputData.getUsername();
         String password = signInInputData.getPassword();
 
-
         if (!dataAccessObject.userExistsByUsername(username) && !dataAccessObject.businessExistsByUsername(username)) {
             signInPresenter.prepareFailView(username + ": Account does not exist.");
         } else {
-            // need to go through array list of either Users or BusinessAccounts, find user or businessAccounts with the
-            // username and then get the password and assign it to either userpwd or businesspwd - OR put getUser and
-            // getBusinessAccount methods in Account
+            String storedPassword;
+            boolean isUser = dataAccessObject.userExistsByUsername(username);
 
+            if (isUser) {
+                storedPassword = dataAccessObject.getUser(username).getPassword();
+            } else {
+                storedPassword = dataAccessObject.getBusinessAccount(username).getPassword();
+            }
 
-            // then check userpwd or businesspwd against the inputed password
-            String userpwd = dataAccessObject.getUser(username).getPassword();
-            String businesspwd = dataAccessObject.getBusinessAccount(username).getPassword();
-            if (!password.equals(userpwd) && !password.equals(businesspwd)) {
+            if (!password.equals(storedPassword)) {
                 signInPresenter.prepareFailView("Incorrect password for " + username + ".");
             } else {
-                if (password.equals(userpwd)) {
-
-
+                String accountName;
+                if (isUser) {
                     User user = dataAccessObject.getUser(signInInputData.getUsername());
-                    SignInOutputData signInOutputData = new SignInOutputData(user.getName(), false);
-                    signInPresenter.prepareSuccessView(signInOutputData);
-                }
-                else {
+                    accountName = user.getName();
+                } else {
                     BusinessAccount business = dataAccessObject.getBusinessAccount(signInInputData.getUsername());
-                    SignInOutputData signInOutputData = new SignInOutputData(business.getName(), false);
-                    signInPresenter.prepareSuccessView(signInOutputData);
+                    accountName = business.getName();
                 }
+
+                SignInOutputData signInOutputData = new SignInOutputData(accountName, false);
+                signInPresenter.prepareSuccessView(signInOutputData);
             }
         }
     }
