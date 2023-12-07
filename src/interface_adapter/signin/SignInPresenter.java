@@ -6,6 +6,8 @@ import use_case.signin.SignInOutputBoundary;
 import use_case.signin.SignInOutputData;
 import interface_adapter.search_name.SearchNameState;
 
+import javax.swing.*;
+
 
 public class SignInPresenter implements SignInOutputBoundary { // attempting push
 
@@ -42,6 +44,8 @@ public class SignInPresenter implements SignInOutputBoundary { // attempting pus
         SignInState signInState = signInViewModel.getState();
         signInState.setUsernameError(error);
         signInViewModel.firePropertyChanged();
+
+        JOptionPane.showMessageDialog(null, error);
     }
 
 

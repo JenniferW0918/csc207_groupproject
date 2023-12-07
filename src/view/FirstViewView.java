@@ -58,7 +58,7 @@ public class FirstViewView extends JPanel implements ActionListener, PropertyCha
                     public void actionPerformed(ActionEvent e) {
 
                         System.out.println("Add Business button clicked!"); // checking program registers button was clicked
-                        firstViewController.execute("signup");
+                        firstViewController.execute("sign up");
                         viewManagerModel.setActiveView("Signup");
                         viewManagerModel.firePropertyChanged();
                     }
