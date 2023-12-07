@@ -22,7 +22,7 @@ public class SignInInteractor implements SignInInputBoundary { // attempting pus
         String password = signInInputData.getPassword();
 
 
-        if (!dataAccessObject.userExistsByUsername(username) || !dataAccessObject.businessExistsByUsername(username)) {
+        if (!dataAccessObject.userExistsByUsername(username) && !dataAccessObject.businessExistsByUsername(username)) {
             signInPresenter.prepareFailView(username + ": Account does not exist.");
         } else {
             // need to go through array list of either Users or BusinessAccounts, find user or businessAccounts with the
@@ -31,8 +31,15 @@ public class SignInInteractor implements SignInInputBoundary { // attempting pus
 
 
             // then check userpwd or businesspwd against the inputed password
-            String userpwd = dataAccessObject.getUser(username).getPassword();
-            String businesspwd = dataAccessObject.getBusinessAccount(username).getPassword();
+            String userpwd = new String();
+            String businesspwd = new String();
+
+            if(dataAccessObject.getUser(username).getPassword() != null) {
+                userpwd = dataAccessObject.getUser(username).getPassword();
+            } else {
+                businesspwd = dataAccessObject.getBusinessAccount(username).getPassword();
+            }
+
             if (!password.equals(userpwd) && !password.equals(businesspwd)) {
                 signInPresenter.prepareFailView("Incorrect password for " + username + ".");
             } else {
