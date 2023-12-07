@@ -1,5 +1,6 @@
 import app.Main;
 import entity.Business;
+import interface_adapter.ViewManagerModel;
 import org.json.JSONObject;
 import use_case.search_name.*;
 import interface_adapter.search_name.*;
@@ -20,6 +21,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.Objects;
 
 /*Things to test.
@@ -30,7 +32,7 @@ import java.util.Objects;
  * - Errors pop up when search term is empty or location is empty or arguments are wrong. JDialog is displayed (DONE)
  */
 
-/** Tests for SearchName use case, SearchedName, SearchNameResults, Business*/
+/** Tests for SearchName use case, SearchedName, SearchNameResults, BusinessInfo*/
 public class SearchNameTests {
     static String message = "";
     static boolean popUpDiscovered = false;
@@ -386,6 +388,8 @@ public class SearchNameTests {
         Main.main(null);
         JButton button = getLogoutSearchButton();
         assert (button.getText().equals("Log Out"));
+        button.doClick();
+        assert(viewManagerModel.getActiveView().equals("First View"));
     }
 
     @org.junit.Test
@@ -393,6 +397,8 @@ public class SearchNameTests {
         Main.main(null);
         JButton button = getLogoutSearchedButton();
         assert (button.getText().equals("Log Out"));
+        button.doClick();
+        assert(viewManagerModel.getActiveView().equals("First View"));
     }
 
 
@@ -445,6 +451,8 @@ public class SearchNameTests {
     }
 
     //Testing BusinessInfo
+
+    /** Testing the presence of components in BusinessInfoView*/
     @org.junit.Test
     public void testBusinessInfoViewComponents(){
         Main.main(null);
@@ -469,9 +477,53 @@ public class SearchNameTests {
         JLabel businessName = (JLabel) jp.getComponent(0);
         JLabel businessAddress = (JLabel) jp.getComponent(1);
         JLabel status = (JLabel) jp.getComponent(2);
-//        assert(title.getText().);
-//        assert(businessName.getText().contains("BusinessName:"));
-//        assert(businessAddress.getText().contains("Address:"));
-//        assert(status.getText().contains("Status:"));
+        assert(title.getText().equals("Business Information"));
+        assert(businessName.getText().contains("BusinessName:"));
+        assert(businessAddress.getText().contains("Address:"));
+        assert(status.getText().contains("Open:"));
+        assert(businessReviews.getText().contains("Reviews:"));
     }
+
+    /** Testing that the view changes when buttons and Jlist are cliked in SearchedNameView and when buttons are
+     * clicked in BusinessInfoView*/
+    @org.junit.Test
+    public void testBusinessInfoViewChange(){
+        Main.main(null);
+        makeSearchUI(new char[] {'P', 'i', 'z', 'z', 'a'}, new char[] {'T', 'o', 'r', 'o', 'n', 't', 'o'});
+        JButton button = getSearchButton();
+        button.doClick();
+
+        assert (viewManagerModel.getActiveView().equals("searched name"));
+        SearchedNameView sv2 = getSearchedNameView();
+        JScrollPane scrollPane = (JScrollPane) sv2.getComponent(1);
+        JList<String> searchResultsArea = (JList<String>) scrollPane.getViewport().getView();
+        searchResultsArea.setSelectedIndex(0); // select first item in list
+        searchResultsArea.dispatchEvent(new ActionEvent(searchResultsArea, ActionEvent.ACTION_PERFORMED, null)); // click on first item in list
+//        assert (viewManagerModel.getActiveView().equals("Business information"));
+
+        BusinessInfoView bv = getBusinessInfoView();
+        JPanel buttons = (JPanel) bv.getComponent(3);
+        JButton link = (JButton) buttons.getComponent(0);
+        link.doClick();
+        assert (link.isVisible()); // link button is selected
+        JButton backToResults = (JButton) buttons.getComponent(1);
+        backToResults.doClick();
+        assert(viewManagerModel.getActiveView().equals("searched name"));
+    }
+
+    @org.junit.Test
+    public void testErrorsBusinessInfoView(){
+        Main.main(null);
+        BusinessInfoView bv = getBusinessInfoView();
+        JPanel buttons = (JPanel) bv.getComponent(3);
+        JButton link = (JButton) buttons.getComponent(0);
+        JButton backToResults = (JButton) buttons.getComponent(1);
+//        try{
+//            link.doClick();
+//        }
+//        catch (Exception e){
+//            assert(e);
+//        }
+    }
+
 }
