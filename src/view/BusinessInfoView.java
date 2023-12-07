@@ -87,13 +87,13 @@ public class BusinessInfoView extends JPanel implements ActionListener, Property
         // Adding text area
         businessReviews = new JTextArea(25, 30);
         businessReviews.setEditable(false);
-        businessReviews.setText(businessInfoViewModel.getState().getBusinessReviews());
+        businessReviews.setText("Reviews: ");
         JScrollPane scrollPane = new JScrollPane(businessReviews); // adds scroll bar to text area
 
         // Adding Business Labels Info
-        businessName = new JLabel();
-        businessAddress = new JLabel();
-        status = new JLabel();
+        businessName = new JLabel("BusinessName: ");
+        businessAddress = new JLabel("Address: ");
+        status = new JLabel("Open: ");
         JPanel panel = new JPanel();
         panel.add(businessName);
         panel.add(businessAddress);
@@ -108,7 +108,6 @@ public class BusinessInfoView extends JPanel implements ActionListener, Property
 
     public void actionPerformed(ActionEvent e) {
         System.out.println("Event source: " + e.getSource());
-
     }
 
     @Override
@@ -117,7 +116,7 @@ public class BusinessInfoView extends JPanel implements ActionListener, Property
         businessName.setText("BusinessName: " + newState.getBusinessName());
         businessAddress.setText("Address: " + newState.getBusinessAddress());
         status.setText("Open: " + newState.getStatus());
-        businessReviews.setText("Reviews: " + newState.getBusinessReviews());
+        businessReviews.setText("Reviews: \n" + newState.getBusinessReviews());
 
     }
 }
