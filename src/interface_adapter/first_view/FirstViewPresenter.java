@@ -14,7 +14,6 @@ public class FirstViewPresenter implements FirstViewOutputBoundary { // testing 
         private final SignInViewModel signInViewModel;
         private final SignUpViewModel signUpViewModel;
         private ViewManagerModel viewManagerModel;
-        private FirstViewViewModel firstViewViewModel;
 
         public FirstViewPresenter(ViewManagerModel viewManagerModel,
                                SignInViewModel signInViewModel,

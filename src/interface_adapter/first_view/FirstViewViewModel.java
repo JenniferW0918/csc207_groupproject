@@ -8,9 +8,9 @@ import java.beans.PropertyChangeSupport;
 
 public class FirstViewViewModel extends ViewModel { // testing commits
 
-    public static final String TITLE_LABEL = "Signin or Signup";
-    public static final String SIGNIN_BUTTON_LABEL = "Signin";
-    public static final String SIGNUP_BUTTON_LABEL = "Signup";
+    public static final String TITLE_LABEL = "Sign in or Sign up";
+    public static final String SIGNIN_BUTTON_LABEL = "Sign in";
+    public static final String SIGNUP_BUTTON_LABEL = "Sign up";
 
     private FirstViewState state = new FirstViewState();
 
