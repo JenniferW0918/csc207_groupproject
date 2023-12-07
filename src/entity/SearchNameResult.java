@@ -1,5 +1,6 @@
 package entity;
 import java.util.ArrayList;
+import java.util.Map;
 
 /** When api is called the data returned should be turned into a search result object */
 public class SearchNameResult {
@@ -38,5 +39,15 @@ public class SearchNameResult {
             result += business.toString() + "\n";
         }
         return result;
+    }
+
+    public String[] toList() {
+        ArrayList<String> preResult = new ArrayList<>();
+        for (Business business : businesses) {
+            String b = "";
+            b += business.toString();
+            preResult.add(b);
+        }
+        return preResult.toArray(new String[0]);
     }
 }
