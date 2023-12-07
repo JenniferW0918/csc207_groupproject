@@ -66,7 +66,7 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        SearchedNameView.this.viewManagerModel.setActiveView("signin"); // switches to SignUpView
+                        SearchedNameView.this.viewManagerModel.setActiveView("First View"); // switches to SignUpView
                         SearchedNameView.this.viewManagerModel.firePropertyChanged();
 
                         // Reset the state of the view model.
