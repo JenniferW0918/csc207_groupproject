@@ -17,6 +17,7 @@ public class AddBusinessAccountViewModel extends ViewModel {
     public static final String CATEGORY_LABEL = "Enter your business' category";
 
     public static final String SIGNUP_BUTTON_LABEL = "Sign up";
+    public static final String BACK_BUTTON_LABEL = "Back";
 
 
     private AddBusinessAccountState state = new AddBusinessAccountState();

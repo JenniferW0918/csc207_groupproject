@@ -13,6 +13,8 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import static app.Main.viewManagerModel;
+
 public class AddBusinessAccountView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "Add Business Account";
 
@@ -26,6 +28,7 @@ public class AddBusinessAccountView extends JPanel implements ActionListener, Pr
 
 
     private final JButton addBusinessAccount;
+    private final JButton back;
 
 
     public AddBusinessAccountView(AddBusinessAccountController controller,
@@ -52,6 +55,8 @@ public class AddBusinessAccountView extends JPanel implements ActionListener, Pr
         JPanel buttons = new JPanel();
         addBusinessAccount = new JButton(AddBusinessAccountViewModel.SIGNUP_BUTTON_LABEL);
         buttons.add(addBusinessAccount);
+        back = new JButton(AddBusinessAccountViewModel.BACK_BUTTON_LABEL);
+        buttons.add(back);
 
         addBusinessAccount.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
@@ -85,6 +90,28 @@ public class AddBusinessAccountView extends JPanel implements ActionListener, Pr
                 }
         );
 
+        back.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        AddBusinessAccountState currentState = addBusinessAccountViewModel.getState();
+
+                        usernameInputField.setText("");
+                        nameInputField.setText("");
+                        passwordInputField.setText("");
+                        addressInputField.setText("");
+                        categoriesInputField.setText("");
+                        currentState.setUsername("");
+                        currentState.setName("");
+                        currentState.setPassword("");
+                        currentState.setAddress("");
+                        currentState.setCategories("");
+
+                        viewManagerModel.setActiveView("sign up");
+                        viewManagerModel.firePropertyChanged();
+                    }
+                }
+        );
 
         // This makes a new KeyListener implementing class, instantiates it, and
         // makes it listen to keystrokes in the usernameInputField.

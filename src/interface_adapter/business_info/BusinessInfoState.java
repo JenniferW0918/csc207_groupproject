@@ -7,13 +7,13 @@ public class BusinessInfoState {
     private String businessUrl;
     private String businessReviews;
 
-    public BusinessInfoState(BusinessInfoState copy) {
-        businessName = copy.getBusinessName();
-        businessAddress = copy.getBusinessAddress();
-        status = copy.getStatus();
-        businessUrl = copy.getBusinessUrl();
-        businessReviews = copy.getBusinessReviews();
-    }
+//    public BusinessInfoState(BusinessInfoState copy) {
+//        businessName = copy.getBusinessName();
+//        businessAddress = copy.getBusinessAddress();
+//        status = copy.getStatus();
+//        businessUrl = copy.getBusinessUrl();
+//        businessReviews = copy.getBusinessReviews();
+//    }
 
     public BusinessInfoState() {
     }

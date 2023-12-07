@@ -1,6 +1,5 @@
 package interface_adapter.add_business;
 
-
 public class AddBusinessAccountState {
     private String username = "";
     private String usernameError = null;

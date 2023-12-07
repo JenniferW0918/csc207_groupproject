@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.add_business.AddBusinessAccountState;
 import interface_adapter.signin.SignInController;
 import interface_adapter.signin.SignInState;
 import interface_adapter.signin.SignInViewModel;
@@ -13,6 +14,8 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import static app.Main.viewManagerModel;
+
 public class SignInView extends JPanel implements ActionListener, PropertyChangeListener { // attempting push
     public final String viewName = "signin";
     private final SignInViewModel signInViewModel;
@@ -24,6 +27,7 @@ public class SignInView extends JPanel implements ActionListener, PropertyChange
     private final JLabel passwordErrorField = new JLabel();
 
     final JButton signIn;
+    private final JButton back;
     private final SignInController signInController;
 
     public SignInView(SignInViewModel signInViewModel, SignInController controller) {
@@ -32,7 +36,7 @@ public class SignInView extends JPanel implements ActionListener, PropertyChange
         this.signInViewModel = signInViewModel;
         this.signInViewModel.addPropertyChangeListener(this);
 
-        JLabel title = new JLabel("Signin Screen");
+        JLabel title = new JLabel("Sign in Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         LabelTextPanel usernameInfo = new LabelTextPanel(
@@ -43,6 +47,8 @@ public class SignInView extends JPanel implements ActionListener, PropertyChange
         JPanel buttons = new JPanel();
         signIn = new JButton(signInViewModel.SIGNIN_BUTTON_LABEL);
         buttons.add(signIn);
+        back = new JButton(signInViewModel.BACK_BUTTON_LABEL);
+        buttons.add(back);
 
         signIn.addActionListener(                // This creates an anonymous subclass of ActionListener and instantiates it.
                 new ActionListener() {
@@ -54,7 +60,27 @@ public class SignInView extends JPanel implements ActionListener, PropertyChange
                                     currentState.getUsername(),
                                     currentState.getPassword()
                             );
+
+                            usernameInputField.setText("");
+                            passwordInputField.setText("");
                         }
+                    }
+                }
+        );
+
+        back.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        SignInState currentState = signInViewModel.getState();
+
+                        usernameInputField.setText("");
+                        passwordInputField.setText("");
+                        currentState.setUsername("");
+                        currentState.setPassword("");
+
+                        viewManagerModel.setActiveView("First View");
+                        viewManagerModel.firePropertyChanged();
                     }
                 }
         );

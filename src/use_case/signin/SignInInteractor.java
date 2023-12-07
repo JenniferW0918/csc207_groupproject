@@ -31,6 +31,7 @@ public class SignInInteractor implements SignInInputBoundary {
                 storedPassword = dataAccessObject.getBusinessAccount(username).getPassword();
             }
 
+          
             if (!password.equals(storedPassword)) {
                 signInPresenter.prepareFailView("Incorrect password for " + username + ".");
             } else {
