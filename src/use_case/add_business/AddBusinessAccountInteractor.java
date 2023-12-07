@@ -26,6 +26,7 @@ public class AddBusinessAccountInteractor implements AddBusinessAccountInputBoun
                 || isEmpty(addBusinessAccountInputData.getAddress())
                 || isEmpty(addBusinessAccountInputData.getCategory())) {
             userPresenter.prepareFailView("Please fill out all fields.");
+            System.out.println("Please fill out all fields.");
         } else if (dataAccessObject.businessExistsByUsername(addBusinessAccountInputData.getUsername())
                 || dataAccessObject.userExistsByUsername(addBusinessAccountInputData.getUsername())) {
             userPresenter.prepareFailView("User already exists.");

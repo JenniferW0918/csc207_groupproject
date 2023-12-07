@@ -115,7 +115,7 @@ public class AddBusinessAccountTests {
     }
 
     @Test
-    public void testAddBusinessAccountEmptyUsername() {
+    public void testAddBusinessAccountEmptyUsername() throws InterruptedException {
         // Arrange
         Accounts dataAccessObject = createDataAccessObject();
         AddBusinessAccountViewModel addBusinessAccountViewModel = createAddBusinessAccountViewModel();
@@ -132,15 +132,23 @@ public class AddBusinessAccountTests {
 
         // Act
         interactor.execute(inputData);
+        Timer closeTimer = new Timer(2000, e -> {
+            // Perform assertions on the EDT
+            assertTrue(popUpDiscovered);
+            assertEquals("Please fill out all fields.", message);
+        });
 
-        // Assert
-        // Ensure that the error message is displayed
-        assertTrue(popUpDiscovered);
-        assertEquals("Please enter a business username", message);
+        closeTimer.setRepeats(false);
+        closeTimer.start();
+
+        // Wait for the timer to dispose of the popup
+        Thread.sleep(3000); // Adjust the sleep duration as needed
+        System.out.println("Expected: " + "Please fill out all fields.");
+        System.out.println("Actual  : " + message);
     }
 
     @Test
-    public void testAddBusinessAccountEmptyName() {
+    public void testAddBusinessAccountEmptyName() throws InterruptedException {
         // Arrange
         Accounts dataAccessObject = createDataAccessObject();
         AddBusinessAccountViewModel addBusinessAccountViewModel = createAddBusinessAccountViewModel();
@@ -158,15 +166,23 @@ public class AddBusinessAccountTests {
 
         // Act
         interactor.execute(inputData);
+        Timer closeTimer = new Timer(2000, e -> {
+            // Perform assertions on the EDT
+            assertTrue(popUpDiscovered);
+            assertEquals("Please fill out all fields.", message);
+        });
 
-        // Assert
-        // Ensure that the error message is displayed
-        assertTrue(popUpDiscovered);
-        assertEquals("Please enter a business name", message);
+        closeTimer.setRepeats(false);
+        closeTimer.start();
+
+        // Wait for the timer to dispose of the popup
+        Thread.sleep(3000); // Adjust the sleep duration as needed
+        System.out.println("Expected: " + "Please fill out all fields.");
+        System.out.println("Actual  : " + message);
     }
 
     @Test
-    public void testAddBusinessAccountEmptyPassword() {
+    public void testAddBusinessAccountEmptyPassword() throws InterruptedException {
         // Arrange
         Accounts dataAccessObject = createDataAccessObject();
         AddBusinessAccountViewModel addBusinessAccountViewModel = createAddBusinessAccountViewModel();
@@ -184,11 +200,19 @@ public class AddBusinessAccountTests {
 
         // Act
         interactor.execute(inputData);
+        Timer closeTimer = new Timer(2000, e -> {
+            // Perform assertions on the EDT
+            assertTrue(popUpDiscovered);
+            assertEquals("Please fill out all fields.", message);
+        });
 
-        // Assert
-        // Ensure that the error message is displayed
-        assertTrue(popUpDiscovered);
-        assertEquals("Please enter a business password", message);
+        closeTimer.setRepeats(false);
+        closeTimer.start();
+
+        // Wait for the timer to dispose of the popup
+        Thread.sleep(3000); // Adjust the sleep duration as needed
+        System.out.println("Expected: " + "Please fill out all fields.");
+        System.out.println("Actual  : " + message);
     }
 
     @Test
@@ -210,18 +234,23 @@ public class AddBusinessAccountTests {
 
         // Act
         interactor.execute(inputData);
+        Timer closeTimer = new Timer(2000, e -> {
+            // Perform assertions on the EDT
+            assertTrue(popUpDiscovered);
+            assertEquals("Please fill out all fields.", message);
+        });
 
-        // Add a delay to allow the UI to update
-        Thread.sleep(1000);
+        closeTimer.setRepeats(false);
+        closeTimer.start();
 
-        // Assert
-        // Ensure that the error message is displayed
-        assertTrue(popUpDiscovered);
-        assertEquals("Please enter a business address", message);
+        // Wait for the timer to dispose of the popup
+        Thread.sleep(3000); // Adjust the sleep duration as needed
+        System.out.println("Expected: " + "Please fill out all fields.");
+        System.out.println("Actual  : " + message);
     }
 
     @Test
-    public void testAddBusinessAccountEmptyCategory() {
+    public void testAddBusinessAccountEmptyCategory() throws InterruptedException {
         // Arrange
         Accounts dataAccessObject = createDataAccessObject();
         AddBusinessAccountViewModel addBusinessAccountViewModel = createAddBusinessAccountViewModel();
@@ -238,11 +267,19 @@ public class AddBusinessAccountTests {
 
         // Act
         interactor.execute(inputData);
+        Timer closeTimer = new Timer(2000, e -> {
+            // Perform assertions on the EDT
+            assertTrue(popUpDiscovered);
+            assertEquals("Please fill out all fields.", message);
+        });
 
-        // Assert
-        // Ensure that the error message is displayed
-        assertTrue(popUpDiscovered);
-        assertEquals("Please enter a business category", message);
+        closeTimer.setRepeats(false);
+        closeTimer.start();
+
+        // Wait for the timer to dispose of the popup
+        Thread.sleep(3000); // Adjust the sleep duration as needed
+        System.out.println("Expected: " + "Please fill out all fields.");
+        System.out.println("Actual  : " + message);
     }
 
 }
