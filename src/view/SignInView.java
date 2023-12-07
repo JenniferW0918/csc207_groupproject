@@ -36,7 +36,7 @@ public class SignInView extends JPanel implements ActionListener, PropertyChange
         this.signInViewModel = signInViewModel;
         this.signInViewModel.addPropertyChangeListener(this);
 
-        JLabel title = new JLabel("Signin Screen");
+        JLabel title = new JLabel("Sign in Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         LabelTextPanel usernameInfo = new LabelTextPanel(
@@ -60,6 +60,9 @@ public class SignInView extends JPanel implements ActionListener, PropertyChange
                                     currentState.getUsername(),
                                     currentState.getPassword()
                             );
+
+                            usernameInputField.setText("");
+                            passwordInputField.setText("");
                         }
                     }
                 }
