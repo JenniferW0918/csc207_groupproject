@@ -8,15 +8,12 @@ public class SearchedNameState {
     private String term;
     private String location;
 
-    private String searchResults; // leaving just in case
-
     private SearchNameResult searchResultsInteractive;
 
 
     public SearchedNameState(SearchedNameState copy) {
         term = copy.getTerm();
         location = copy.getLocation();
-        searchResults = copy.getSearchResults();
         searchResultsInteractive = copy.getSearchResultsInteractive();
     }
 
@@ -38,14 +35,6 @@ public class SearchedNameState {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public String getSearchResults() {
-        return searchResults;
-    }
-
-    public void setSearchResults(String searchResults) {
-        this.searchResults = searchResults;
     }
 
     public void setSearchResultsInteractive(SearchNameResult searchResultsInteractive) {

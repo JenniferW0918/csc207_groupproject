@@ -21,6 +21,7 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
 
     private final JButton createUser;
     private final JButton createBusiness;
+    private final JButton back;
 
     public SignUpView(SignUpController controller, SignUpViewModel signupViewModel,
                       ViewManagerModel viewManagerModel) {
@@ -38,6 +39,8 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
         buttons.add(createUser);
         createBusiness = new JButton(SignUpViewModel.BUSINESS_BUTTON_LABEL);
         buttons.add(createBusiness);
+        back = new JButton(SignUpViewModel.BACK_BUTTON_LABEL);
+        buttons.add(back);
 
         createUser.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
@@ -60,6 +63,16 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
                         System.out.println("Add Business button clicked!"); // checking program registers button was clicked
                         signupController.execute("business");
                         viewManagerModel.setActiveView("Add Business Account");
+                        viewManagerModel.firePropertyChanged();
+                    }
+                }
+        );
+
+        back.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        viewManagerModel.setActiveView("First View");
                         viewManagerModel.firePropertyChanged();
                     }
                 }

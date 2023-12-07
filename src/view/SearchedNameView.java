@@ -47,20 +47,19 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
 
         newSearch.addActionListener(
                 new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource().equals(newSearch)) {
-                SearchedNameView.this.viewManagerModel.setActiveView("search name");
-                SearchedNameView.this.viewManagerModel.firePropertyChanged();
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(newSearch)) {
+                            SearchedNameView.this.viewManagerModel.setActiveView("search name");
+                            SearchedNameView.this.viewManagerModel.firePropertyChanged();
 
-                // Reset the state of the view model.
-                SearchedNameState currentState = searchedNameViewModel.getState();
-                currentState.setSearchResults("");
-                currentState.setTerm("");
-                currentState.setLocation("");
-                searchedNameViewModel.setState(currentState);
-                searchedNameViewModel.firePropertyChanged();
-            }}
-        });
+                            // Reset the state of the view model.
+                            SearchedNameState currentState = searchedNameViewModel.getState();
+                            currentState.setTerm("");
+                            currentState.setLocation("");
+                            searchedNameViewModel.setState(currentState);
+                            searchedNameViewModel.firePropertyChanged();
+                        }}
+                });
 
         logOut.addActionListener(
                 new ActionListener() {
@@ -71,13 +70,12 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
 
                         // Reset the state of the view model.
                         SearchedNameState currentState = searchedNameViewModel.getState();
-                        currentState.setSearchResults("");
                         currentState.setTerm("");
                         currentState.setLocation("");
                         searchedNameViewModel.setState(currentState);
                         searchedNameViewModel.firePropertyChanged();
                     }
-        });
+                });
 
 
         // Adding JList
@@ -99,28 +97,26 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
 
         jList.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
-                System.out.println("Selection changed");
-                // Get the selected item from the JList
-                String selectedValue = jList.getSelectedValue();
-                // Update the JLabel to display the selected item
-                selectedLabel.setText("Selected Item: " + selectedValue);
+            // Get the selected item from the JList
+            String selectedValue = jList.getSelectedValue();
+                                               // Update the JLabel to display the selected item
+                                               selectedLabel.setText("Selected Item: " + selectedValue);
 
 /*
                 Update the state of business info view model
-*/
-                BusinessInfoState businessInfoState = businessInfoViewModel.getState();
-                SearchNameResult searchNameResult2 = searchedNameViewModel.getState().getSearchResultsInteractive();
-                businessInfoState.setBusinessName(searchNameResult2.getBusinesses().get(jList.getSelectedIndex()).getName());
-                businessInfoState.setBusinessAddress(searchNameResult2.getBusinesses().get(jList.getSelectedIndex()).getAddress());
-                businessInfoState.setBusinessUrl(searchNameResult2.getBusinesses().get(jList.getSelectedIndex()).getUrl());
-                businessInfoState.setBusinessReviews(searchNameResult2.getBusinesses().get(jList.getSelectedIndex()).getReviews());
+*/          BusinessInfoState businessInfoState = businessInfoViewModel.getState();
+            SearchNameResult searchNameResult2 = searchedNameViewModel.getState().getSearchResultsInteractive();
+            businessInfoState.setBusinessName(searchNameResult2.getBusinesses().get(jList.getSelectedIndex()).getName());
+            businessInfoState.setBusinessAddress(searchNameResult2.getBusinesses().get(jList.getSelectedIndex()).getAddress());
+            businessInfoState.setBusinessUrl(searchNameResult2.getBusinesses().get(jList.getSelectedIndex()).getUrl());
+            businessInfoState.setBusinessReviews(searchNameResult2.getBusinesses().get(jList.getSelectedIndex()).getReviews());
 
-                // Setting business status
-                boolean isClosed = searchNameResult2.getBusinesses().get(jList.getSelectedIndex()).is_Closed();
-                if (isClosed) {
-                    businessInfoState.setStatus("No");
+            // Setting business status
+            boolean isClosed = searchNameResult2.getBusinesses().get(jList.getSelectedIndex()).is_Closed();
+            if (isClosed) {
+                businessInfoState.setStatus("No");
                 } else {
-                    businessInfoState.setStatus("Yes");
+                businessInfoState.setStatus("Yes");
                 }
 
                 // Switch to business info view
@@ -131,8 +127,8 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
                 businessInfoViewModel.setState(businessInfoState);
                 businessInfoViewModel.firePropertyChanged();
 
-            }
-        }
+                                           }
+                                       }
         );
 
         JPanel panel = new JPanel();
