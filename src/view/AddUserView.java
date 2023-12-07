@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.ViewManagerModel;
 import interface_adapter.add_user.AddUserController;
 import interface_adapter.add_user.AddUserState;
 import interface_adapter.add_user.AddUserViewModel;
@@ -13,6 +14,8 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import static app.Main.viewManagerModel;
+
 public class AddUserView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "Add User Account";
 
@@ -22,9 +25,8 @@ public class AddUserView extends JPanel implements ActionListener, PropertyChang
     private final JPasswordField passwordInputField = new JPasswordField(15);
     private final AddUserController addUserController;
 
-
     private final JButton addUser;
-
+    private final JButton back;
 
     public AddUserView(AddUserController controller,
                                   AddUserViewModel addUserViewModel){
@@ -46,6 +48,8 @@ public class AddUserView extends JPanel implements ActionListener, PropertyChang
         JPanel buttons = new JPanel();
         addUser = new JButton(AddUserViewModel.SIGNUP_BUTTON_LABEL);
         buttons.add(addUser);
+        back = new JButton(AddUserViewModel.BACK_BUTTON_LABEL);
+        buttons.add(back);
 
         addUser.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
@@ -71,6 +75,24 @@ public class AddUserView extends JPanel implements ActionListener, PropertyChang
                 }
         );
 
+        back.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        AddUserState currentState = addUserViewModel.getState();
+
+                        usernameInputField.setText("");
+                        nameInputField.setText("");
+                        passwordInputField.setText("");
+                        currentState.setUsername("");
+                        currentState.setName("");
+                        currentState.setPassword("");
+
+                        viewManagerModel.setActiveView("sign up");
+                        viewManagerModel.firePropertyChanged();
+                    }
+                }
+        );
 
         // This makes a new KeyListener implementing class, instantiates it, and
         // makes it listen to keystrokes in the usernameInputField.

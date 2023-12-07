@@ -11,8 +11,8 @@ public class AddUserViewModel extends ViewModel {
     public static final String NAME_LABEL = "Choose Name";
     public static final String PASSWORD_LABEL = "Create Password";
     public static final String SIGNUP_BUTTON_LABEL = "Create Account";
-    public static final String CANCEL_BUTTON_LABEL = "Cancel";
     public static final String TITLE_LABEL = "Sign Up";
+    public static final String BACK_BUTTON_LABEL = "Back";
 
     private AddUserState state = new AddUserState();
 

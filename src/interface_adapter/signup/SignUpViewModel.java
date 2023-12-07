@@ -10,6 +10,7 @@ public class SignUpViewModel extends ViewModel {
     public static final String TITLE_LABEL = "Choose an Account";
     public static final String USER_BUTTON_LABEL = "Create User";
     public static final String BUSINESS_BUTTON_LABEL = "Create Business";
+    public static final String BACK_BUTTON_LABEL = "Back";
 
     private SignUpState state = new SignUpState();
 

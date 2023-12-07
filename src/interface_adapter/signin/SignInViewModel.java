@@ -12,35 +12,28 @@ public class SignInViewModel extends ViewModel { // attempting push
     public final String USERNAME_LABEL = "enter your username";
     public final String PASSWORD_LABEL = "enter your password";
 
-
     public static final String SIGNIN_BUTTON_LABEL = "Signin";
-
+    public static final String BACK_BUTTON_LABEL = "Back";
 
     private SignInState state = new SignInState();
-
 
     public SignInViewModel() {
         super("signin");
     }
 
-
     public void setState(SignInState state) {
         this.state = state;
     }
 
-
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
-
 
     public void firePropertyChanged() {
         support.firePropertyChange("state", null, this.state);
     }
 
-
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
-
 
     public SignInState getState() {
         return state;
