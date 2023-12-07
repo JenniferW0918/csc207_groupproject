@@ -1,3 +1,4 @@
+import app.Main;
 import data_access.Accounts;
 import entity.*;
 
@@ -126,7 +127,6 @@ public class AccountsTests {
         assert(accounts.getUsers().contains(user));
         assert(accounts.getUsers().contains(user1));
     }
-
 
 }
 

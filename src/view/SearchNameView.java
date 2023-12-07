@@ -1,5 +1,7 @@
 package view;
 
+import interface_adapter.ViewManagerModel;
+import interface_adapter.seached_name.SearchedNameViewModel;
 import interface_adapter.search_name.SearchNameController;
 import interface_adapter.search_name.SearchNameState;
 import interface_adapter.search_name.SearchNameViewModel;
@@ -21,8 +23,10 @@ public class SearchNameView extends JPanel implements ActionListener, PropertyCh
 
     final JButton searchName;
 
+    final JButton logOut;
 
-    public SearchNameView(SearchNameController searchNameController, SearchNameViewModel searchNameViewModel) {
+
+    public SearchNameView(SearchNameController searchNameController, SearchNameViewModel searchNameViewModel, ViewManagerModel viewManagerModel) {
 
         searchNameViewModel.addPropertyChangeListener(this);
 
@@ -39,6 +43,9 @@ public class SearchNameView extends JPanel implements ActionListener, PropertyCh
         JPanel buttons = new JPanel();
         searchName = new JButton(SearchNameViewModel.SEARCH_NAME_BUTTON_LABEL);
         buttons.add(searchName);
+
+        logOut = new JButton(SearchedNameViewModel.LOG_OUT);
+        buttons.add(logOut);
 
 
 
@@ -105,6 +112,15 @@ public class SearchNameView extends JPanel implements ActionListener, PropertyCh
                     }
                 }
         );
+
+        logOut.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        viewManagerModel.setActiveView("Account Creation"); // switches to SignUpView
+                        viewManagerModel.firePropertyChanged();
+                    }
+                });
 
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
