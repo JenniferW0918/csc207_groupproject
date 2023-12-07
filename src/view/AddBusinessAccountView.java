@@ -105,7 +105,7 @@ public class AddBusinessAccountView extends JPanel implements ActionListener, Pr
                         currentState.setName("");
                         currentState.setPassword("");
                         currentState.setAddress("");
-                        currentState.setCategories("");
+                        currentState.setCategory("");
 
                         viewManagerModel.setActiveView("sign up");
                         viewManagerModel.firePropertyChanged();
