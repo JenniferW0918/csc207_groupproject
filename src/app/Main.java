@@ -40,7 +40,7 @@ public class Main {
         JFrame application = new JFrame("NomNomNow!!!");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        application.setPreferredSize(new Dimension(800, 800));
+        application.setPreferredSize(new Dimension(700, 800));
 
         CardLayout cardLayout = new CardLayout();
 
