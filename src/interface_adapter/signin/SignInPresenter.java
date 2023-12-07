@@ -9,7 +9,7 @@ import interface_adapter.search_name.SearchNameState;
 import javax.swing.*;
 
 
-public class SignInPresenter implements SignInOutputBoundary { // attempting push
+public class SignInPresenter implements SignInOutputBoundary {
 
 
     private final SignInViewModel signInViewModel;

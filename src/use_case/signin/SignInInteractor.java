@@ -5,7 +5,7 @@ import entity.BusinessAccount;
 import entity.User;
 
 
-public class SignInInteractor implements SignInInputBoundary { // attempting push
+public class SignInInteractor implements SignInInputBoundary {
     final Accounts dataAccessObject;
     final SignInOutputBoundary signInPresenter;
 

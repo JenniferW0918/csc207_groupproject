@@ -1,5 +1,4 @@
 package use_case.add_business;
-import use_case.add_business.AddBusinessAccountOutputData;
 
 
 public interface AddBusinessAccountOutputBoundary {

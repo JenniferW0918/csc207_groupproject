@@ -1,10 +1,8 @@
 package interface_adapter.add_business;
 
-import entity.Category;
 import use_case.add_business.AddBusinessAccountInputBoundary;
 import use_case.add_business.AddBusinessAccountInputData;
 
-import java.util.Map;
 
 public class AddBusinessAccountController {
 
@@ -13,9 +11,9 @@ public class AddBusinessAccountController {
         this.userAddBusinessAccountUseCaseInteractor = userAddBusinessUseCaseInteractor;
     }
 
-    public void execute(String username, String name, String password, String address, String categories) {
+    public void execute(String username, String name, String password, String address, String category) {
         AddBusinessAccountInputData addBusinessInputData = new AddBusinessAccountInputData(username, name, password,
-                address, categories);
+                address, category);
 
         userAddBusinessAccountUseCaseInteractor.execute(addBusinessInputData);
     }

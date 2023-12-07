@@ -30,7 +30,7 @@ public class AddBusinessAccountInteractor implements AddBusinessAccountInputBoun
                     addBusinessAccountInputData.getName(),
                     addBusinessAccountInputData.getPassword(),
                     addBusinessAccountInputData.getAddress(),
-                    addBusinessAccountInputData.getCategories());
+                    addBusinessAccountInputData.getCategory());
             dataAccessObject.saveBusiness(businessAccount);
 
             AddBusinessAccountOutputData addBusinessAccountOutputData = new AddBusinessAccountOutputData(

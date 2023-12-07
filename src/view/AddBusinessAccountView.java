@@ -47,7 +47,7 @@ public class AddBusinessAccountView extends JPanel implements ActionListener, Pr
         LabelTextPanel addressInfo = new LabelTextPanel(
                 new JLabel(AddBusinessAccountViewModel.ADDRESS_LABEL), addressInputField);
         LabelTextPanel categoriesInfo = new LabelTextPanel(
-                new JLabel(AddBusinessAccountViewModel.CATEGORIES_LABEL), categoriesInputField);
+                new JLabel(AddBusinessAccountViewModel.CATEGORY_LABEL), categoriesInputField);
 
         JPanel buttons = new JPanel();
         addBusinessAccount = new JButton(AddBusinessAccountViewModel.SIGNUP_BUTTON_LABEL);
@@ -65,7 +65,7 @@ public class AddBusinessAccountView extends JPanel implements ActionListener, Pr
                                     currentState.getName(),
                                     currentState.getPassword(),
                                     currentState.getAddress(),
-                                    currentState.getCategories()
+                                    currentState.getCategory()
                             );
 
                             usernameInputField.setText("");
@@ -77,7 +77,7 @@ public class AddBusinessAccountView extends JPanel implements ActionListener, Pr
                             currentState.setName("");
                             currentState.setPassword("");
                             currentState.setAddress("");
-                            currentState.setCategories("");
+                            currentState.setCategory("");
                             addBusinessAccountViewModel.setState(currentState);
                             addBusinessAccountViewModel.firePropertyChanged();
                         }
@@ -175,7 +175,7 @@ public class AddBusinessAccountView extends JPanel implements ActionListener, Pr
                     @Override
                     public void keyTyped(KeyEvent e) {
                         AddBusinessAccountState currentState = addBusinessAccountViewModel.getState();
-                        currentState.setCategories(categoriesInputField.getText() + e.getKeyChar());
+                        currentState.setCategory(categoriesInputField.getText() + e.getKeyChar());
                         addBusinessAccountViewModel.setState(currentState);
                     }
 

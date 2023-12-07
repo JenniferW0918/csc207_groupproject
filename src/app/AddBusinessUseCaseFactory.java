@@ -7,7 +7,6 @@ import interface_adapter.add_business.AddBusinessAccountController;
 import interface_adapter.add_business.AddBusinessAccountViewModel;
 import interface_adapter.search_name.SearchNameViewModel;
 import interface_adapter.add_business.AddBusinessAccountPresenter;
-import use_case.add_business.AddBusinessAccountDataAccessInterface;
 import use_case.add_business.AddBusinessAccountInputBoundary;
 import use_case.add_business.AddBusinessAccountInteractor;
 import use_case.add_business.AddBusinessAccountOutputBoundary;
