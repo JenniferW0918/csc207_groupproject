@@ -1,4 +1,4 @@
-package app;
+package app; // testing commits
 
 import data_access.Accounts;
 import data_access.SearchNameDataAccessObject;
@@ -9,6 +9,7 @@ import interface_adapter.add_business.AddBusinessAccountViewModel;
 import interface_adapter.add_user.AddUserController;
 import interface_adapter.add_user.AddUserPresenter;
 import interface_adapter.add_user.AddUserViewModel;
+import interface_adapter.first_view.FirstViewViewModel;
 import interface_adapter.business_info.BusinessInfoViewModel;
 import interface_adapter.seached_name.SearchedNameViewModel;
 import interface_adapter.search_name.SearchNameController;
@@ -63,6 +64,7 @@ public class Main {
         AddBusinessAccountViewModel addBusinessAccountViewModel1 = new AddBusinessAccountViewModel();
         BusinessInfoViewModel businessInfoViewModel = new BusinessInfoViewModel();
         SignInViewModel signInViewModel = new SignInViewModel();
+        FirstViewViewModel firstViewViewModel = new FirstViewViewModel();
 
         //Making Data Access Objects
         SearchNameDataAccessObject searchNameDataAccessObject = new SearchNameDataAccessObject();
@@ -109,7 +111,15 @@ public class Main {
                 dataAccessObject);
         views.add(signInView, signInView.viewName);
 
-        // THE DEFAULT VIEW
+        // Creating First View
+        FirstViewView firstView = FirstViewUseCaseFactory.createFirstView(
+                viewManagerModel,
+                firstViewViewModel,
+                signInViewModel,
+                signupViewModel);
+        views.add(firstView, firstView.viewName);
+
+        // Creating Signup View
         SignUpView signUpView = SignUpUseCaseFactory.createSignUpView(
                 viewManagerModel,
                 signupViewModel,
@@ -117,7 +127,9 @@ public class Main {
                 addBusinessAccountViewModel,
                 dataAccessObject);
         views.add(signUpView, signUpView.viewName);
-        viewManagerModel.setActiveView(signUpView.viewName);
+
+        // Setting default view
+        viewManagerModel.setActiveView(firstView.viewName);
         viewManagerModel.firePropertyChanged();
 
 
