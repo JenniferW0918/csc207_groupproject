@@ -1,6 +1,5 @@
 package interface_adapter.add_business;
 
-import entity.Category;
 import use_case.add_business.AddBusinessAccountInputBoundary;
 import use_case.add_business.AddBusinessAccountInputData;
 

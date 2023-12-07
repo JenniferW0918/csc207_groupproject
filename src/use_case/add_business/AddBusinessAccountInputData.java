@@ -1,8 +1,5 @@
 package use_case.add_business;
 
-import entity.Category;
-import java.util.Map;
-
 public class AddBusinessAccountInputData {
 
     final private String username;

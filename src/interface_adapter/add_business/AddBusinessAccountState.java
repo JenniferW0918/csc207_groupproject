@@ -1,7 +1,5 @@
 package interface_adapter.add_business;
 
-import entity.Category;
-
 public class AddBusinessAccountState {
     private String username = "";
     private String usernameError = null;
