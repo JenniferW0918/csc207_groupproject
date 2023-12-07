@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class SearchNameDataAccessObject implements SearchNameDataAccessInterface {
     private static final String API_URL = "https://api.yelp.com/v3/businesses/search?location=%s&term=%s&sort_by=best_match&limit=%s";
     private static final String API_KEY = "Bearer LfQ2XexJf2LAd6gHlcK1Mng8DWQUkGZEUOc3Q_0JwoQiP7PqjA8dskwBkmsJycSK_AOoPCZ4YtwNTL2uPgNxz8XmwoBohU31T57FBs9bWdzQRMF3RM7Mk6pfEgFxZXYx";
-    private static final String MATCH_LIMIT = "2";
+    private static final String MATCH_LIMIT = "5";
 
 
     public SearchNameDataAccessObject() {
