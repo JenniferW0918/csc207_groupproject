@@ -4,10 +4,11 @@ import entity.BusinessAccount;
 import entity.User;
 import use_case.add_user.AddUserDataAccessInterface;
 import use_case.add_business.AddBusinessAccountDataAccessInterface;
+import use_case.signin.SignInUserDataAccessInterface;
 
 import java.util.ArrayList;
 
-public class Accounts implements AddBusinessAccountDataAccessInterface, AddUserDataAccessInterface {
+public class Accounts implements AddBusinessAccountDataAccessInterface, AddUserDataAccessInterface, SignInUserDataAccessInterface {
 
     private final ArrayList<User> users = new ArrayList<>();
     private final ArrayList<BusinessAccount> businesses = new ArrayList<>();
@@ -47,6 +48,32 @@ public class Accounts implements AddBusinessAccountDataAccessInterface, AddUserD
         return false;
     }
 
+    @Override
+    public User getUser(String username) {
+        // only go through if existsByName is true, go through user arraylist and return user object with the
+        // matching username
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                return user;
+            }
+        }
+        return null; // User not found
+    }
+
+
+    @Override
+    public BusinessAccount getBusinessAccount(String username) {
+        // only go through if existsByName is true, go through businessAccount arraylist and return business
+        // object with the matching username
+        for (BusinessAccount businessAccount : businesses) {
+            if (businessAccount.getUsername().equals(username)) {
+                return businessAccount;
+            }
+        }
+        return null; // BusinessAccount not found
+    }
+
+
     public ArrayList<User> getUsers () {
         return new ArrayList<>(users);  // Returning a copy
         }
@@ -54,5 +81,4 @@ public class Accounts implements AddBusinessAccountDataAccessInterface, AddUserD
     public ArrayList<BusinessAccount> getBusinessAccounts () {
         return new ArrayList<>(businesses);  // Returning a copy
         }
-
 }
