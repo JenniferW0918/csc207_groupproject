@@ -1,5 +1,14 @@
 package interface_adapter.signin;
 
+/**
+ * The SignInState class represents the state of the signin view.
+ * It encapsulates the information related to user input and validation errors for signing in.
+ * The state includes the fields username and password, and their respective error messages.
+ * This class provides methods to access and modify each field within the state.
+ *
+ * @author audrey
+ * @version 1.0
+ */
 public class SignInState {
     private String username = "";
     private String usernameError = null;

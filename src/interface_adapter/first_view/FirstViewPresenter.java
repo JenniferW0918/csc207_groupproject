@@ -1,6 +1,5 @@
 package interface_adapter.first_view;
 
-import app.AddUserUseCaseFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.signin.SignInState;
 import interface_adapter.signin.SignInViewModel;
@@ -9,7 +8,14 @@ import interface_adapter.signup.SignUpViewModel;
 import use_case.first_view.FirstViewOutputBoundary;
 import use_case.first_view.FirstViewOutputData;
 
-
+/**
+ * The FirstViewPresenter class implements the FirstViewOutputBoundary for presenting the result of the first view use case.
+ * It updates the associated view models and view manager based on the success or failure of the first view operation.
+ * This presenter is responsible for preparing the success view by navigating to either the signin or signup view upon success.
+ *
+ * @author audrey
+ * @version 1.0
+ */
 public class FirstViewPresenter implements FirstViewOutputBoundary { // testing commits
         private final SignInViewModel signInViewModel;
         private final SignUpViewModel signUpViewModel;

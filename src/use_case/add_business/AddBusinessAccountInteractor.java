@@ -4,6 +4,14 @@ import entity.BusinessAccount;
 import entity.BusinessAccountFactoryInterface;
 import data_access.Accounts;
 
+/**
+ * The AddBusinessAccountInteractor class implements the logic for adding a new business account.
+ * It acts as the use case's input boundary and interacts with the data access layer and presentation layer.
+ * The interactor validates input data, checks for existing users, creates a new business account, and updates the presenter accordingly.
+ *
+ * @author audrey
+ * @version 1.0
+ */
 public class AddBusinessAccountInteractor implements AddBusinessAccountInputBoundary {
     final Accounts dataAccessObject;
     final AddBusinessAccountOutputBoundary userPresenter;

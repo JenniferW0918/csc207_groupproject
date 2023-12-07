@@ -6,7 +6,18 @@ import interface_adapter.signup.SignUpState;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class FirstViewViewModel extends ViewModel { // testing commits
+/**
+ * The FirstViewViewModel class serves as the ViewModel for the first view's view.
+ * It encapsulates the presentation logic and state related to the letting the user choose whether to signin or signup.
+ * The ViewModel provides labels for various UI elements, such as titles, input fields, and buttons.
+ * This class extends the base ViewModel class and implements property change support for data binding.
+ *
+ * The labels and button texts defined in this class are used for UI elements in the associated view.
+ *
+ * @author audrey
+ * @version 1.0
+ */
+public class FirstViewViewModel extends ViewModel {
 
     public static final String TITLE_LABEL = "Sign in or Sign up";
     public static final String SIGNIN_BUTTON_LABEL = "Sign in";

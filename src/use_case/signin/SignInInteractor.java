@@ -4,7 +4,14 @@ import data_access.Accounts;
 import entity.BusinessAccount;
 import entity.User;
 
-
+/**
+ * The SignInInteractor class implements the logic for signing in to the program as either a user or business.
+ * It acts as the use case's input boundary and interacts with the data access layer and presentation layer.
+ * The interactor validates input data, checks the entered username exists in Accounts, checks the entered password matches the username, and updates the presenter accordingly.
+ *
+ * @author audrey
+ * @version 1.0
+ */
 public class SignInInteractor implements SignInInputBoundary {
     final Accounts dataAccessObject;
     final SignInOutputBoundary signInPresenter;

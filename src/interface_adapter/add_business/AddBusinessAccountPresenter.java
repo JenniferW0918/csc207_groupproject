@@ -8,6 +8,15 @@ import use_case.add_business.AddBusinessAccountOutputData;
 
 import javax.swing.*;
 
+/**
+ * The AddBusinessAccountPresenter class implements the AddBusinessAccountOutputBoundary for presenting the result of the add business use case.
+ * It updates the associated view models and view manager based on the success or failure of the add business account operation.
+ * This presenter is responsible for preparing the success view by navigating to the search name view upon success,
+ * and preparing the fail view by updating the add business account view with specific error messages and displaying a message dialog.
+ *
+ * @author audrey
+ * @version 1.0
+ */
 public class AddBusinessAccountPresenter implements AddBusinessAccountOutputBoundary {
 
     private final AddBusinessAccountViewModel addBusinessAccountViewModel;

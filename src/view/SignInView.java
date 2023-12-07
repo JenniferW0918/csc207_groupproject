@@ -1,6 +1,5 @@
 package view;
 
-import interface_adapter.add_business.AddBusinessAccountState;
 import interface_adapter.signin.SignInController;
 import interface_adapter.signin.SignInState;
 import interface_adapter.signin.SignInViewModel;
@@ -16,6 +15,15 @@ import java.beans.PropertyChangeListener;
 
 import static app.Main.viewManagerModel;
 
+/**
+ * The SignInView class represents the UI for the signin use case.
+ * It extends JPanel and implements the ActionListener, PropertyChangeListener interfaces
+ * The view has input fields for a user's username and associated password and a signin button
+ * The class is fundamentally responsible for signing a user in and navigating them to the search name feature of the program
+ *
+ * @author audrey
+ * @version 1.0
+ */
 public class SignInView extends JPanel implements ActionListener, PropertyChangeListener { // attempting push
     public final String viewName = "signin";
     private final SignInViewModel signInViewModel;

@@ -15,6 +15,15 @@ import java.beans.PropertyChangeListener;
 
 import static app.Main.viewManagerModel;
 
+/**
+ * The AddBusinessView class represents the UI for the add_business use case.
+ * It extends JPanel and implements the ActionListener, PropertyChangeListener interfaces
+ * The view has input fields for a business' username, name, password, address, and category, and a signup button for creating the account
+ * The class is fundamentally responsible for creating a business account and navigating the user to the search name feature of the program.
+ *
+ * @author audrey
+ * @version 1.0
+ */
 public class AddBusinessAccountView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "Add Business Account";
 
@@ -105,7 +114,7 @@ public class AddBusinessAccountView extends JPanel implements ActionListener, Pr
                         currentState.setName("");
                         currentState.setPassword("");
                         currentState.setAddress("");
-                        currentState.setCategories("");
+                        currentState.setCategory("");
 
                         viewManagerModel.setActiveView("sign up");
                         viewManagerModel.firePropertyChanged();

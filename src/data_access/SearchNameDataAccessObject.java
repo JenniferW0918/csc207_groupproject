@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class SearchNameDataAccessObject implements SearchNameDataAccessInterface {
     private static final String API_URL = "https://api.yelp.com/v3/businesses/search?location=%s&term=%s&sort_by=best_match&limit=%s";
-    private static final String API_KEY = "Bearer TjA3ywvvjJc7IYcHp1P7ylScjeqWEgOKk_4C3Mflk11iz8EC2Gul5vsGBWKAc_ZaN_-SDkUNqI0ahBwMt9slhRl1tKDshvu8lzhzZ1H0CiqFQQ2pj7jjbFtZv_lwZXYx";
+    private static final String API_KEY = "Bearer l1-w3JnfO-oJqzcHhkl14SRtErShasDmxE6S99jVLeKUB7yLUkxGug3ghmg-LicsNEkLEL7wgZxIxMObV83qV6bse0V1mkOJYs5fShslFXRMmwAO-W6KuKYSrHtKZXYx";
     private static final String MATCH_LIMIT = "5";
 
 

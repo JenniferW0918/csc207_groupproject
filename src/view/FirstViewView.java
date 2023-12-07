@@ -12,6 +12,15 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+/**
+ * The FirstViewView class represents the UI for the initial view (first view) use case.
+ * It extends JPanel and implements the ActionListener, PropertyChangeListener interfaces
+ * The view has two buttons, a signin and a signup button
+ * The class is fundamentally responsible for navigating a user to the signin or signup pages
+ *
+ * @author audrey
+ * @version 1.0
+ */
 public class FirstViewView extends JPanel implements ActionListener, PropertyChangeListener { // testing commits
     public final String viewName = "First View";
 

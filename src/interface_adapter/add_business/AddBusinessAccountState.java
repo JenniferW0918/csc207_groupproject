@@ -1,5 +1,16 @@
 package interface_adapter.add_business;
 
+
+/**
+ * The AddBusinessAccountState class represents the state of the add business account view.
+ * It encapsulates the information related to user input and validation errors for creating a new business account.
+ * The state includes the fields username, name, password, address, category, and their respective error messages.
+ * Additionally, the accountType field is used to specify the type of the account being created.
+ * This class provides methods to access and modify each field within the state.
+ *
+ * @author audrey
+ * @version 1.0
+ */
 public class AddBusinessAccountState {
     private String username = "";
     private String usernameError = null;

@@ -8,7 +8,15 @@ import interface_adapter.search_name.SearchNameState;
 
 import javax.swing.*;
 
-
+/**
+ * The SignInPresenter class implements the SignInOutputBoundary for presenting the result of the signin use case.
+ * It updates the associated view models and view manager based on the success or failure of the signin operation.
+ * This presenter is responsible for preparing the success view by navigating to the search name view upon success,
+ * and preparing the fail view by updating the signin view with specific error messages and displaying a message dialog.
+ *
+ * @author audrey
+ * @version 1.0
+ */
 public class SignInPresenter implements SignInOutputBoundary {
 
 

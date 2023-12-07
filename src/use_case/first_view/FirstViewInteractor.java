@@ -1,6 +1,13 @@
 package use_case.first_view;
 
-
+/**
+ * The FirstViewInteractor class implements the logic for selecting between signing in or signing up.
+ * It acts as the use case's input boundary and interacts with the data access layer and presentation layer.
+ * The interactor validates input data and updates the presenter accordingly.
+ *
+ * @author audrey
+ * @version 1.0
+ */
 public class FirstViewInteractor implements FirstViewInputBoundary { // testing commits
     final FirstViewOutputBoundary present;
 
