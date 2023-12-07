@@ -1,3 +1,4 @@
+
 import data_access.Accounts;
 import entity.*;
 import interface_adapter.ViewManagerModel;
@@ -21,14 +22,14 @@ public class AddUserTests {
     static boolean popUpDiscovered = false;
 
     private AddUserInteractor createAddUserInteractor(Accounts dataAccessObject,
-                                                                            AddUserOutputBoundary addUserOutputBoundary,
-                                                                            UserFactoryInterface userFactoryInterface) {
+                                                      AddUserOutputBoundary addUserOutputBoundary,
+                                                      UserFactoryInterface userFactoryInterface) {
         return new AddUserInteractor(dataAccessObject, addUserOutputBoundary, userFactoryInterface);
     }
 
     private AddUserOutputBoundary createAddUserOutputBoundary(ViewManagerModel viewManagerModel,
-                                                                                    AddUserViewModel addUserViewModel,
-                                                                                    SearchNameViewModel searchNameViewModel) {
+                                                              AddUserViewModel addUserViewModel,
+                                                              SearchNameViewModel searchNameViewModel) {
         return new AddUserPresenter(viewManagerModel, addUserViewModel, searchNameViewModel);
     }
 
