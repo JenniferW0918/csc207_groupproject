@@ -29,9 +29,24 @@ import view.*;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * The Main class serves as the entry point for the NomNomNow application. It constructs the main program window,
+ * manages the various views using a CardLayout, and initializes the necessary data and view models. The application
+ * window displays different views based on user interactions.
+ *
+ * @author audrey, jennifer, banke
+ * @version 1.0
+ */
 public class Main {
+    /** The model representing the state of the view manager. */
     public static ViewManagerModel viewManagerModel;
 
+    /**
+     * The main method, which serves as the entry point for the NomNomNow application. It initializes the main program
+     * window, sets up the CardLayout for managing views, creates view models, and sets the default view.
+     *
+     * @param args The command-line arguments (unused in this application).
+     */
     public static void main(String[] args) {
         // Build the main program window, the main panel containing the
         // various cards, and the layout, and stitch them together.

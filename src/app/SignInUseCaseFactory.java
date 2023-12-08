@@ -14,10 +14,26 @@ import view.SignInView;
 import javax.swing.*;
 import java.io.IOException;
 
+/**
+ * The {@code SignInUseCaseFactory} class is responsible for creating instances related to the "Sign In" use case.
+ * It provides a factory method to create the {@code SignInView} along with its associated controller and presenter.
+ *
+ * @author audrey
+ * @version 1.0
+ */
 public class SignInUseCaseFactory {
 
     private SignInUseCaseFactory() {}
 
+    /**
+     * Creates an instance of the {@code SignInView} along with its associated controller and presenter.
+     *
+     * @param viewManagerModel The model responsible for managing the active view.
+     * @param signInViewModel The view model associated with the "Sign In" use case.
+     * @param searchNameViewModel The view model associated with the search name functionality.
+     * @param dataAccessObject The data access object providing access to user accounts.
+     * @return The created {@code SignInView}.
+     */
     public static SignInView createSignInView(
             ViewManagerModel viewManagerModel,
             SignInViewModel signInViewModel,
@@ -34,6 +50,16 @@ public class SignInUseCaseFactory {
         return null;
     }
 
+    /**
+     * Creates an instance of the {@code SignInController} to handle the "Sign In" use case.
+     *
+     * @param viewManagerModel The model responsible for managing the active view.
+     * @param signInViewModel The view model associated with the "Sign In" use case.
+     * @param searchNameViewModel The view model associated with the search name functionality.
+     * @param dataAccessObject The data access object providing access to user accounts.
+     * @return The created {@code SignInController}.
+     * @throws IOException If there is an issue reading user data.
+     */
     private static SignInController createSignInUseCase(
             ViewManagerModel viewManagerModel,
             SignInViewModel signInViewModel,
