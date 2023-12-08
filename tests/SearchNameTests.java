@@ -32,7 +32,12 @@ import java.util.Objects;
  * - Errors pop up when search term is empty or location is empty or arguments are wrong. JDialog is displayed (DONE)
  */
 
-/** Tests for SearchName use case, SearchedName, SearchNameResults, BusinessInfo*/
+
+/**
+ * This class contains unit tests for the SearchName use case, SearchedName,
+ * SearchNameResults, and BusinessInfo.
+ *
+ */
 public class SearchNameTests {
     static String message = "";
     static boolean popUpDiscovered = false;
@@ -253,6 +258,7 @@ public class SearchNameTests {
 
 
     /*TESTS*/
+    /**Test that the view changes after user makes a search */
     @org.junit.Test
     public void testViewChangeOnSearch () {
         makeSearchUI(new char[]{'P', 'i', 'z', 'z', 'a'}, new char[] {'T', 'o', 'r', 'o', 'n', 't', 'o'});
@@ -267,6 +273,7 @@ public class SearchNameTests {
         assert(searchResultsArea.isShowing());
     }
 
+    /** Test that an error pop-up is returned if a user makes a search without a term*/
     @org.junit.Test
     public void errorOnEmptyTerm() {
         makeSearchUI(new char[] {}, new char[]{'T', 'o', 'r', 'o', 'n', 't', 'o'});
@@ -281,6 +288,7 @@ public class SearchNameTests {
 
     }
 
+    /** Test that an error pop-up is returned if a user makes a search without a location*/
     @org.junit.Test
     public void errorOnEmptyLocation() {
         popUpDiscovered = false;
@@ -295,6 +303,8 @@ public class SearchNameTests {
         assert (message.equals("Please enter a location"));
     }
 
+    /** Test that an error pop-up is returned if a user makes a search with an
+     * empty term and empty location*/
     @org.junit.Test
     public void errorOnEmptyTermAndLocation() {
         popUpDiscovered = false;
@@ -307,6 +317,8 @@ public class SearchNameTests {
         assert (!Objects.equals(message, ""));
     }
 
+    /** Test that an error pop-up is returned if a user makes a search with an
+     * invalid term and invalid location*/
     @org.junit.Test
     public void errorOnInvalidTermLocation(){
         popUpDiscovered = false;
@@ -319,6 +331,7 @@ public class SearchNameTests {
         assert (Objects.equals(message, "No results found :("));
     }
 
+    /** Test that the view changes when a user clicks on the SearchNameButton*/
     @org.junit.Test
     public void testViewChangeSearchNameButton() {
         Main.main(null);
@@ -328,6 +341,7 @@ public class SearchNameTests {
         assert(viewManagerModel.getActiveView().equals("searched name"));
     }
 
+    /** Test that the view changes when a user clicks on the NewSearchButton*/
     @org.junit.Test
     public void testViewChangeNewSearchButton() {
         Main.main(null);
@@ -338,6 +352,8 @@ public class SearchNameTests {
 
         assert(viewManagerModel.getActiveView().equals("search name"));
     }
+
+    /** Test that the SearchNameDataAccessObject calls the API*/
     @org.junit.Test
     public void testSearchNameDataAccessObject() {
         SearchNameDataAccessObject searchNameDataAccessObject = new SearchNameDataAccessObject();
@@ -353,6 +369,7 @@ public class SearchNameTests {
         assertEquals(result.getLocation(), "Toronto");
     }
 
+    /** Test that the SearchNameViewModel and SearchNameState are updated correctly*/
     @org.junit.Test
     public void testSearchNameViewModel() {
         SearchNameViewModel searchNameViewModel = new SearchNameViewModel();
@@ -367,6 +384,7 @@ public class SearchNameTests {
         assertEquals("Ottawa", updatedState.getLocation());
     }
 
+    /** Test that the SearchNameButton is present */
     @org.junit.Test
     public void testSearchNameButtonPresent() {
         Main.main(null);
@@ -374,6 +392,7 @@ public class SearchNameTests {
         assert(button.getText().equals("Search Name"));
     }
 
+    /** Test that the new search button is present*/
     @org.junit.Test
     public void testNewSearchButtonPresent() {
         Main.main(null);
@@ -381,8 +400,9 @@ public class SearchNameTests {
         assert(button.getText().equals("New Search"));
     }
 
+    /** Test that the logout button is present on search view and that clicking on it
+     * changes the view to FirstView*/
     @org.junit.Test
-
 
     public void testLogOutButtonPresentSearch(){
         Main.main(null);
@@ -392,6 +412,8 @@ public class SearchNameTests {
         assert(viewManagerModel.getActiveView().equals("First View"));
     }
 
+/** Test that the logout button is present on searched view and that clicking on it
+     * changes the view to FirstView*/
     @org.junit.Test
     public void testLogOutButtonPresentSearched(){
         Main.main(null);
@@ -401,7 +423,7 @@ public class SearchNameTests {
         assert(viewManagerModel.getActiveView().equals("First View"));
     }
 
-
+    /**Test that the text-fields are present on SearchNameView*/
     @org.junit.Test
     public void testTextFieldsPresent(){
         Main.main(null);
@@ -416,7 +438,7 @@ public class SearchNameTests {
         assert jp4.getComponent(1).isValid(); // location field is valid
     }
 
-    // Testing Businesses made for search results nor business accounts.
+    /** Test the instantiation of the business entity*/
     @org.junit.Test
     public void testBusiness(){
         Business business = new Business("1", "Korean bbq", "Yonge Street",
@@ -438,6 +460,8 @@ public class SearchNameTests {
         assert(Objects.equals(businessStr2, "Name: Korean bbq\nAddress: Yonge Street\n"));
     }
 
+    /** Test that an error is returned by the SearchNameDataAccessObject if an invalid
+     * id is used as a parameter */
     @org.junit.Test
     public void testWrongId(){
         SearchNameDataAccessObject dataAccess = new SearchNameDataAccessObject();
@@ -511,6 +535,7 @@ public class SearchNameTests {
         assert(viewManagerModel.getActiveView().equals("searched name"));
     }
 
+    /** Test that errors are returned on invalid input in BusinessView*/
     @org.junit.Test
     public void testErrorsBusinessInfoView(){
         Main.main(null);
