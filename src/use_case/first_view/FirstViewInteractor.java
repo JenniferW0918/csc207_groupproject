@@ -9,12 +9,28 @@ package use_case.first_view;
  * @version 1.0
  */
 public class FirstViewInteractor implements FirstViewInputBoundary { // testing commits
+
+    /**
+     * The output boundary for presenting success views related to sign-in or sign-up.
+     */
     final FirstViewOutputBoundary present;
 
+    /**
+     * Constructs a new FirstViewInteractor with the specified output boundary.
+     *
+     * @param firstViewOutputBoundary The output boundary for presenting success views.
+     */
     public FirstViewInteractor(FirstViewOutputBoundary firstViewOutputBoundary) {
         this.present = firstViewOutputBoundary;
     }
 
+    /**
+     * Executes the First View use case based on the provided FirstViewInputData.
+     * Processes the input data to determine whether the user intends to sign in or sign up,
+     * and triggers the appropriate actions via the output boundary.
+     *
+     * @param firstViewInputData The input data for the First View use case.
+     */
     @Override
     public void execute(FirstViewInputData firstViewInputData) {
         if (firstViewInputData.getSigninOrSignup() == "signin") {
