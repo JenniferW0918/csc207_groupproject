@@ -19,6 +19,12 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
+/**
+ * This class represents the view for the searched name feature.
+ * It extends JPanel and implements ActionListener and PropertyChangeListener.
+ * The view consists of a list of searched names, and buttons for new search and logout.
+ * It also listens to changes in the SearchedNameViewModel and updates the view accordingly.
+ */
 public class SearchedNameView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "searched name";
 
@@ -27,7 +33,12 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
     final JButton logOut;
     final JList<String> jList;
 
-
+    /**
+     * This constructor creates the view for the searched name feature.
+     * @param searchedNameViewModel The view model for the searched name feature.
+     * @param viewManagerModel The view manager model.
+     * @param businessInfoViewModel The view model for the business info feature.
+     */
     public SearchedNameView(SearchedNameViewModel searchedNameViewModel, ViewManagerModel viewManagerModel, BusinessInfoViewModel businessInfoViewModel){
         this.viewManagerModel = viewManagerModel;
         searchedNameViewModel.addPropertyChangeListener(this);
@@ -141,10 +152,19 @@ public class SearchedNameView extends JPanel implements ActionListener, Property
     }
 
 
+    /**
+     * This method is called when an action is performed.
+     * It prints the source of the event to the console
+     * @param e The event that was performed.
+     * */
     public void actionPerformed(ActionEvent e) {
         System.out.println("Event source: " + e.getSource());
     }
 
+    /**
+     * This method is called when a property changes, and it updates the view.
+     * @param evt The property change event.
+     * */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         SearchedNameState state = (SearchedNameState) evt.getNewValue();

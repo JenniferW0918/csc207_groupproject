@@ -5,6 +5,8 @@ import interface_adapter.ViewModel;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+/** This class represents the view model SearchNameView.
+ * */
 public class SearchNameViewModel extends ViewModel {
 
     public static final String TITLE_LABEL = "Search View";
@@ -16,29 +18,44 @@ public class SearchNameViewModel extends ViewModel {
 
     private SearchNameState state = new SearchNameState();
 
+    /**
+     * This constructor creates a new SearchNameViewModel object.
+     */
     public SearchNameViewModel() {
         super("search name");
     }
 
+    /**
+     * This method sets the state of the SearchNameViewModel.
+     * @param state The new state.
+     */
     public void setState(SearchNameState state) {
         this.state = state;
     }
 
+
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-
-
-    //Signup Presenter will call to let the ViewModel know to alert the View
-
+    /**
+     * This method fires a property change event.
+     */
     @Override
     public void firePropertyChanged() {
         support.firePropertyChange("state", null, this.state);
     }
 
+    /**
+     * This method adds a property change listener to the support object.
+     * @param listener The listener to add.
+     */
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
 
+    /**
+     * This method returns the current state of the SearchNameViewModel.
+     * @return The current state.
+     */
     public SearchNameState getState() {
         return state;
     }

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 /** Tests for Accounts class with some BusinessAccounts and User*/
 public class AccountsTests {
+
+    /**Test that Accounts stores business objects appropriately*/
     @org.junit.Test
     public void testBusinessStorage(){
         Accounts accounts = new Accounts();
@@ -17,6 +19,7 @@ public class AccountsTests {
         assert(!accounts.businessExistsByUsername("not test"));
     }
 
+    /**Test that Accounts does not store duplicate businesses*/
     @org.junit.Test
     public void testDuplicateBusinessStorage(){
         Accounts accounts = new Accounts();
@@ -37,6 +40,7 @@ public class AccountsTests {
         assert(businessAccounts.size() == 1); // test that the business has not been added again
     }
 
+    /**Test that Accounts stores user objects appropriately*/
     @org.junit.Test
     public void testUserStorage(){
         Accounts accounts = new Accounts();
@@ -46,6 +50,7 @@ public class AccountsTests {
         assert(!accounts.userExistsByUsername("not test"));
     }
 
+    /**Test that Accounts does not store duplicate users*/
     @org.junit.Test
     public void testDuplicateUser(){
         Accounts accounts = new Accounts();
@@ -61,6 +66,7 @@ public class AccountsTests {
         assert(userAccounts.size() == 1);
     }
 
+    /**Test that Accounts can validate when a business accounts exists*/
     @org.junit.Test
     public void checkBusinessDoesNotExists(){
         Accounts accounts = new Accounts();
@@ -71,6 +77,7 @@ public class AccountsTests {
         assert(!accounts.businessExistsByUsername("test"));
     }
 
+    /**Test that Accounts can validate when a user accounts exists*/
     @org.junit.Test
     public void checkUserDoesNotExists(){
         Accounts accounts = new Accounts();
@@ -79,6 +86,7 @@ public class AccountsTests {
         assert(!accounts.userExistsByUsername("test"));
     }
 
+    /**Test that BusinessAccounts instantiation*/
     @org.junit.Test
     public void testBusinessAccounts(){
         BusinessAccount businessAccount = new BusinessAccount(
@@ -91,6 +99,7 @@ public class AccountsTests {
         assert(businessAccount.getCategory().equals("category"));
     }
 
+    /**Test that User instantiation*/
     @org.junit.Test
     public void testUserAccounts(){
         User user = new User("name", "username", "password");
@@ -99,6 +108,7 @@ public class AccountsTests {
         assert(user.getPassword().equals("password"));
     }
 
+    /** Test that the user factory creates users appropriately*/
     @org.junit.Test
     public void testUserCreation(){
         UserFactory userFactory = new UserFactory();
@@ -106,6 +116,7 @@ public class AccountsTests {
         assert(createdUser != null);
     }
 
+    /** Test that the business factory creates businesses appropriately*/
     @org.junit.Test
     public void testBusinessCreation(){
         BusinessAccountFactory businessAccountFactory = new BusinessAccountFactory();
@@ -113,6 +124,7 @@ public class AccountsTests {
         assert(createdBusiness != null);
     }
 
+    /** Test that Accounts stores users appropriately*/
     @org.junit.Test
     public void testAccountsUsersList(){
         Accounts accounts = new Accounts();
