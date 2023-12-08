@@ -12,7 +12,12 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+/**
+ * The SignUpView class represents the GUI for the Sign Up (account type selection) use case.
+ * It allows users to choose between creating a user or a business account.
+ */
 public class SignUpView extends JPanel implements ActionListener, PropertyChangeListener {
+
     public final String viewName = "sign up";
 
     private final SignUpViewModel signupViewModel;
@@ -23,6 +28,12 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
     private final JButton createBusiness;
     private final JButton back;
 
+    /**
+     * Constructs an instance of SignUpView given the specified controller, ViewModel and ViewManagerModel.
+     * @param controller the controller that handles user interactions in the SignUpView
+     * @param signupViewModel the ViewModel that manages the state and properties of the SignUpView
+     * @param viewManagerModel the model that manages the views of the application
+     */
     public SignUpView(SignUpController controller, SignUpViewModel signupViewModel,
                       ViewManagerModel viewManagerModel) {
 
@@ -43,7 +54,7 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
         buttons.add(back);
 
         createUser.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
+
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
 
@@ -78,9 +89,6 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
                 }
         );
 
-        // This makes a new KeyListener implementing class, instantiates it, and
-        // makes it listen to keystrokes in the usernameInputField.
-
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
@@ -88,13 +96,20 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
     }
 
     /**
-     * React to a button click that results in evt.
+     * React to a button click event.
+     *
+     * @param evt the action event triggered by a button click
      */
     public void actionPerformed(ActionEvent evt) {
 
         System.out.println("Click " + evt.getActionCommand());
     }
 
+    /**
+     * Handle property change events.
+     *
+     * @param evt the property change event
+     */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
 

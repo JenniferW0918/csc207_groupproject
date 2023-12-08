@@ -18,11 +18,23 @@ import view.SignUpView;
 import javax.swing.*;
 import java.io.IOException;
 
+/**
+ * Factory class for creating components for the Sign Up use case.
+ */
 public class SignUpUseCaseFactory {
 
-    /** Prevent instantiation. */
     private SignUpUseCaseFactory() {}
 
+    /**
+     * Creates an instance of SignUpView with the necessary dependencies.
+     *
+     * @param viewManagerModel the model that manages the views in the application
+     * @param signUpViewModel the view model for the Sign Up use case
+     * @param addUserViewModel the view model for the Add User use case
+     * @param addBusinessAccountViewModel the view model for the Add Business use case
+     * @param dataAccessObject the data access object for created accounts
+     * @return an instance of SignUpView
+     */
     public static SignUpView createSignUpView(
             ViewManagerModel viewManagerModel,
             SignUpViewModel signUpViewModel,
@@ -30,7 +42,8 @@ public class SignUpUseCaseFactory {
             AddBusinessAccountViewModel addBusinessAccountViewModel,
             Accounts dataAccessObject) {
 
-            SignUpController signUpController = createSignUpUseCase(viewManagerModel, addUserViewModel, addBusinessAccountViewModel, dataAccessObject);
+            SignUpController signUpController = createSignUpUseCase(viewManagerModel, addUserViewModel,
+                    addBusinessAccountViewModel, dataAccessObject);
             return new SignUpView(signUpController, signUpViewModel, viewManagerModel);
     }
 
@@ -39,8 +52,8 @@ public class SignUpUseCaseFactory {
                                                             AddBusinessAccountViewModel addBusinessAccountViewModel,
                                                             Accounts dataAccessObject) {
 
-        // Notice how we pass this method's parameters to the Presenter.
-        SignUpOutputBoundary signupOutputBoundary = new SignUpPresenter(viewManagerModel, addUserViewModel, addBusinessAccountViewModel, dataAccessObject);
+        SignUpOutputBoundary signupOutputBoundary = new SignUpPresenter(viewManagerModel, addUserViewModel,
+                addBusinessAccountViewModel, dataAccessObject);
 
         SignUpInputBoundary userSignupInteractor = new SignUpInteractor(
                 signupOutputBoundary);
