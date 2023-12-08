@@ -25,19 +25,39 @@ import static app.Main.viewManagerModel;
  * @version 1.0
  */
 public class SignInView extends JPanel implements ActionListener, PropertyChangeListener { // attempting push
+    /** The name of the view. */
     public final String viewName = "signin";
+
+    /** The view model for handling sign-in view information. */
     private final SignInViewModel signInViewModel;
 
+    /** Input field for entering the username. */
     final JTextField usernameInputField = new JTextField(15);
+
+    /** Error field for displaying username-related errors. */
     private final JLabel usernameErrorField = new JLabel();
 
+    /** Input field for entering the password. */
     final JPasswordField passwordInputField = new JPasswordField(15);
+
+    /** Error field for displaying password-related errors. */
     private final JLabel passwordErrorField = new JLabel();
 
+    /** Button for initiating the sign-in process. */
     final JButton signIn;
+
+    /** Button for navigating back to the previous view. */
     private final JButton back;
+
+    /** Controller for handling sign-in actions. */
     private final SignInController signInController;
 
+    /**
+     * Constructs an instance of SignInView.
+     *
+     * @param signInViewModel      The view model for handling sign-in view information.
+     * @param controller           The controller for handling sign-in actions.
+     */
     public SignInView(SignInViewModel signInViewModel, SignInController controller) {
 
         this.signInController = controller;

@@ -22,15 +22,31 @@ import java.beans.PropertyChangeListener;
  * @version 1.0
  */
 public class FirstViewView extends JPanel implements ActionListener, PropertyChangeListener { // testing commits
+    /** The name of the view. */
     public final String viewName = "First View";
 
+    /** The view model for handling first view information. */
     private final FirstViewViewModel firstViewViewModel;
+
+    /** Controller for handling first view actions. */
     private final FirstViewController firstViewController;
+
+    /** Model for managing views. */
     private final ViewManagerModel viewManagerModel;
 
+    /** Button for signing in. */
     private final JButton signin;
+
+    /** Button for signing up. */
     private final JButton signup;
 
+    /**
+     * Constructs an instance of FirstViewView.
+     *
+     * @param controller              The controller for handling first view actions.
+     * @param firstViewViewModel      The view model for handling first view information.
+     * @param viewManagerModel        The model for managing views.
+     */
     public FirstViewView(FirstViewController controller, FirstViewViewModel firstViewViewModel,
                       ViewManagerModel viewManagerModel) {
 
