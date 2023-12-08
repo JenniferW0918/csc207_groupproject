@@ -20,11 +20,29 @@ import javax.swing.*;
 public class SignInPresenter implements SignInOutputBoundary {
 
 
+    /**
+     * The SignInViewModel associated with the sign-in presentation.
+     */
     private final SignInViewModel signInViewModel;
+
+    /**
+     * The SearchNameViewModel associated with the sign-in presentation.
+     */
     private final SearchNameViewModel searchNameViewModel;
+
+    /**
+     * The ViewManagerModel responsible for managing views in the application.
+     */
     private ViewManagerModel viewManagerModel;
 
 
+    /**
+     * Constructs a SignInPresenter with the specified SignInViewModel, SearchNameViewModel, and ViewManagerModel.
+     *
+     * @param signInViewModel     The SignInViewModel associated with the sign-in presentation.
+     * @param searchNameViewModel The SearchNameViewModel associated with the sign-in presentation.
+     * @param viewManagerModel    The ViewManagerModel responsible for managing views in the application.
+     */
     public SignInPresenter(SignInViewModel signInViewModel, SearchNameViewModel searchNameViewModel,
                            ViewManagerModel viewManagerModel) {
         this.signInViewModel = signInViewModel;
@@ -33,6 +51,11 @@ public class SignInPresenter implements SignInOutputBoundary {
     }
 
 
+    /**
+     * Presents the success outcome of the sign-in use case to the associated ViewModel and ViewManagerModel.
+     *
+     * @param response The SignInOutputData representing the success outcome of the sign-in use case.
+     */
     @Override
     public void prepareSuccessView(SignInOutputData response) {
         SearchNameState searchNameState = searchNameViewModel.getState();
@@ -46,7 +69,11 @@ public class SignInPresenter implements SignInOutputBoundary {
 
     }
 
-
+    /**
+     * Presents the failure outcome of the sign-in use case to the associated ViewModel and displays an error message.
+     *
+     * @param error The error message associated with the sign-in failure.
+     */
     @Override
     public void prepareFailView(String error) {
         SignInState signInState = signInViewModel.getState();

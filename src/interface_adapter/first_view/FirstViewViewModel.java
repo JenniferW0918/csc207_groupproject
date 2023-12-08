@@ -19,35 +19,74 @@ import java.beans.PropertyChangeSupport;
  */
 public class FirstViewViewModel extends ViewModel {
 
+    /**
+     * The title label for the First View.
+     */
     public static final String TITLE_LABEL = "Sign in or Sign up";
+
+    /**
+     * The label for the Sign in button.
+     */
     public static final String SIGNIN_BUTTON_LABEL = "Sign in";
+
+    /**
+     * The label for the Sign up button.
+     */
     public static final String SIGNUP_BUTTON_LABEL = "Sign up";
 
+    /**
+     * The internal state representing the user's choice of signing in or signing up.
+     */
     private FirstViewState state = new FirstViewState();
 
+    /**
+     * Constructs a FirstViewViewModel with the specified view name.
+     * Initializes the internal state with a new instance of FirstViewState.
+     *
+     * @param viewName The name of the view associated with this ViewModel.
+     */
     public FirstViewViewModel() {
 
         super("first view");
     }
 
+    /**
+     * Sets the internal state of the ViewModel with the provided FirstViewState.
+     *
+     * @param state The new state representing the user's choice of signing in or signing up.
+     */
     public void setState(FirstViewState state) {
 
         this.state = state;
     }
 
+    /**
+     * Notifies registered listeners about a change in the internal state.
+     */
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
-    // This is what the Frist View Presenter will call to let the ViewModel know
-    // to alert the View
+    /**
+     * Notifies registered listeners about a change in the internal state.
+     */
     public void firePropertyChanged() {
 
         support.firePropertyChange("state", null, this.state);
     }
 
+    /**
+     * Adds a listener for state change events.
+     *
+     * @param listener The listener to be added.
+     */
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
 
+    /**
+     * Retrieves the current state representing the user's choice of signing in or signing up.
+     *
+     * @return The current FirstViewState.
+     */
     public FirstViewState getState() {
 
         return state;

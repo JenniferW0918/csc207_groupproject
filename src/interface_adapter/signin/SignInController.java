@@ -14,14 +14,27 @@ import use_case.signin.SignInInputData;
 public class SignInController {
 
 
+    /**
+     * The SignInInputBoundary responsible for handling the sign-in use case.
+     */
     final SignInInputBoundary signInUseCaseInteractor;
 
-
+    /**
+     * Constructs a SignInController with the specified SignInInputBoundary.
+     *
+     * @param signInUseCaseInteractor The SignInInputBoundary responsible for handling the sign-in use case.
+     */
     public SignInController(SignInInputBoundary signInUseCaseInteractor) {
         this.signInUseCaseInteractor = signInUseCaseInteractor;
     }
 
 
+    /**
+     * Executes the sign-in use case by providing the specified username and password.
+     *
+     * @param username The username associated with the user account.
+     * @param password The password associated with the user account.
+     */
     public void execute (String username, String password) {
         SignInInputData signInInputData = new SignInInputData(username, password);
 

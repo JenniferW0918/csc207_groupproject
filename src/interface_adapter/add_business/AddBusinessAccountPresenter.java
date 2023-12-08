@@ -19,10 +19,29 @@ import javax.swing.*;
  */
 public class AddBusinessAccountPresenter implements AddBusinessAccountOutputBoundary {
 
+    /**
+     * The view model for the AddBusinessAccount feature, containing the state and data to be presented in the user interface.
+     */
     private final AddBusinessAccountViewModel addBusinessAccountViewModel;
+
+    /**
+     * The view model for the search name feature, which may be affected by the outcome of the AddBusinessAccount operation.
+     */
     private final SearchNameViewModel searchNameViewModel;
+
+    /**
+     * The model representing the state of the view manager, which controls the active view in the application.
+     */
     private ViewManagerModel viewManagerModel;
 
+    /**
+     * Constructs an AddBusinessAccountPresenter with the specified view manager model and view models for AddBusinessAccount
+     * and search name features.
+     *
+     * @param viewManagerModel The model representing the state of the view manager.
+     * @param addBusinessViewModel The view model for the AddBusinessAccount feature.
+     * @param searchNameViewModel The view model for the search name feature.
+     */
     public AddBusinessAccountPresenter(ViewManagerModel viewManagerModel,
                                        AddBusinessAccountViewModel addBusinessViewModel,
                                        SearchNameViewModel searchNameViewModel) {
@@ -31,6 +50,12 @@ public class AddBusinessAccountPresenter implements AddBusinessAccountOutputBoun
         this.searchNameViewModel = searchNameViewModel;
     }
 
+    /**
+     * Handles the preparation of the success view after a successful AddBusinessAccount operation. This may involve updating
+     * the state of related view models and triggering a view change.
+     *
+     * @param response The output data containing relevant information from the AddBusinessAccount operation.
+     */
     @Override
     public void prepareSuccessView(AddBusinessAccountOutputData response) {
         SearchNameState searchNameState = searchNameViewModel.getState();
@@ -41,6 +66,13 @@ public class AddBusinessAccountPresenter implements AddBusinessAccountOutputBoun
         viewManagerModel.firePropertyChanged();
     }
 
+    /**
+     * Handles the preparation of the fail view after a failed AddBusinessAccount operation. This involves extracting specific
+     * error messages for each missing field, updating the state of the AddBusinessAccount view model, and displaying an error
+     * message to the user through a JOptionPane.
+     *
+     * @param error The error message describing the cause of the failure.
+     */
     @Override
     public void prepareFailView(String error) {
         AddBusinessAccountState addBusinessAccountState = addBusinessAccountViewModel.getState();
@@ -64,7 +96,13 @@ public class AddBusinessAccountPresenter implements AddBusinessAccountOutputBoun
         JOptionPane.showMessageDialog(null, error);
     }
 
-    // Helper method to extract specific error messages for each missing field
+    /**
+     * Helper method to extract specific error messages for each missing field based on a given prefix.
+     *
+     * @param error The error message containing specific field-related information.
+     * @param fieldName The name of the field for which the error message is extracted.
+     * @return The specific error message related to the specified field, or null if not found.
+     */
     private String extractErrorMessage(String error, String fieldName) {
         String prefix = "Please enter a ";
         if (error.startsWith(prefix + fieldName)) {

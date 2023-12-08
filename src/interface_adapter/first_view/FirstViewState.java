@@ -10,16 +10,33 @@ package interface_adapter.first_view;
  * @version 1.0
  */
 public class FirstViewState {
+
+    /**
+     * The string representing the user's intention to sign in or sign up.
+     */
     private String signinOrSignup = "";
 
+    /**
+     * Constructs a FirstViewState by copying the 'signinOrSignup' value from the provided instance.
+     *
+     * @param copy The FirstViewState instance to copy.
+     */
     public FirstViewState(FirstViewState copy) {
 
         signinOrSignup = copy.signinOrSignup;
     }
 
+    /**
+     * Constructs a default FirstViewState with an empty 'signinOrSignup' value.
+     */
     public FirstViewState() {
     }
 
+    /**
+     * Gets the current value of 'signinOrSignup'.
+     *
+     * @return The string representing the user's intention to sign in or sign up.
+     */
     public String getSigninOrSignup() {
 
         return signinOrSignup;

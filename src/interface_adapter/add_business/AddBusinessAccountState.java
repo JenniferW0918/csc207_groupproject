@@ -12,17 +12,59 @@ package interface_adapter.add_business;
  * @version 1.0
  */
 public class AddBusinessAccountState {
+    /**
+     * The entered username for the new business account.
+     */
     private String username = "";
+
+    /**
+     * The validation error associated with the username, or null if no error.
+     */
     private String usernameError = null;
+
+    /**
+     * The entered name for the new business account.
+     */
     private String name = "";
+
+    /**
+     * The validation error associated with the name, or null if no error.
+     */
     private String nameError = null;
+
+    /**
+     * The entered password for the new business account.
+     */
     private String password = "";
+
+    /**
+     * The validation error associated with the password, or null if no error.
+     */
     private String passwordError = null;
+
+    /**
+     * The entered address for the new business account.
+     */
     private String address = "";
+
+    /**
+     * The validation error associated with the address, or null if no error.
+     */
     private String addressError = null;
+
+    /**
+     * The entered category for the new business account.
+     */
     private String category = "";
+
+    /**
+     * The validation error associated with the category, or null if no error.
+     */
     private String categoryError = null;
 
+    /**
+     * The account type, representing the role of the user (e.g., business owner).
+     */
     private String accountType = "";
 
 
@@ -40,6 +82,9 @@ public class AddBusinessAccountState {
         accountType = copy.accountType;
     }
 
+    /**
+     * Constructs an AddBusinessAccountState with default values.
+     */
     public AddBusinessAccountState() {
     }
 
@@ -129,6 +174,11 @@ public class AddBusinessAccountState {
     }
 
 
+    /**
+     * String representation of the AddBusinessAccountState for debugging purposes.
+     *
+     * @return A string containing the values of the username and password fields.
+     */
     @Override
     public String toString() {
         return "AddBusinessAccountState{" +

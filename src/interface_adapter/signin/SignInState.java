@@ -10,12 +10,33 @@ package interface_adapter.signin;
  * @version 1.0
  */
 public class SignInState {
+
+    /**
+     * The username associated with the sign-in state.
+     */
     private String username = "";
+
+    /**
+     * The username error message associated with the sign-in state.
+     */
     private String usernameError = null;
+
+    /**
+     * The password associated with the sign-in state.
+     */
     private String password = "";
+
+    /**
+     * The password error message associated with the sign-in state.
+     */
     private String passwordError = null;
 
 
+    /**
+     * Constructs a SignInState by copying the attributes from another SignInState.
+     *
+     * @param copy The SignInState to copy attributes from.
+     */
     public SignInState(SignInState copy) {
         username = copy.username;
         usernameError = copy.usernameError;
@@ -24,6 +45,9 @@ public class SignInState {
     }
 
 
+    /**
+     * Constructs a default SignInState with empty values for username, username error, password, and password error.
+     */
     public SignInState() {
     }
 

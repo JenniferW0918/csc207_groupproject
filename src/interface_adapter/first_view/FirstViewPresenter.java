@@ -16,38 +16,69 @@ import use_case.first_view.FirstViewOutputData;
  * @author audrey
  * @version 1.0
  */
-public class FirstViewPresenter implements FirstViewOutputBoundary { // testing commits
-        private final SignInViewModel signInViewModel;
-        private final SignUpViewModel signUpViewModel;
-        private ViewManagerModel viewManagerModel;
+public class FirstViewPresenter implements FirstViewOutputBoundary {
 
-        public FirstViewPresenter(ViewManagerModel viewManagerModel,
+    /**
+     * The SignInViewModel instance associated with the sign-in feature.
+     */
+    private final SignInViewModel signInViewModel;
+
+    /**
+     * The SignUpViewModel instance associated with the sign-up feature.
+     */
+    private final SignUpViewModel signUpViewModel;
+
+    /**
+     * The ViewManagerModel instance responsible for managing views in the application.
+     */
+    private ViewManagerModel viewManagerModel;
+
+    /**
+     * Constructs a FirstViewPresenter with the provided ViewManagerModel, SignInViewModel, and SignUpViewModel.
+     *
+     * @param viewManagerModel The view manager responsible for managing views in the application.
+     * @param signInViewModel  The view model for the sign-in feature.
+     * @param signUpViewModel  The view model for the sign-up feature.
+     */
+    public FirstViewPresenter(ViewManagerModel viewManagerModel,
                                SignInViewModel signInViewModel,
                                SignUpViewModel signUpViewModel) {
-            this.viewManagerModel = viewManagerModel;
-            this.signInViewModel = signInViewModel;
-            this.signUpViewModel = signUpViewModel;
-        }
+        this.viewManagerModel = viewManagerModel;
+        this.signInViewModel = signInViewModel;
+        this.signUpViewModel = signUpViewModel;
+    }
 
-        @Override
-        public void prepareSuccessSignInView(FirstViewOutputData response) {
+    /**
+     * Handles the presentation logic after a successful sign-in action. It updates the SignInViewModel
+     * and notifies the view manager to switch to the sign-in view.
+     *
+     * @param response The output data from the FirstView use case for sign-in.
+     */
+    @Override
+    public void prepareSuccessSignInView(FirstViewOutputData response) {
             // On success, switch to the create user view.
-            SignInState signInState = signInViewModel.getState();
-            signInViewModel.setState(signInState);
-            signInViewModel.firePropertyChanged();
+        SignInState signInState = signInViewModel.getState();
+        signInViewModel.setState(signInState);
+        signInViewModel.firePropertyChanged();
 
-            viewManagerModel.setActiveView(signInViewModel.getViewName());
-            viewManagerModel.firePropertyChanged();
-        }
+        viewManagerModel.setActiveView(signInViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+    }
 
-        @Override
-        public void prepareSuccessSignUpView(FirstViewOutputData response) {
-            // on success, switch to add business account view
-            SignUpState signUpState = signUpViewModel.getState();
-            signUpViewModel.setState(signUpState);
-            signUpViewModel.firePropertyChanged();
+    /**
+     * Handles the presentation logic after a successful sign-up action. It updates the SignUpViewModel
+     * and notifies the view manager to switch to the sign-up view.
+     *
+     * @param response The output data from the FirstView use case for sign-up.
+     */
+    @Override
+    public void prepareSuccessSignUpView(FirstViewOutputData response) {
+        // on success, switch to add business account view
+        SignUpState signUpState = signUpViewModel.getState();
+        signUpViewModel.setState(signUpState);
+        signUpViewModel.firePropertyChanged();
 
-            viewManagerModel.setActiveView(signUpViewModel.getViewName());
-            viewManagerModel.firePropertyChanged();
-        }
+        viewManagerModel.setActiveView(signUpViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+    }
 }

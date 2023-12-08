@@ -13,11 +13,30 @@ import use_case.add_business.AddBusinessAccountInputData;
  */
 public class AddBusinessAccountController {
 
+    /**
+     * The input boundary (use case interactor) for the AddBusinessAccount use case.
+     */
     final AddBusinessAccountInputBoundary userAddBusinessAccountUseCaseInteractor;
+
+    /**
+     * Constructs an AddBusinessAccountController with the provided AddBusinessAccountInputBoundary.
+     *
+     * @param userAddBusinessUseCaseInteractor The input boundary (use case interactor) for the AddBusinessAccount use case.
+     */
     public AddBusinessAccountController(AddBusinessAccountInputBoundary userAddBusinessUseCaseInteractor) {
         this.userAddBusinessAccountUseCaseInteractor = userAddBusinessUseCaseInteractor;
     }
 
+    /**
+     * Executes the AddBusinessAccount use case by creating an AddBusinessAccountInputData object from the provided parameters
+     * and invoking the corresponding method on the input boundary.
+     *
+     * @param username The username for the new business account.
+     * @param name The name of the new business.
+     * @param password The password for the new business account.
+     * @param address The address of the new business.
+     * @param category The category or type of the new business.
+     */
     public void execute(String username, String name, String password, String address, String category) {
         AddBusinessAccountInputData addBusinessInputData = new AddBusinessAccountInputData(username, name, password,
                 address, category);
