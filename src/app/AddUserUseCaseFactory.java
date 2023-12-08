@@ -17,9 +17,21 @@ import view.AddUserView;
 import javax.swing.*;
 import java.io.IOException;
 
+/**
+ * Factory class for creating components for the Add User use case.
+ */
 public class AddUserUseCaseFactory {
     private AddUserUseCaseFactory() {}
 
+    /**
+     * Creates an instance of AddUserView with the necessary dependencies.
+     *
+     * @param viewManagerModel the model that manages the views in the application
+     * @param searchNameViewModel the view model for the Search Name use case
+     * @param addUserViewModel the view model for the Add User use case
+     * @param dataAccessObject the data access object for created accounts
+     * @return an instance of AddUserView
+     */
     public static AddUserView createUserView(
             ViewManagerModel viewManagerModel,
             SearchNameViewModel searchNameViewModel,
@@ -42,7 +54,6 @@ public class AddUserUseCaseFactory {
                                                        SearchNameViewModel searchNameViewModel,
                                                        Accounts dataAccessObject) throws IOException {
 
-        // Notice how we pass this method's parameters to the Presenter.
         AddUserOutputBoundary addUserOutputBoundary = new AddUserPresenter(
                 viewManagerModel, addUserViewModel, searchNameViewModel);
 

@@ -16,7 +16,12 @@ import java.beans.PropertyChangeListener;
 
 import static app.Main.viewManagerModel;
 
+/**
+ * The AddUserView class represents the GUI for the Add User use case.
+ * In allows users to input their username, name and password.
+ */
 public class AddUserView extends JPanel implements ActionListener, PropertyChangeListener {
+
     public final String viewName = "Add User Account";
 
     private final AddUserViewModel addUserViewModel;
@@ -28,6 +33,12 @@ public class AddUserView extends JPanel implements ActionListener, PropertyChang
     private final JButton addUser;
     private final JButton back;
 
+    /**
+     * Constructs an AddUserView given the specified controller and ViewModel.
+     *
+     * @param controller the controller that handles user interactions in the AddUserView
+     * @param addUserViewModel the ViewModel that manages the state and properties of the AddUserView
+     */
     public AddUserView(AddUserController controller,
                                   AddUserViewModel addUserViewModel){
 
@@ -52,7 +63,7 @@ public class AddUserView extends JPanel implements ActionListener, PropertyChang
         buttons.add(back);
 
         addUser.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
+
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         AddUserState currentState = addUserViewModel.getState();
@@ -94,10 +105,6 @@ public class AddUserView extends JPanel implements ActionListener, PropertyChang
                 }
         );
 
-        // This makes a new KeyListener implementing class, instantiates it, and
-        // makes it listen to keystrokes in the usernameInputField.
-        //
-        // Notice how it has access to instance variables in the enclosing class!
         usernameInputField.addKeyListener(
                 new KeyListener() {
                     @Override
@@ -160,7 +167,6 @@ public class AddUserView extends JPanel implements ActionListener, PropertyChang
                 }
         );
 
-
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
@@ -170,12 +176,22 @@ public class AddUserView extends JPanel implements ActionListener, PropertyChang
         this.add(buttons);
     }
 
+    /**
+     * React to a button click event.
+     *
+     * @param e the action event triggered by a button click
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
         System.out.println("Click " + e.getActionCommand());
     }
 
+    /**
+     * Handle property change events.
+     *
+     * @param evt the property change event
+     */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
 

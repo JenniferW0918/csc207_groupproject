@@ -17,6 +17,16 @@ import view.SignUpView;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * This is the presenter class for the Sign Up (sign up account type selection) use case. It handles the output of
+ * selecting an account type to sign up with and updates the relevant view models and view manager.
+ *
+ * This class implements the SignUpOutputBoundary interface to define methods that prepare views depending on the
+ * output of the account type selection.
+ *
+ * @author jenniferwang
+ * @version 1.0
+ */
 public class SignUpPresenter implements SignUpOutputBoundary {
 
     private final AddUserViewModel addUserViewModel;
@@ -27,6 +37,14 @@ public class SignUpPresenter implements SignUpOutputBoundary {
     private SearchNameViewModel searchNameViewModel;
     private Accounts dataAccessObject;
 
+    /**
+     * Constructor for creating an instance of SignUpPresenter.
+     *
+     * @param viewManagerModel the model that manages views within the application
+     * @param addUserViewModel the ViewModel for managing the user sign up view
+     * @param addBusinessAccountViewModel the ViewModel for managing the business sign up view
+     * @param dataAccessObject the data access object containing information on existing accounts
+     */
     public SignUpPresenter(ViewManagerModel viewManagerModel,
                            AddUserViewModel addUserViewModel,
                            AddBusinessAccountViewModel addBusinessAccountViewModel,
@@ -37,9 +55,14 @@ public class SignUpPresenter implements SignUpOutputBoundary {
         this.dataAccessObject = dataAccessObject;
     }
 
+    /**
+     * Switches from sign up (account type selection) view to user sign up view upon a successful user selection
+     *
+     * @param response the SignUpOutputData containing information about the successful user selection
+     */
     @Override
     public void prepareSuccessUserView(SignUpOutputData response) {
-        // On success, switch to the create user view.
+
         AddUserState addUserState = addUserViewModel.getState();
         addUserState.setAccountType(response.getAccountType());
         addUserViewModel.setState(addUserState);
@@ -49,9 +72,15 @@ public class SignUpPresenter implements SignUpOutputBoundary {
         viewManagerModel.firePropertyChanged();
     }
 
+    /**
+     * Switches from sign up (account type selection) view to business account sign up view upon a successful business
+     * account selection
+     *
+     * @param response the SignUpOutputData containing information about the successful business account selection
+     */
     @Override
     public void prepareSuccessBusinessView(SignUpOutputData response) {
-        // on success, switch to add business account view
+
         AddBusinessAccountState addBusinessAccountState = addBusinessAccountViewModel.getState();
         addBusinessAccountState.setAccountType(response.getAccountType());
         addBusinessAccountViewModel.setState(addBusinessAccountState);
