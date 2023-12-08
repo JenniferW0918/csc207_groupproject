@@ -15,6 +15,12 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+/**
+ * This class represents the view for the search name feature in the application.
+ * It extends JPanel and implements ActionListener and PropertyChangeListener.
+ * The view consists of input fields for term and location, and buttons for search name and logout.
+ * It also listens to changes in the SearchNameViewModel and updates the view accordingly.
+ */
 public class SearchNameView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "search name";
 
@@ -27,6 +33,11 @@ public class SearchNameView extends JPanel implements ActionListener, PropertyCh
     final JButton logOut;
 
 
+    /** This constructor  creates the view for the search name feature.
+     * @param searchNameController The controller for the search name use case
+     * @param searchNameViewModel The view model for the search name feature.
+     * @param viewManagerModel The view manager model.
+     * */
     public SearchNameView(SearchNameController searchNameController, SearchNameViewModel searchNameViewModel, ViewManagerModel viewManagerModel) {
 
         searchNameViewModel.addPropertyChangeListener(this);
@@ -134,11 +145,19 @@ public class SearchNameView extends JPanel implements ActionListener, PropertyCh
     }
 
 
+    /**
+     * This method is called when an action is performed.
+     * It prints the source of the event to the console
+     * @param e The event that was performed.
+     * */
     public void actionPerformed(ActionEvent e) {
         System.out.println("Click " +e.getActionCommand());
     }
 
-
+    /**
+     * This method is called when a property changes, and it updates the view.
+     * @param evt The property change event.
+     * */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         SearchNameState state = (SearchNameState) evt.getNewValue();

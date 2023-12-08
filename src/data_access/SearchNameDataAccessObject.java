@@ -11,17 +11,25 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * The SearchNameDataAccessObject class implements the SearchNameDataAccessInterface.
+ * It interacts with the Yelp API to GET search results based on a term and location.
+ */
 public class SearchNameDataAccessObject implements SearchNameDataAccessInterface {
     private static final String API_URL = "https://api.yelp.com/v3/businesses/search?location=%s&term=%s&sort_by=best_match&limit=%s";
-    private static final String API_KEY = "Bearer TjA3ywvvjJc7IYcHp1P7ylScjeqWEgOKk_4C3Mflk11iz8EC2Gul5vsGBWKAc_ZaN_-SDkUNqI0ahBwMt9slhRl1tKDshvu8lzhzZ1H0CiqFQQ2pj7jjbFtZv_lwZXYx";
+    private static final String API_KEY = "Bearer keTwmtAAS9gP-0qws2D6VTsf1uvahxacDd0G4swCBN5aCRapU9iPKHLzHQ6Jm1Cu2HEbY_Pd9oL4JH80fal6RAjY2xeU_lQkQtBlqV3Vh6fWwBx1are9dLVHU1FyZXYx";
     private static final String MATCH_LIMIT = "5";
 
-
+    /**
+     * This constructor creates a SearchNameDataAccessObject.
+     */
     public SearchNameDataAccessObject() {
     }
 
     /**
-     * Calls API and returns SearchNameResult
+     * This method calls the Yelp API twice and turns its  result into  SearchNameResult
+     * @ param searchNameInputData the input data for the search name use case
+     * @ return SearchNameResult the result of the search name use case
      */
     public SearchNameResult getSearchName(SearchNameInputData searchNameInputData) {
         OkHttpClient client = new OkHttpClient();
@@ -43,9 +51,6 @@ public class SearchNameDataAccessObject implements SearchNameDataAccessInterface
     }
 
 
-    /**
-     * Turns output from API into SearchNameResult
-     */
     private SearchNameResult turnToSearchNameResult(String location, String term, String apiOutput) {
         JSONObject jsonObject = new JSONObject(apiOutput);
         JSONArray businessesJson = jsonObject.getJSONArray("businesses");
@@ -79,8 +84,13 @@ public class SearchNameDataAccessObject implements SearchNameDataAccessInterface
     }
 
     /**
-     * Get business reviews
-     */
+ * This method calls the Yelp API to get more details about a business, specifically the reviews.
+ * The response from the Yelp API parsed and returned as a string.
+ *
+ * @param id The id of the business
+ * @return A string containing the reviews of the business.
+ * @throws RuntimeException if there is an error getting the reviews from the Yelp API.
+ */
     public String getMoreDetails(String id) {
         OkHttpClient client = new OkHttpClient();
 

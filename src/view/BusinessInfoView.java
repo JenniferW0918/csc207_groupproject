@@ -18,6 +18,11 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+/**
+ * This class represents the view for the business info feature.
+ * It extends JPanel and implements ActionListener and PropertyChangeListener.
+ * The view consists of a list of searched names, and buttons for new search and logout.
+ */
 public class BusinessInfoView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "Business Information";
 
@@ -31,7 +36,11 @@ public class BusinessInfoView extends JPanel implements ActionListener, Property
     final JButton link;
     final JTextArea businessReviews;
 
-
+    /**
+     * This constructor creates the view for the business info feature.
+     * @param businessInfoViewModel The view model.
+     * @param viewManagerModel The view manager model.
+     */
     public BusinessInfoView(BusinessInfoViewModel businessInfoViewModel, ViewManagerModel viewManagerModel) {
 
         businessInfoViewModel.addPropertyChangeListener(this);
@@ -105,11 +114,19 @@ public class BusinessInfoView extends JPanel implements ActionListener, Property
         add(buttons);
     }
 
-
+    /**
+     * This method is called when an action is performed.
+     * It prints the source of the event to the console
+     * @param e The event that was performed.
+     * */
     public void actionPerformed(ActionEvent e) {
         System.out.println("Event source: " + e.getSource());
     }
 
+    /**
+     * This method is called when a property changes, and it updates the view.
+     * @param evt The property change event.
+     * */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         BusinessInfoState newState = (BusinessInfoState) evt.getNewValue();

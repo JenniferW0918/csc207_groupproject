@@ -5,15 +5,21 @@ import interface_adapter.seached_name.SearchedNameState;
 import interface_adapter.seached_name.SearchedNameViewModel;
 import use_case.search_name.SearchNameOutputBoundary;
 import use_case.search_name.SearchNameOutputData;
-
 import javax.swing.*;
 
-
+/** The SearchNamePresenter implements the SearchNameOutputBoundary interface.
+ * SearchNamePresenter updates the view model for the SearchNameView.
+ * */
 public class SearchNamePresenter implements SearchNameOutputBoundary {
     private final SearchNameViewModel searchNameViewModel;
     private final ViewManagerModel viewManagerModel;
     private final SearchedNameViewModel searchedNameViewModel;
 
+    /** This constructor creates a new SearchNamePresenter object.
+     * @param searchNameViewModel The view model for the SearchNameView.
+     * @param viewManagerModel The view manager model.
+     * @param searchedNameViewModel The view model for the SearchedNameView.
+     * */
     public SearchNamePresenter(SearchNameViewModel searchNameViewModel, ViewManagerModel viewManagerModel,
                                SearchedNameViewModel searchedNameViewModel){
         this.searchNameViewModel = searchNameViewModel;
@@ -21,7 +27,10 @@ public class SearchNamePresenter implements SearchNameOutputBoundary {
         this.searchedNameViewModel = searchedNameViewModel;
     }
 
-
+    /** This method prepares the success view on revieving the searchNameOutputData
+     * @param searchNameOutputData the output data from the search name use case
+     *                            containing the search results
+     * */
     @Override
     public void prepareSuccessView(SearchNameOutputData searchNameOutputData) {
 
@@ -42,6 +51,9 @@ public class SearchNamePresenter implements SearchNameOutputBoundary {
 
     }
 
+    /**  The method prepares the fail view on receiving the error message
+     * @param error the error message
+     * */
     @Override
     public void prepareFailView(String error) {
         SearchNameState searchNameState = searchNameViewModel.getState();

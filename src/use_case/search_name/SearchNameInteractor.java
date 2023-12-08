@@ -1,20 +1,25 @@
 package use_case.search_name;
 import entity.SearchNameResult;
-
-import data_access.SearchNameDataAccessObject;
-
-import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * The SearchNameInteractor class implements the SearchNameInputBoundary interface.
+ * It is used to execute the search name use case.
+ */
 public class SearchNameInteractor implements SearchNameInputBoundary {
     final SearchNameDataAccessInterface searchNameDataAccessObject;
     final SearchNameOutputBoundary searchNamePresenter;
 
-
+    /**
+     * This constructor creates a new SearchNameInteractor object.
+     * @param dataAccessInterface The data access object to use.
+     * @param outputBoundary The output boundary.
+     */
     public SearchNameInteractor(SearchNameDataAccessInterface dataAccessInterface, SearchNameOutputBoundary outputBoundary) {
         this.searchNameDataAccessObject = dataAccessInterface;
         this.searchNamePresenter = outputBoundary;
     }
+
 
     @Override
     public void execute(SearchNameInputData searchNameInputData) {

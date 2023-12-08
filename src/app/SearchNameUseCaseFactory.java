@@ -7,10 +7,20 @@ import interface_adapter.seached_name.SearchedNameViewModel;
 import data_access.SearchNameDataAccessObject;
 import view.SearchNameView;
 
-
+/**
+ * The SearchNameUseCaseFactory class is responsible for creating the search name use case.
+ */
 public class SearchNameUseCaseFactory {
     private SearchNameUseCaseFactory() {
     }
+    /**
+ * This method creates and returns a SearchNameView object.
+ * @param viewManagerModel The ViewManagerModel object that manages the views.
+ * @param searchNameViewModel The SearchNameViewModel object that updates the SearchNameView.
+ * @param searchNameDataAccessObject The SearchNameDataAccessObject object that interacts with the Yelp API.
+ * @param searchedNameViewModel The SearchedNameViewModel object that holds the data for the SearchedNameView.
+ * @return A new SearchNameView.
+ */
     public static SearchNameView createSearchNameView(ViewManagerModel viewManagerModel,
                                            SearchNameViewModel searchNameViewModel,
                                            SearchNameDataAccessObject searchNameDataAccessObject,
