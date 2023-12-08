@@ -15,22 +15,53 @@ import java.beans.PropertyChangeListener;
 
 import static app.Main.viewManagerModel;
 
+/**
+ * The AddBusinessView class represents the UI for the add_business use case.
+ * It extends JPanel and implements the ActionListener, PropertyChangeListener interfaces
+ * The view has input fields for a business' username, name, password, address, and category, and a signup button for creating the account
+ * The class is fundamentally responsible for creating a business account and navigating the user to the search name feature of the program.
+ *
+ * @author audrey
+ * @version 1.0
+ */
 public class AddBusinessAccountView extends JPanel implements ActionListener, PropertyChangeListener {
+    /** The name of the view. */
     public final String viewName = "Add Business Account";
 
+    /** The view model for handling business account information. */
     private final AddBusinessAccountViewModel addBusinessAccountViewModel;
+
+    /** Input field for username. */
     private final JTextField usernameInputField = new JTextField(15);
+
+    /** Input field for business name. */
     private final JTextField nameInputField = new JTextField(15);
+
+    /** Input field for password. */
     private final JPasswordField passwordInputField = new JPasswordField(15);
+
+    /** Input field for business address. */
     private final JTextField addressInputField = new JTextField(15);
+
+    /** Input field for business categories. */
     private final JTextField categoriesInputField = new JTextField(15);
+
+    /** Controller for handling business account creation. */
     private final AddBusinessAccountController addBusinessAccountController;
 
-
+    /** Button for adding a business account. */
     private final JButton addBusinessAccount;
+
+    /** Button for navigating back. */
     private final JButton back;
 
 
+    /**
+     * Constructs an instance of AddBusinessAccountView.
+     *
+     * @param controller                The controller for handling business account creation.
+     * @param addBusinessAccountViewModel The view model for handling business account information.
+     */
     public AddBusinessAccountView(AddBusinessAccountController controller,
                                   AddBusinessAccountViewModel addBusinessAccountViewModel){
 
